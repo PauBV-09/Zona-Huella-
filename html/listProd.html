@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos | Zona Huella</title>
+    <link rel="stylesheet" href="../css/listProd.css">
+</head>
+<body>
+    <!--Header-->
+    <main class="catalogo">
+        <section class="catalogo-superior">
+            <p class="ruta-catalogo">Inicio/Catalogo</p>
+            <div class="encabezado-Catalogo">
+                <div class="informacion-catalogo">
+                    <h1>Productos</h1>
+                    <p>
+                        Encuentra lo ideal por especie, etapa y tamaño
+                    </p>
+                </div>
+                <select name="orden" class="orden-productos">
+                    <option value="recomendados">
+                        Ordenar: recomendados
+                    </option>
+                    <option value="precio-menor">
+                        Precio: menor a mayor
+                    </option>
+                    <option value="precio-mayor">
+                        Precio: mayor a menor
+                    </option>
+                </select>
+            </div>
+        </section>
+
+<!--Forms de filtros-->
+    <div class="catalogo-contenido">
+
+        <aside class="filtros">
+            <h2>Filtros</h2>
+            <form class="formulario-filtros">
+    <!--Conjutno de filtro-->
+                <fieldset class="grupo-filtro">
+                    <legend>Especie</legend>
+    
+                    <label>
+                        <input type="checkbox" name="especie" value="perro"> Perro
+                    </label>
+                    <label>
+                        <input type="checkbox" name="especie" value="gato"> Gato
+                    </label>
+                </fieldset>
+                
+                <fieldset class="grupo-filtro">
+                    <legend>Tamaño</legend>
+    
+                    <label>
+                        <input type="checkbox" name="tamaño" value="grande"> Grande
+                    </label>
+                    <label>
+                        <input type="checkbox" name="tamaño" value="mediano"> Mediano
+                    </label>
+                    <label>
+                        <input type="checkbox" name="tamaño" value="chico"> Chico
+                    </label>
+                </fieldset>
+                
+                <fieldset class="grupo-filtro">
+                    <legend>Categoría</legend>
+        
+                    <label>
+                        <input type="checkbox" name="categoria" value="alimento"> Alimento
+                    </label>
+                    <label>
+                        <input type="checkbox" name="categoria" value="juguetes"> Juguetes
+                    </label>
+                    <label>
+                        <input type="checkbox" name="categoria" value="accesorios"> Accesorios
+                    </label>
+                </fieldset>
+                
+                <fieldset class="grupo-filtro">
+                    <legend>Etapa de Vida</legend>
+        
+                    <label>
+                        <input type="checkbox" name="etapa" value="adulto"> Adulto
+                    </label>
+                    <label>
+                        <input type="checkbox" name="etapa" value="cachorro"> cachorro
+                    </label>
+                </fieldset>
+    
+                <button class="boton-filtros" type="submit">
+                    Aplicar Filtros
+                </button>
+            </form>
+
+        </aside>
+
+        <section class="lista-productos">
+            <!--Aqui puede ir tu cuadricula de productos-->
+
+        </section>
+
+        
+
+    </div>
+
+    </main>
+
+    <script src="../js/listProd.js"></script>
+</body>
+</html>
