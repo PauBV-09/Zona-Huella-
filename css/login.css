@@ -1,0 +1,158 @@
+/* --- RESETEO BÁSICO Y TIPOGRAFÍA --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- FONDO PRINCIPAL DE LA PÁGINA --- */
+.background-container {
+    width: 100vw;
+    height: 100vh;
+    /* Degradado oscuro tecnológico que combina con Zona Huella */
+    background: linear-gradient(135deg, #0a0f1e 0%, #14192d 50%, #0052d4 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* --- TARJETA DE LOGIN (GLASSMORPHISM) --- */
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.06); /* Fondo blanco casi transparente */
+    border-radius: 12px;
+    
+    /* El efecto vidrio: desenfoca lo que está detrás de la tarjeta */
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* --- LOGO Y ENCABEZADOS --- */
+.login-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.logo-placeholder {
+    width: 24px;
+    height: 24px;
+    background-color: #00c6ff; /* Cuadrado azul que simula tu logotipo */
+    border-radius: 6px;
+}
+
+.login-header h2 {
+    color: #ffffff;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+
+/* --- CAMPOS DE ENTRADA (INPUTS) --- */
+.input-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    transition: border-bottom-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-bottom-color: #00c6ff; /* Cambia al azul de Zona Huella al escribir */
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- BOTÓN DE LOGIN --- */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-login:hover {
+    opacity: 0.9;
+}
+/* --- BOTÓN TRANSPARENTE "CREA TU CUENTA" --- */
+.btn-register-link {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px; /* Separación respecto al botón de Acceder */
+    background: transparent; /* Hace el botón completamente transparente */
+    border: 2px solid rgba(6, 43, 53, 0.4); /* Borde sutil con el color cian */
+    border-radius: 6px;
+    color: #00c6ff; /* El texto usa el color cian brillante para resaltar */
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Efecto visual cuando el usuario pasa el cursor por encima */
+.btn-register-link:hover {
+    background: rgba(0, 198, 255, 0.1); /* Se ilumina el fondo de forma muy sutil */
+    border-color: #00c6ff; /* El borde se vuelve completamente sólido */
+    color: #ffffff; /* El texto cambia a blanco para dar una sensación premium */
+}
+
+
+/* --- ENLACES Y TEXTOS INFERIORES --- */
+.login-footer {
+    margin-top: 30px;
+}
+
+.login-footer a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+
+.login-footer a:hover {
+    color: #ffffff;
+}
+
+.forgot-link {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.footer-legal {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
