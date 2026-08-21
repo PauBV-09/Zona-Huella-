@@ -6,14 +6,14 @@ body {
 
 /* Diseño para pantallas grandes */
 .hero {
-	background-color: #EDEFF8;
+	background-color: #edeff8;
 	display: flex;
 	padding: 20px 80px;
 	height: 50vh;
 	align-items: center;
 	justify-content: space-between;
 	gap: 150px;
-	margin-top: 50px;
+	margin-top: 80px;
 	margin-left: 40px;
 	margin-right: 40px;
 	border-radius: 20px;
@@ -32,12 +32,11 @@ body {
 	margin-bottom: 0px;
 }
 
-
 #hero_letras {
-    font-family: "Rubik", sans-serif;
-    font-size: x-large;
-    margin-top: 4px;
-    margin-bottom: 50px;
+	font-family: "Rubik", sans-serif;
+	font-size: x-large;
+	margin-top: 4px;
+	margin-bottom: 50px;
 }
 
 .hero-imagen {
@@ -50,6 +49,62 @@ body {
 	font-family: "Rubik", sans-serif;
 }
 
+/* Diseño para pantallas muy grandes */
+@media (min-width: 1600px) {
+	.hero {
+		background-color: #edeff8;
+		display: flex;
+		padding: 20px 80px;
+		height: 50vh;
+		align-items: center;
+		justify-content: space-around;
+		margin-top: 80px;
+		margin-left: 40px;
+		margin-right: 40px;
+		border-radius: 20px;
+	}
+
+	.hero_text {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	#hero_header {
+		margin-top: 0px;
+		font-family: "Patrick Hand", cursive;
+		margin-bottom: 0px;
+		font-size: 4rem;
+	}
+
+	#hero_letras {
+		font-family: "Rubik", sans-serif;
+		font-size: 2rem;
+		margin-top: 4px;
+		margin-bottom: 50px;
+	}
+
+	.hero-imagen {
+		border-radius: 10px;
+		width: auto;
+		height: 400px;
+	}
+
+	.cards_categoria {
+		display: flex;
+		gap: 60px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.cards_recomendado {
+		display: flex;
+		gap: 45px;
+		flex-wrap: wrap; /* permite que se acomoden en varias filas */
+		justify-content: center;
+	}
+}
+
 /* Diseño para pantallas medianas */
 @media (max-width: 1200px) {
 	.hero {
@@ -57,6 +112,7 @@ body {
 		gap: 40px;
 		height: auto;
 		margin: 20px;
+		margin-top: 80px;
 	}
 
 	.hero-imagen {
@@ -76,6 +132,24 @@ body {
 	.hero {
 		gap: 20px;
 		margin: 10px;
+		margin-top: 80px;
+	}
+
+	.hero-imagen {
+		height: 200px;
+	}
+
+	.productos {
+		width: auto; /* botón ocupa todo el ancho */
+	}
+}
+
+/* Diseño para pantallas pequeñas */
+@media (min-width: 360px) and (max-width: 430px) {
+	.hero {
+		gap: 20px;
+		margin: 10px;
+		margin-top: 80px;
 	}
 
 	.hero-imagen {
@@ -94,6 +168,7 @@ body {
 	width: 200px;
 	height: 50px;
 	color: white;
+	font-size: large;
 }
 
 .categoria {
@@ -104,8 +179,8 @@ body {
 
 #texto_categoria {
 	font-family: "Rubik", sans-serif;
-    text-align: center;
-    margin-bottom: 30px;
+	text-align: center;
+	margin-bottom: 30px;
 }
 
 .cards_categoria {
@@ -135,7 +210,7 @@ body {
 	top: 50%; /* centra verticalmente */
 	left: 50%; /* centra horizontalmente */
 	transform: translate(-50%, -50%);
-	color: #FEFEFE;
+	color: #fefefe;
 	font-size: 1.5rem;
 	font-weight: 600;
 	text-align: center;
@@ -151,8 +226,8 @@ body {
 
 #titular_recomendado {
 	font-family: "Rubik", sans-serif;
-    text-align: center;
-    margin-bottom: 30px;
+	text-align: center;
+	margin-bottom: 30px;
 }
 
 .cards_recomendado {
@@ -167,7 +242,7 @@ body {
 	border-radius: 10px;
 	overflow: hidden;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	background-color: #FEFEFE;
+	background-color: #fefefe;
 	display: flex;
 	flex-direction: column;
 	padding-bottom: 15px;
@@ -210,7 +285,7 @@ body {
 	border-radius: 50%;
 	width: 40px;
 	height: 40px;
-	color: #FEFEFE;
+	color: #fefefe;
 	font-size: 1.5rem;
 	cursor: pointer;
 }
