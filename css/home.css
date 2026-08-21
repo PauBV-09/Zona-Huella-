@@ -34,7 +34,7 @@ body {
 
 #hero_letras {
 	font-family: "Rubik", sans-serif;
-	font-size: x-large;
+	font-size: large;
 	margin-top: 4px;
 	margin-bottom: 50px;
 }
@@ -43,10 +43,6 @@ body {
 	border-radius: 10px;
 	width: auto;
 	height: 300px;
-}
-
-#hero_letras {
-	font-family: "Rubik", sans-serif;
 }
 
 /* Diseño para pantallas muy grandes */
@@ -193,7 +189,7 @@ body {
 .card_muestra {
 	position: relative;
 	overflow: hidden;
-	height: 250px;
+	height: 180px;
 	width: 100%;
 	max-width: 300px;
 	border-radius: 10px;
