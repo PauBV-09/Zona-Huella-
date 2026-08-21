@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;900&family=Patrick+Hand:wght@700&display=swap');
+
+body, p {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300; /* peso ligero para párrafos */
+}
+h1, h2, h3, .subtitle {
+    font-family: 'Patrick Hand', cursive;
+    font-weight: 700;
+}
+.destacado {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+}
 /* --- RESETEO BÁSICO Y TIPOGRAFÍA --- */
 * {
     margin: 0;
