@@ -1,10 +1,42 @@
+:root{
+    --color-texto: #121217;
+    --color-marca: #3B82F6;
+    --color-accion: #FF7E29;
+    --color-fondo: #FEFEFE;
+    --color-sombra: #EDEFF8;
+    --color-hover: #ff9c5c;
+    --color-pressed: #de8b54;
+    
+
+    --fuente-texto: "Rubik", sans-serif;
+    --fuente-titulo: "Patrick Hand", cursive;
+
+    --peso-ligero: 300;
+    --peso-fuerte: 900;
+}
+
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--fuente-texto);
+    font-weight: var(--peso-ligero);
+}
+
+h1, h2, h3 {
+    font-family: var(--fuente-titulo);
+    color: var(--color-texto);
+}
+
+button{
+    font-family: var(--fuente-texto);
+    background-color: var(--color-accion);
+    color: var(--color-fondo);
 }
 
 .catalogo {
@@ -16,17 +48,18 @@ body {
 /* SECCIÓN SUPERIOR */
 
 .catalogo-superior {
-    padding: 20px 0;
+    padding: 24px 0 20px;
 }
 
 .ruta-catalogo {
     margin: 0 0 15px 0;
     font-size: 14px;
-    color: gray;
+    opacity: 0.7;
+    
 }
 
 .subtext {
-    color: gray;
+    opacity: 0.7;
 }
 
 .encabezado-catalogo {
@@ -46,11 +79,17 @@ body {
 
 .orden-productos {
     width: 280px;
-    padding: 15px;
+    padding: 12px 16px;
     position: absolute;
     right: 2em;
-    border: 3px solid gray ;
-    border-radius: 20px;
+    
+    border: 2px solid var(--color-marca) ;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--color-marca);
+
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--fuente-texto);
 }
 
 
@@ -66,28 +105,30 @@ body {
 /* FILTROS */
 
 .filtros {
-    flex: 0 0 220px;
+    flex: 0 0 240px;
     padding: 20px;
-    border: 3px solid gray;
-    border-radius: 20px;
+    border: 2px solid var(--color-marca);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--color-marca);
 }
 
 .filtros h2 {
     margin-top: 0;
     font-size: 16px;
     text-transform: uppercase;
+    font-weight: var(--peso-fuerte);
 }
 
 .formulario-filtros {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
 }
 
 .grupo-filtro {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 
     margin: 0;
     padding: 0;
@@ -97,7 +138,7 @@ body {
 
 .grupo-filtro legend {
     margin-bottom: 8px;
-    font-weight: bold;
+    font-weight: var(--peso-fuerte);
 }
 
 .grupo-filtro label {
@@ -109,9 +150,17 @@ body {
 .boton-filtros {
     padding: 10px;
     cursor: pointer;
-    background-color: white;
-    border-radius: 15px;
-    border: 3px solid gray;
+    border-radius: 10px;
+}
+
+.boton-filtros:hover{
+    background-color: var(--color-hover);
+    
+}
+
+.boton-filtros:active{
+    background-color: var(--color-pressed);
+    
 }
 
 
