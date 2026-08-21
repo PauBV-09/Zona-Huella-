@@ -6,25 +6,24 @@ body {
 
 /* Diseño para pantallas grandes */
 .hero {
-	background-color: #edeff8;
+	background-color: #EDEFF8;
 	display: flex;
-	padding: 20px;
+	padding: 20px 80px;
 	height: 50vh;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	gap: 150px;
 	margin-top: 50px;
 	margin-left: 40px;
 	margin-right: 40px;
-	border-radius: 10px;
+	border-radius: 20px;
 }
 
 .hero_text {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
 	font-size: xx-large;
-	align-items: center;
+	align-items: flex-start;
 }
 
 #hero_header {
@@ -33,10 +32,18 @@ body {
 	margin-bottom: 0px;
 }
 
+
+#hero_letras {
+    font-family: "Rubik", sans-serif;
+    font-size: x-large;
+    margin-top: 4px;
+    margin-bottom: 50px;
+}
+
 .hero-imagen {
 	border-radius: 10px;
 	width: auto;
-	height: 400px;
+	height: 300px;
 }
 
 #hero_letras {
@@ -90,13 +97,15 @@ body {
 }
 
 .categoria {
-	margin-top: 50px;
+	margin-top: 70px;
 	margin-left: 40px;
 	margin-right: 40px;
 }
 
 #texto_categoria {
 	font-family: "Rubik", sans-serif;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .cards_categoria {
@@ -126,22 +135,24 @@ body {
 	top: 50%; /* centra verticalmente */
 	left: 50%; /* centra horizontalmente */
 	transform: translate(-50%, -50%);
-	color: #121217;
+	color: #FEFEFE;
 	font-size: 1.5rem;
-	font-weight: bold;
+	font-weight: 600;
 	text-align: center;
-	background-color: #edeff869; /* fondo semitransparente para contraste */
+	background-color: #ff7f298c; /* fondo semitransparente para contraste */
 	padding: 10px 20px;
-	border-radius: 5px;
+	border-radius: 12px;
 	font-family: "Rubik", sans-serif;
 }
 
 .recomendado {
-	margin: 40px;
+	margin: 70px;
 }
 
 #titular_recomendado {
 	font-family: "Rubik", sans-serif;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .cards_recomendado {
@@ -156,7 +167,7 @@ body {
 	border-radius: 10px;
 	overflow: hidden;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	background-color: #fff;
+	background-color: #FEFEFE;
 	display: flex;
 	flex-direction: column;
 	padding-bottom: 15px;
@@ -199,7 +210,7 @@ body {
 	border-radius: 50%;
 	width: 40px;
 	height: 40px;
-	color: white;
+	color: #FEFEFE;
 	font-size: 1.5rem;
 	cursor: pointer;
 }
