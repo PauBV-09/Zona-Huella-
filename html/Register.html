@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zona Huella - Registro</title>
+    <!-- Reutiliza tus mismos estilos saliendo a la carpeta css -->
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+    <div class="background-container">
+        <div class="login-card">
+            
+            <div class="login-header">
+                <div class="logo-placeholder"></div>
+                <h2>Zona Huella</h2>
+            </div>
+            <p class="subtitle">Crea tu nueva cuenta</p>
+
+            <!-- Formulario de Registro -->
+            <form id="registerForm">
+                
+                <!-- Campo de Usuario -->
+                <div class="input-group">
+                    <input type="text" id="reg-username" placeholder="Elige un nombre de usuario" required>
+                </div>
+
+                <!-- Campo de Contraseña (Primera vez) -->
+                <div class="input-group">
+                    <input type="password" id="reg-password" placeholder="Escribe tu contraseña" autocomplete="new-password" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="reg-confirm-password" placeholder="Confirma tu contraseña" autocomplete="new-password" required>
+                </div>
+
+                <button type="submit" class="btn-login" onclick=""window.location.href='login.html'">Registrarse</button>
+                
+            </form>
+
+            <div class="login-footer">
+                <a href="login.html" class="forgot-link">¿Ya tienes cuenta? Inicia sesión</a>
+                <div class="footer-legal">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../js/Register.js"></script>
+</body>
+</html>
