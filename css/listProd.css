@@ -1,6 +1,7 @@
 :root{
     --color-texto: #121217;
-    --color-marca: #3B82F6;
+    /*--color-marca: #3B82F6;*/
+    --color-marca: #0F172A;
     --color-accion: #FF7E29;
     --color-fondo: #FEFEFE;
     --color-sombra: #EDEFF8;
