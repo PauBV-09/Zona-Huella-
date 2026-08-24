@@ -41,10 +41,10 @@ function renderProducts(list) {
       <div class="card-image ${product.image ? "" : "empty"}">
         ${imageHTML}
       </div>
-      <span class="card-category">${product.category}</span>
+      
       <h3 class="card-title">${product.title}</h3>
       <p class="card-subtitle">${product.subtitle}</p>
-      <div class="card-footer">
+      <div class="own-card-footer">
         <span class="card-price">${formatPrice(product.price)}</span>
         <button class="add-btn" data-index="${index}" aria-label="Agregar al carrito">+</button>
       </div>
