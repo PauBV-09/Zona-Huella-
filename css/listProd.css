@@ -75,6 +75,7 @@ select {
 
 .catalogo-superior {
     padding: 24px 0 20px;
+    margin-top: 50px;
 }
 
 .ruta-catalogo {
@@ -142,6 +143,8 @@ select {
     align-items: flex-start;
 
     gap: 25px;
+
+    margin-bottom: 50px;
 }
 
 
@@ -386,7 +389,7 @@ select {
 ============================= */
 
 .card-title {
-    margin: 0 0 4px;
+    margin: 4px 4px 4px;
 
     color: var(--color-texto);
 
@@ -395,7 +398,7 @@ select {
 }
 
 .card-subtitle {
-    margin: 0 0 12px;
+    margin: 4px 4px 12px;
 
     color: var(--color-texto-secundario);
 
@@ -407,9 +410,8 @@ select {
    PIE DE TARJETA
 ============================= */
 
-.card-footer {
+.own-card-footer {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
@@ -421,6 +423,8 @@ select {
 
     font-size: 16px;
     font-weight: 700;
+
+    color: var(--color-accion);
 }
 
 
