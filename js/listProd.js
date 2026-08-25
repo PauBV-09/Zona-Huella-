@@ -1,3 +1,25 @@
+const botonFiltrosMovil = document.querySelector(".boton-filtros-movil");
+const panelFiltros = document.querySelector(".filtros");
+
+botonFiltrosMovil.addEventListener("click", () => {
+
+    panelFiltros.classList.toggle("activo");
+
+    const filtrosAbiertos = panelFiltros.classList.contains("activo");
+
+    botonFiltrosMovil.setAttribute(
+        "aria-expanded",
+        filtrosAbiertos
+    );
+
+    if (filtrosAbiertos) {
+      botonFiltrosMovil.textContent = "X";
+  } else {
+      botonFiltrosMovil.textContent = "☰";
+  }
+
+});
+
 function formatPrice(value) {
   const numero = typeof value === "number" ? value : parseFloat(String(value).replace(/[^0-9.]/g, ""));
   return isNaN(numero) ? "$0.00" : "$" + numero.toFixed(2);
@@ -19,10 +41,10 @@ function renderProducts(list) {
       <div class="card-image ${product.image ? "" : "empty"}">
         ${imageHTML}
       </div>
-      <span class="card-category">${product.category}</span>
+      
       <h3 class="card-title">${product.title}</h3>
       <p class="card-subtitle">${product.subtitle}</p>
-      <div class="card-footer">
+      <div class="own-card-footer">
         <span class="card-price">${formatPrice(product.price)}</span>
         <button class="add-btn" data-index="${index}" aria-label="Agregar al carrito">+</button>
       </div>
