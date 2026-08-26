@@ -1,30 +1,32 @@
 .formato-col{
     display: flex;
     flex-direction: row;
+    margin-top: 70px;
 
 }
+
 form {
     display: grid;
-    margin-top: 1%;
+    margin-top: 1.5%;
     margin-left: 1.5%;
     margin-bottom: 1.5%;
-    width: 55%;
+    width: 75%;
 }
 
 fieldset {
     margin-inline: 2px;
     border-width: 2px;
     border-radius: 8px;
-    padding-inline: 0.75em;
+    padding-inline: 0.75%;
     background-color: #EDEFF8;
 }
 
 fieldset {
     padding: 10px 30px 0;
-    padding-top: 10px;
+    padding-top: 3%;
     padding-right: 30px;
-    padding-bottom: 0px;
-    padding-left: 30px;
+    padding-bottom: 1%;
+    padding-left: 3%;
 }
 
 fieldset > input {
@@ -35,12 +37,51 @@ fieldset > input {
     outline: none;
 }
 
+.fullName{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.fullName > label{
+    width: fit-content;
+    align-self: auto;
+}
+
+.fullName > input {
+    width: 90%;
+    margin-left: 1%;
+}
+
+#apellido{
+    margin-left: 1%;
+}
+
+.tel-mail{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tel-mail > label{
+    width:fit-content;
+    align-self: auto;
+}
+
+.tel-mail > input {
+    width: 90%;
+}
+
+#email{
+    margin-left: 1%;
+}
+
 label, input {
     display: block;
     font-family: 'Patrick Hand', cursive;
     font-weight: 700;
     box-sizing: border-box;
-    width: 90%;
+    width: 100%;
     padding: 5px;
 }
 
@@ -58,6 +99,7 @@ button{
 h3{
     font-size: large;
     color: #121217;
+    margin-top: 0%;
 }
 
 h2, h3{
@@ -66,22 +108,22 @@ h2, h3{
 }
 
 .hora-cont{
-    width: 40%;
+    width: 60%;
     font-family: "Rubik";
     font-size: small;
     place-items: center;
     right: 0%;
     padding-block-end: 1.5%;
-    margin-top: 7.5%;
+    margin-top: 9.5%;
 }
 
 #info-card{
     background-color: #EDEFF8;
     border-radius: 8px;
     padding: 40px 18px;
-    min-height: 190px;
+    min-height: 150px;
     color: #52606f;
-    width: 40%;
+    width: 50%;
 }
 
 #ayuda-card {
@@ -91,6 +133,6 @@ h2, h3{
     border-radius: 8px;
     padding: 35px 18px;
     min-height: 205px;
-    width: 40%;
+    width: 50%;
     margin-top: 5%;
 }
