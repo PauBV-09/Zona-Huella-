@@ -157,6 +157,12 @@ body {
 	}
 }
 
+@media (max-width: 993px) {
+  .hero {
+    margin-top: 140px;
+  }
+}
+
 .productos {
 	background-color: #ff7e29;
 	border: none;
