@@ -1,165 +1,214 @@
 /* ================= FUENTES GOOGLE (Rubik & Patrick Hand) ================= */
-@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:wght@300;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:wght@300;400;700;900&display=swap");
 
-/* ================= VARIABLES GLOBALES DE DISEÑO (CUIDADITO CON MOVERLE AQUI WASAUSKIS)================= */
+/* ================= VARIABLES GLOBALES DE DISEÑO ================= */
 :root {
-	--font-base: "Rubik", sans-serif;
-	--font-heading: "Patrick Hand", cursive;
+  --font-base: "Rubik", sans-serif;
+  --font-heading: "Patrick Hand", cursive;
 
-	--color-text-main: #121217;
-	--color-brand-blue: #3b82f6;
-	--color-accent-orange: #ff7e29;
-	--color-bg-page: #fefefe;
-	--color-shadow: #edeff8;
+  --color-text-main: #121217;
+  --color-brand-blue: #3b82f6;
+  --color-accent-orange: #ff7e29;
+  --color-bg-page: #fefefe;
+  --color-shadow: #edeff8;
 
-	--navy-dark: #0f172a; /* Azul marino  para Navbar y Footer */
-	--navy-light: #1e293b;
-	--search-box-bg: #334155; /* Fondo buscador */
+  --navy-dark: #0f172a; /* Azul marino para Navbar y Footer */
+  --navy-light: #1e293b;
+  --search-box-bg: #334155; /* Fondo buscador */
 }
 
-/* ================= CONTENEDOR FIJO Y NAVBAR ================= */
+/* ================= TIPOGRAFÍA Y CUERPO ================= */
+body {
+  font-family: var(--font-base);
+  font-weight: 300;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-page);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, .display-5 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.02em;
+}
+
+strong, b, .fw-bold {
+  font-weight: 900 !important;
+}
+
+/* ================= CONTENEDOR STICKY Y NAVBAR ================= */
 #navbar-container {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 1050;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+  background-color: var(--navy-dark);
 }
 
 .custom-navbar-wrapper {
-	background-color: var(--navy-dark);
-	width: 100%;
-	border-bottom: none !important; /* Elimina la línea divisoria blanca */
-	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  background-color: var(--navy-dark);
+  width: 100%;
+  border-bottom: none !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
-/* Estructura en 3 columnas para centrar la búsqueda */
-.navbar-grid-container {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-	gap: 1rem;
+/* Estructura para centrado exacto en desktop */
+.nav-brand-group,
+.nav-actions {
+  flex: 1 1 0;
 }
 
-.nav-left-section {
-	flex: 1 1 0;
-}
-
-.nav-center-section {
-	flex: 2 1 0;
-	max-width: 460px;
-	display: flex;
-	justify-content: center;
-}
-
-.nav-right-section {
-	flex: 1 1 0;
-}
-
-/* Logo */
+/* Logo adaptativo */
 .navbar-logo {
-	height: 38px;
-	width: auto;
-	object-fit: contain;
-	display: block;
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 575.98px) {
+  .navbar-logo {
+    height: 28px;
+  }
 }
 
 /* Enlaces del Navbar */
 .nav-text-link {
-	color: #e2e8f0;
-	text-decoration: none;
-	font-size: 0.95rem;
-	font-weight: 300;
-	white-space: nowrap;
-	transition: color 0.15s ease-in-out;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 300;
+  white-space: nowrap;
+  transition: color 0.15s ease-in-out;
 }
 
 .nav-text-link:hover {
-	color: var(--color-accent-orange);
+  color: var(--color-accent-orange);
 }
 
-/* Barra de búsqueda */
+/* Punto indicador de carrito */
+.badge-cart-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-accent-orange);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: -4px;
+}
+
+/* ================= BARRA DE BÚSQUEDA CENTRADA ================= */
 .search-wrapper {
-	width: 100%;
+  margin: 0 auto;
 }
 
 .custom-search-input {
-	width: 100%;
-	background-color: var(--search-box-bg);
-	border: 1px solid rgba(255, 255, 255, 0.12);
-	border-radius: 50rem;
-	padding: 0.4rem 1.25rem;
-	font-size: 0.88rem;
-	color: #ffffff;
-	outline: none;
-	transition:
-		background-color 0.2s ease,
-		border-color 0.2s ease;
+  width: 100%;
+  background-color: var(--search-box-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50rem;
+  padding: 0.38rem 1.15rem;
+  font-size: 0.85rem;
+  color: #ffffff;
+  outline: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .custom-search-input::placeholder {
-	color: #94a3b8;
-	font-size: 0.85rem;
+  color: #94a3b8;
+  font-size: 0.82rem;
 }
 
 .custom-search-input:focus {
-	background-color: #475569;
-	border-color: var(--color-accent-orange);
-	color: #ffffff;
+  background-color: #475569;
+  border-color: var(--color-accent-orange);
+  color: #ffffff;
 }
 
-/* ================= FOOTER EN AZUL================= */
+/* En celulares centra también el texto del placeholder para mayor simetría */
+@media (max-width: 991.98px) {
+  .custom-search-input {
+    text-align: center;
+  }
+}
+
+/* ================= PÍLDORAS CENTRADAS EN MÓVIL ================= */
+.mobile-categories-bar {
+  width: 100%;
+}
+
+.mobile-cat-pill {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.78rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 0.22rem 0.8rem;
+  border-radius: 50rem;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.mobile-cat-pill:hover, .mobile-cat-pill:active {
+  background-color: var(--color-accent-orange);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.text-warning-custom {
+  color: #fbbf24 !important;
+}
+
+/* ================= FOOTER EN AZUL MARINO ================= */
 .custom-footer {
-	background-color: var(--navy-dark);
-	font-size: 0.9rem;
-	border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: var(--navy-dark);
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-heading {
-	font-family: var(--font-heading);
-	font-size: 1.15rem;
-	color: #ffffff;
-	letter-spacing: 0.05em;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: #ffffff;
+  letter-spacing: 0.05em;
 }
 
 .footer-description,
 .footer-contact,
 .footer-copy {
-	color: #94a3b8;
+  color: #94a3b8;
 }
 
 .footer-link {
-	color: #94a3b8;
-	text-decoration: none;
-	font-size: 0.88rem;
-	line-height: 1.8;
-	display: inline-block;
-	transition: color 0.15s ease;
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  display: inline-block;
+  transition: color 0.15s ease;
 }
 
 .footer-link:hover {
-	color: var(--color-accent-orange);
+  color: var(--color-accent-orange);
 }
 
 .footer-social-icon {
-	color: #94a3b8;
-	text-decoration: none;
-	transition:
-		color 0.15s ease,
-		transform 0.15s ease;
-	display: inline-block;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+  display: inline-block;
 }
 
 .footer-social-icon:hover {
-	color: var(--color-accent-orange);
-	transform: translateY(-2px);
+  color: var(--color-accent-orange);
+  transform: translateY(-2px);
 }
 
 .footer-accent-icon {
-	color: var(--color-accent-orange);
+  color: var(--color-accent-orange);
 }
 
 .footer-divider {
-	border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
