@@ -468,7 +468,7 @@ select {
    RESPONSIVE
 ============================= */
 
-@media (max-width: 900px) {
+@media (max-width: 480px) {
 
     .card {
         flex-basis: calc(50% - 10px);
@@ -593,18 +593,16 @@ select {
     .lista-productos {
         width: 100%;
     }
-
-
-
 }
 
-
 @media (max-width: 560px) {
-
-    .card {
-        flex-basis: 100%;
-
-        max-width: 100%;
+.card {
     }
 
+}
+@media (max-width: 993px) {
+    .catalogo-superior {
+        padding: 100px 0 20px;
+        margin-top: 50px;
+    }
 }
