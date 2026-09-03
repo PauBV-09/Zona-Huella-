@@ -1,120 +1,257 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Lista de Productos | Zona Huella</title>
+
     <link rel="stylesheet" href="../css/listProd.css">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-    href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:wght@300;900&display=swap"
-    rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:wght@300;500;600;700;900&display=swap"
+        rel="stylesheet"
     >
+
+    <!-- Bootstrap con CSS -->
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+/>
+<!-- Bootstrap Icons -->
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+/>
+    <!-- Papa Parse -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
-    <!--Header-->
+
+    <!-- 1. CONTENEDOR NAVBAR (Inyectado y fijado arriba) -->
+    <div id="navbar-container"></div>
+
+    <!-- Header -->
+
     <main class="catalogo">
+
+        <!-- SECCIÓN SUPERIOR -->
         <section class="catalogo-superior">
-            <p class="ruta-catalogo">Inicio/Catalogo</p>
-            <div class="encabezado-Catalogo">
+
+            <p class="ruta-catalogo">
+                Inicio / Catálogo
+            </p>
+
+            <div class="encabezado-catalogo">
+
                 <div class="informacion-catalogo">
                     <h1>Productos</h1>
+
                     <p class="subtext">
                         Encuentra lo ideal por especie, etapa y tamaño
                     </p>
                 </div>
+
                 <select name="orden" class="orden-productos">
                     <option value="recomendados">
                         Ordenar: recomendados
                     </option>
+
                     <option value="precio-menor">
                         Precio: menor a mayor
                     </option>
+
                     <option value="precio-mayor">
                         Precio: mayor a menor
                     </option>
                 </select>
+
             </div>
-        </section>
-
-<!--Forms de filtros-->
-    <div class="catalogo-contenido">
-
-        <aside class="filtros">
-            <h2>Filtros</h2>
-            <form class="formulario-filtros">
-    <!--Conjutno de filtro-->
-                <fieldset class="grupo-filtro">
-                    <legend>Especie</legend>
-    
-                    <label>
-                        <input type="checkbox" name="especie" value="perro"> Perro
-                    </label>
-                    <label>
-                        <input type="checkbox" name="especie" value="gato"> Gato
-                    </label>
-                </fieldset>
-                
-                <fieldset class="grupo-filtro">
-                    <legend>Tamaño</legend>
-    
-                    <label>
-                        <input type="checkbox" name="tamaño" value="grande"> Grande
-                    </label>
-                    <label>
-                        <input type="checkbox" name="tamaño" value="mediano"> Mediano
-                    </label>
-                    <label>
-                        <input type="checkbox" name="tamaño" value="chico"> Chico
-                    </label>
-                </fieldset>
-                
-                <fieldset class="grupo-filtro">
-                    <legend>Categoría</legend>
-        
-                    <label>
-                        <input type="checkbox" name="categoria" value="alimento"> Alimento
-                    </label>
-                    <label>
-                        <input type="checkbox" name="categoria" value="juguetes"> Juguetes
-                    </label>
-                    <label>
-                        <input type="checkbox" name="categoria" value="accesorios"> Accesorios
-                    </label>
-                </fieldset>
-                
-                <fieldset class="grupo-filtro">
-                    <legend>Etapa de Vida</legend>
-        
-                    <label>
-                        <input type="checkbox" name="etapa" value="adulto"> Adulto
-                    </label>
-                    <label>
-                        <input type="checkbox" name="etapa" value="cachorro"> cachorro
-                    </label>
-                </fieldset>
-    
-                <button class="boton-filtros" type="submit">
-                    Aplicar Filtros
-                </button>
-            </form>
-
-        </aside>
-
-        <section class="lista-productos">
-            <!--Aqui puede ir tu cuadricula de productos-->
 
         </section>
 
-        
 
-    </div>
+        <!-- CONTENIDO DEL CATÁLOGO -->
+        <div class="catalogo-contenido">
+
+            <!--Boton para movil-->
+            <button class="boton-filtros-movil", type="button", aria-label="Abrir filtros", aria-expanded="false" aria-controls="panel-filtros">☰</button>
+
+            <div class="fondo-filtros"></div>
+            <!-- FILTROS -->
+            <aside class="filtros" id="panel-filtros">
+
+                <h2>Filtros</h2>
+
+                <form class="formulario-filtros">
+ <fieldset class="grupo-filtro">
+
+                    <fieldset class="grupo-filtro">
+
+                        <legend>Especie</legend>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="especie"
+                                value="perro"
+                            >
+                            Perro
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="especie"
+                                value="gato"
+                            >
+                            Gato
+                        </label>
+
+                    </fieldset>
+
+                    <fieldset class="grupo-filtro">
+
+                        <legend>Tamaño</legend>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="tamaño"
+                                value="grande"
+                            >
+                            Grande
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="tamaño"
+                                value="mediano"
+                            >
+                            Mediano
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="tamaño"
+                                value="chico"
+                            >
+                            Chico
+                        </label>
+
+                    </fieldset>
+
+
+                    <fieldset class="grupo-filtro">
+
+                        <legend>Categoría</legend>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="categoria"
+                                value="alimento"
+                            >
+                            Alimento
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="categoria"
+                                value="juguetes"
+                            >
+                            Higiene
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="categoria"
+                                value="accesorios"
+                            >
+                            Juguetes
+                        </label>
+                            <label>
+                            <input
+                                type="checkbox"
+                                name="categoria"
+                                value="accesorios"
+                            >
+                            Accesorios
+                        </label>
+
+                    </fieldset>
+
+                    <fieldset class="grupo-filtro">
+
+                        <legend>Etapa de Vida</legend>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="etapa"
+                                value="adulto"
+                            >
+                            Adulto
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="etapa"
+                                value="cachorro"
+                            >
+                            Cachorro
+                        </label>
+
+                    </fieldset>
+
+
+                    <button class="boton-filtros" type="submit">
+                        Aplicar filtros
+                    </button>
+
+                </form>
+
+            </aside>
+
+
+            <!-- PRODUCTOS -->
+            <section class="lista-productos">
+
+                <!--
+                    Las tarjetas son generadas
+                    dinámicamente con JavaScript.
+                -->
+                <div class="grid" id="productGrid"></div>
+
+            </section>
+
+        </div>
 
     </main>
 
+    <!-- 3. CONTENEDOR FOOTER -->
+    <div id="footer-container"></div>
+
+
+
     <script src="../js/listProd.js"></script>
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/loadComponents.js"></script>
+
 </body>
+
 </html>
