@@ -1,0 +1,146 @@
+html,
+body {
+	height: 100%; /* ocupa toda la ventana */
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column; /* apila header, body y footer */
+	background-color: #fefefe;
+}
+
+/* ================= FUENTES GOOGLE (Rubik & Patrick Hand) ================= */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:wght@300;900&display=swap");
+
+/* ================= VARIABLES GLOBALES DE DISEÑO (CUIDADITO CON MOVERLE AQUI WASAUSKIS)================= */
+:root {
+	--font-base: "Rubik", sans-serif;
+	--font-heading: "Patrick Hand", cursive;
+
+	--color-text-main: #121217;
+	--color-text-secondary: #12121793;
+	--color-brand-blue: #3b82f6;
+	--color-accent-orange: #ff7e29;
+	--color-bg-page: #fefefe;
+	--color-shadow: #edeff8;
+
+	--navy-dark: #0f172a; /* Azul marino  para Navbar y Footer */
+	--navy-light: #1e293b;
+	--search-box-bg: #334155; /* Fondo buscador */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: var(--font-heading);
+}
+
+p {
+	font-family: var(--font-base);
+}
+
+#mi_cuenta {
+	margin-top: 80px;
+	flex: 1;
+	width: 85%;
+	align-self: center;
+	color: var(--color-text-main);
+}
+
+.breadcrumb {
+	font-size: 0.8rem;
+}
+
+.breadcrumb a {
+	text-decoration: none;
+	color: var(--color-text-secondary);
+}
+
+.layout {
+	display: flex;
+	flex-direction: row;
+	gap: 40px;
+}
+
+.header_barra {
+	font-weight: bold;
+	font-size: x-large;
+}
+
+.barra_lateral {
+	width: 15%;
+	height: 80%;
+
+	font-family: var(--font-heading);
+}
+
+.formato_barra_lateral {
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	border: 2px solid black;
+	border-radius: 10px;
+	gap: 15px;
+}
+
+/* .titulo_barra_lateral {
+	color: var(--color-text-secondary);
+	margin-bottom: 10px;
+	font-size: large;
+} */
+
+.barra_lateral button {
+	width: 100%;
+	padding: 10px;
+	border: none;
+	background-color: white;
+	color: var(--color-text-main);
+	text-align: left;
+	cursor: pointer;
+	font-size: large;
+}
+
+.barra_lateral button:hover {
+	background-color: #d9eaff;
+	border-radius: 10px;
+}
+
+.barra_lateral button.active {
+	border: 2px solid #3498db;
+	background-color: #d9eaff;
+	color: var(--color-text-main);
+	font-weight: bold;
+	border-radius: 10px;
+}
+
+.content {
+	width: 80%;
+	margin-top: 38px;
+	border: 2px solid black;
+	border-radius: 10px;
+}
+
+.section {
+	padding: 20px;
+}
+
+.name_form_text {
+	font-family: var(--font-base);
+	display: flex;
+	gap: 10px;
+}
+
+.form_name {
+	width: 30%;
+	padding: 0;
+	border-radius: 10px;
+	border: 1px solid #334155;
+}
+
+.apellido_form {
+	margin-left: 15%;
+}
+
+.mail {
+}
