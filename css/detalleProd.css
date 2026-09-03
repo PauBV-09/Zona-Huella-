@@ -1,0 +1,199 @@
+body {
+    background-color: #f9f9f9;
+    margin: 5%;
+    color: #333;
+}
+
+/* Breadcrumb (Inicio / Pedido ...) */
+.inPed {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.inPed a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.inPed a:hover {
+    text-decoration: underline;
+}
+
+/* Contenedor principal del pedido */
+.pedido {
+    margin-bottom: 0%;
+    display: flex;
+}
+
+/* Encabezado y fecha */
+div h1 {
+    font-size: xx-large;
+    margin: 5px 0;
+    color: #222;
+    flex: 1;
+}
+
+/* Estado del pedido */
+#preparation {
+    justify-content: flex-end;
+    background-color: #f0f0f0;
+    border-radius: 25px;
+    padding: 8px 20px;
+    text-align: center;
+}
+
+#preparation h1 {
+    font-size: 16px;
+    margin: 0;
+    color: #007bff; 
+}
+
+.date {
+    font-size: medium;
+    color: #555;
+    left: 0%;
+    margin-top: 0%;
+}
+
+
+
+/* Contenedor principal */
+.contenedor-pedido {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Productos a la izquierda */
+.productos {
+    flex: 2;
+    display: grid;
+    flex-direction: column;
+    gap: 20px;
+    display: flex;
+}
+
+.productos-ind {
+    display: grid; 
+    grid-template-columns: 120px 1fr 100px; /* imagen | info | precio */
+    align-items: center;                   /* centra verticalmente */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    gap: 15px;
+}
+
+/* Imagen del producto */
+.productos-img {
+    width: auto;
+    height: 180px;
+    border-radius: 6px;
+}
+
+/* Bloque de texto (nombre + descripción) */
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 13%;
+}
+
+.info h3 {
+    font-size: x-large;
+    margin: 0;
+    color: #222;
+}
+
+.info p {
+    font-size: medium;
+    color: #555;
+    margin: 0;
+}
+
+/* Precio en la tercera columna */
+.precio {
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 30%;  
+}
+
+
+
+
+/* Columna derecha (entrega + resumen) */
+.sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Sección lateral (entrega + resumen) */
+.entrega, .resumen {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.entrega h3, .resumen h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.entrega h4 {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #333;
+}
+
+.entrega p {
+    font-size: 14px;
+    color: #555;
+    margin: 3px 0;
+}
+
+
+
+/* Sección resumen */
+.resumen {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Contenedor interno en dos columnas */
+.resumen div {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* izquierda | derecha */
+    gap: 10px;
+}
+
+/* Títulos a la izquierda */
+.resumen .resumeniq {
+    
+    
+    color: #222;
+}
+
+/* Valores a la derecha */
+.resumen .resumender {
+    
+    
+    color: #555;
+}
+
+/* Total destacado */
+.resumen h2.resumender {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+}
