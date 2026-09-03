@@ -1,557 +1,172 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Caveat:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;900&family=Patrick+Hand:wght@700&display=swap');
 
-
-/* =========================================================
-   LOGIN - RESETEO
-   ========================================================= */
-
-.login-background *,
-.login-background *::before,
-.login-background *::after {
+body, p {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300; /* peso ligero para párrafos */
+}
+h1, h2, h3, .subtitle {
+    font-family: 'Patrick Hand', cursive;
+    font-weight: 700;
+}
+.destacado {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+}
+/* --- RESETEO BÁSICO Y TIPOGRAFÍA --- */
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-/* =========================================================
-   CONTENEDOR PRINCIPAL
-   ========================================================= */
-
+/* --- FONDO PRINCIPAL DE LA PÁGINA --- */
 .background-container {
-    width: 100%;
-    min-height: 100vh;
-
+    width: 100vw;
+    height: 100vh;
+    /* Degradado oscuro tecnológico que combina con Zona Huella */
+    background: linear-gradient(135deg, #0a0f1e 0%, #14192d 50%, #0052d4 100%);
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
 
-    padding: 100px 15px 40px;
-
+/* --- TARJETA DE LOGIN (GLASSMORPHISM) --- */
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.06); /* Fondo blanco casi transparente */
+    border-radius: 12px;
+    
+    /* El efecto vidrio: desenfoca lo que está detrás de la tarjeta */
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     text-align: center;
 }
 
-
-.login-container {
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-/* =========================================================
-   TARJETA
-   ========================================================= */
-
-.login-card {
-    display: flex;
-    flex-direction: row;
-
-    width: 100%;
-    max-width: 1000px;
-
-    min-height: 420px;
-
-    margin: 0 auto;
-
-    overflow: hidden;
-
-    border-radius: 16px;
-
-    background: #ffffff;
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-
-/* =========================================================
-   IMAGEN
-   ========================================================= */
-
-.login-image {
-    flex: 1;
-    display: flex;
-    overflow: hidden;
-}
-
-.img-login {
-    width: 100%;
-    height: 100%;
-    display: block;
-    /* OPCIÓN A: Si no quieres que se recorte NADA de la imagen */
-    object-position: top center; 
-}
-
-
-/* =========================================================
-   FORMULARIO
-   ========================================================= */
-
-.login-form {
-    flex: 1;
-
-    min-width: 0;
-
-    padding: 40px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-
-/* =========================================================
-   ENCABEZADO
-   ========================================================= */
-
+/* --- LOGO Y ENCABEZADOS --- */
 .login-header {
-    width: 100%;
-
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     gap: 10px;
-
     margin-bottom: 8px;
 }
 
-
-.login-tittle {
-    margin: 0;
-    padding: 0;
-
-    color: #121217;
-
-    font-family: 'Patrick Hand', cursive;
-
-    font-size: 50px;
-    font-weight: 700;
-
-    line-height: 1.1;
-
-    letter-spacing: 1px;
-
-    text-align: center;
+.logo-placeholder {
+    width: 24px;
+    height: 24px;
+    background-color: #00c6ff; /* Cuadrado azul que simula tu logotipo */
+    border-radius: 6px;
 }
 
+.login-header h2 {
+    color: #ffffff;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
 
 .subtitle {
-    margin: 0 0 30px;
-
-    color: #121217;
-
-    font-family: 'Rubik', sans-serif;
-
-    font-size: 20px;
-
-    line-height: 1.4;
-
-    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    margin-bottom: 40px;
 }
 
-
-/* =========================================================
-   INPUTS
-   ========================================================= */
-
-.login-form .input-group {
-    width: 100%;
-
-    position: relative;
-
+/* --- CAMPOS DE ENTRADA (INPUTS) --- */
+.input-group {
     margin-bottom: 25px;
+    position: relative;
 }
 
-
-.login-form .input-group input {
+.input-group input {
     width: 100%;
-
-    padding: 10px 5px;
-
+    padding: 10px 0;
     background: transparent;
-
     border: none;
-
-    border-bottom: 1px solid rgba(10, 15, 30, 0.3);
-
-    color: #121217;
-
-    font-family: 'Rubik', sans-serif;
-
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    color: #ffffff;
     font-size: 15px;
-
     outline: none;
-
     transition: border-bottom-color 0.3s ease;
 }
 
-
-.login-form .input-group input:focus {
-    border-bottom-color: #00c6ff;
+.input-group input:focus {
+    border-bottom-color: #00c6ff; /* Cambia al azul de Zona Huella al escribir */
 }
 
-
-.login-form .input-group input::placeholder {
-    color: rgba(10, 15, 30, 0.5);
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
-
-/* =========================================================
-   CHECKBOX
-   ========================================================= */
-
-.login-form .checkbox-group {
-    margin: 20px 0;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 12px;
-}
-
-
-.login-form .custom-checkbox {
-    display: flex;
-
-    align-items: center;
-
-    cursor: pointer;
-
-    font-family: 'Rubik', sans-serif;
-
-    font-size: 14px;
-
-    color: rgba(10, 15, 30, 0.7);
-}
-
-
-.login-form .custom-checkbox input {
-    display: none;
-}
-
-
-.login-form .checkmark {
-    position: relative;
-
-    width: 18px;
-    height: 18px;
-
-    flex-shrink: 0;
-
-    margin-right: 10px;
-
-    background: transparent;
-
-    border: 2px solid #FF7E29;
-
-    border-radius: 4px;
-
-    transition: all 0.3s ease;
-}
-
-
-.login-form .custom-checkbox input:checked + .checkmark {
-    background-color: #FF7E29;
-
-    border-color: transparent;
-}
-
-
-.login-form .checkmark::after {
-    content: "";
-
-    position: absolute;
-
-    display: none;
-
-    left: 5px;
-    top: 1px;
-
-    width: 5px;
-    height: 10px;
-
-    border: solid white;
-
-    border-width: 0 2px 2px 0;
-
-    transform: rotate(45deg);
-}
-
-
-.login-form .custom-checkbox input:checked + .checkmark::after {
-    display: block;
-}
-
-
-/* =========================================================
-   LINK OLVIDÉ CONTRASEÑA
-   ========================================================= */
-
-.login-link {
-    color: #0072ff !important;
-
-    font-family: 'Rubik', sans-serif;
-
-    font-weight: 700;
-
-    text-decoration: none;
-
-    transition: color 0.3s ease;
-}
-
-
-.login-link:hover {
-    color: #FF7E29 !important;
-}
-
-
-/* =========================================================
-   BOTÓN LOGIN
-   ========================================================= */
-
+/* --- BOTÓN DE LOGIN --- */
 .btn-login {
     width: 100%;
-
     padding: 12px;
-
     margin-top: 15px;
-
-    background: #FF7E29;
-
-    border: 1px solid #FF7E29;
-
-    border-radius: 8px;
-
-    color: #FEFEFE;
-
-    font-family: 'Patrick Hand', cursive;
-
-    font-size: 22px;
-    font-weight: 700;
-
+    background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-
-    transition: all 0.3s ease;
+    transition: opacity 0.2s ease;
 }
-
 
 .btn-login:hover {
-    transform: translateY(-1px);
-
-    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.25);
+    opacity: 0.9;
 }
-
-
-/* =========================================================
-   BOTÓN CREAR CUENTA
-   ========================================================= */
-
+/* --- BOTÓN TRANSPARENTE "CREA TU CUENTA" --- */
 .btn-register-link {
-    display: block;
-
     width: 100%;
-
     padding: 12px;
-
-    margin-top: 15px;
-
-    background: transparent;
-
-    border: 2px solid transparent;
-
+    margin-top: 12px; /* Separación respecto al botón de Acceder */
+    background: transparent; /* Hace el botón completamente transparente */
+    border: 2px solid rgba(6, 43, 53, 0.4); /* Borde sutil con el color cian */
     border-radius: 6px;
-
-    color: #FF7E29;
-
-    font-family: 'Patrick Hand', cursive;
-
-    font-size: 22px;
-    font-weight: 700;
-
+    color: #00c6ff; /* El texto usa el color cian brillante para resaltar */
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
-
     transition: all 0.3s ease;
-
-    text-align: center;
 }
 
-
+/* Efecto visual cuando el usuario pasa el cursor por encima */
 .btn-register-link:hover {
-    background: rgba(255, 166, 0, 0.1);
-
-    border-color: #FF7E29;
-
-    color: #FF7E29;
+    background: rgba(0, 198, 255, 0.1); /* Se ilumina el fondo de forma muy sutil */
+    border-color: #00c6ff; /* El borde se vuelve completamente sólido */
+    color: #ffffff; /* El texto cambia a blanco para dar una sensación premium */
 }
 
 
-/* =========================================================
-   FOOTER LOGIN
-   ========================================================= */
-
+/* --- ENLACES Y TEXTOS INFERIORES --- */
 .login-footer {
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
-
-.text-registro {
-    color: #1c2434 !important;
-
-    font-family: 'Rubik', sans-serif;
-
-    font-size: 14px;
-
-    font-weight: 500;
+.login-footer a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
 }
 
-
-/* =========================================================
-   AUTOFILL
-   ========================================================= */
-
-.login-form input:-webkit-autofill {
-    background-color: transparent !important;
-
-    -webkit-box-shadow:
-        0 0 0 1000px transparent inset !important;
-
-    -webkit-text-fill-color: #121217 !important;
-
-    transition:
-        background-color 5000s ease-in-out 0s;
+.login-footer a:hover {
+    color: #ffffff;
 }
 
-
-/* =========================================================
-   PANTALLAS GRANDES
-   ========================================================= */
-
-@media (min-width: 1600px) {
-
-    .login-card {
-        max-width: 1400px;
-
-        min-height: 650px;
-    }
-
-    .login-form {
-        padding: 60px;
-    }
-
+.forgot-link {
+    display: inline-block;
+    margin-bottom: 15px;
 }
 
-
-/* =========================================================
-   TABLETS
-   ========================================================= */
-
-@media (max-width: 991px) {
-
-    .login-card {
-        max-width: 850px;
-    }
-
-    .login-form {
-        padding: 40px 30px;
-    }
-
-    .background-container{
-        margin-top: 1px;
-    }
-    .login-image{
-        flex: 1;
-        overflow: hidden;
-        height: 250px;
-    }
-
-}
-
-
-/* =========================================================
-   TABLETS PEQUEÑAS
-   ========================================================= */
-
-@media (max-width: 768px) {
-
-    .background-container {
-        align-items: flex-start;
-
-        padding-top: 100px;
-        margin-top: 55px;
-    }
-
-    .login-card {
-        flex-direction: column;
-
-        width: 95%;
-        max-width: 500px;
-    }
-
-    .login-image {
-        width: 100%;
-
-        height: 220px;
-
-        flex: none;
-    }
-
-    .img-login {
-        width: 100%;
-        height: 100%;
-
-        object-position: center;
-    }
-
-    .login-form {
-        width: 100%;
-
-        padding: 35px 25px;
-    }
-
-    .login-tittle {
-        font-size: 42px;
-    }
-
-}
-
-
-/* =========================================================
-   CELULARES
-   ========================================================= */
-
-@media (max-width: 576px) {
-
-    .background-container {
-        justify-content: flex-start;
-        align-items: flex-start;
-
-        padding: 90px 10px 30px;
-        margin-top: 40px;
-    }
-
-    .login-card {
-        width: 95%;
-
-        margin: 20px auto;
-    }
-
-    .login-image {
-        height: 180px;
-    }
-
-    .login-form {
-        padding: 30px 20px;
-    }
-
-    .login-tittle {
-        font-size: 38px;
-    }
-
-    .subtitle {
-        font-size: 17px;
-    }
-
+.footer-legal {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
