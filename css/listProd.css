@@ -533,6 +533,7 @@ select {
     }
 
     .filtros {
+        margin-top: 65px;
         position: fixed;
 
         top: 0;
@@ -541,7 +542,7 @@ select {
         width: min(320px, 85vw);
         height: 100dvh;
 
-        padding: 24px 20px 90px;
+        padding: 45px 24px 140px;
 
         border: none;
         border-radius: 0 16px 16px 0;
@@ -605,4 +606,37 @@ select {
         padding: 100px 0 20px;
         margin-top: 50px;
     }
+}
+.card-image {
+  position: relative;
+}
+
+// Botón de favoritos
+
+.card-image {
+  position: relative;
+}
+
+.fav-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #EDEFF8;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+.fav-btn:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
+.fav-btn.favorito {
+  color: red;
 }
