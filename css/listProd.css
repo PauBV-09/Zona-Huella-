@@ -606,3 +606,36 @@ select {
         margin-top: 50px;
     }
 }
+.card-image {
+  position: relative;
+}
+
+// Botón de favoritos
+
+.card-image {
+  position: relative;
+}
+
+.fav-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #EDEFF8;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+.fav-btn:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
+.fav-btn.favorito {
+  color: red;
+}
