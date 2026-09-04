@@ -1,3 +1,27 @@
+//Sección de filtros para móvil, abrir y cerrar panel
+
+const botonFiltrosMovil = document.querySelector(".boton-filtros-movil");
+const panelFiltros = document.querySelector(".filtros");
+
+botonFiltrosMovil.addEventListener("click", () => {
+
+    panelFiltros.classList.toggle("activo");
+
+    const filtrosAbiertos = panelFiltros.classList.contains("activo");
+
+    botonFiltrosMovil.setAttribute(
+        "aria-expanded",
+        filtrosAbiertos
+    );
+
+    if (filtrosAbiertos) {
+      botonFiltrosMovil.textContent = "X";
+  } else {
+      botonFiltrosMovil.textContent = "☰";
+  }
+
+});
+
 // Para ajuste a formatPrice cuando viene "Sin precio"
 function formatPrice(value) {
   if (!value || value === "Sin precio") return "Sin precio";

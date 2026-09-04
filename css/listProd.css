@@ -533,6 +533,7 @@ select {
     }
 
     .filtros {
+        margin-top: 65px;
         position: fixed;
 
         top: 0;
@@ -541,7 +542,7 @@ select {
         width: min(320px, 85vw);
         height: 100dvh;
 
-        padding: 24px 20px 90px;
+        padding: 45px 24px 140px;
 
         border: none;
         border-radius: 0 16px 16px 0;
