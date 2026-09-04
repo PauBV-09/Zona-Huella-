@@ -1,53 +1,279 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zona Huella - Registro</title>
-    <!-- Reutiliza tus mismos estilos saliendo a la carpeta css -->
-    <link rel="stylesheet" href="../css/login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link rel="stylesheet" href="../css/Register.css">>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  <link rel="icon" type="image/png" href="../assets/logo Huella.png">
+
 </head>
+
 <body>
 
-    <div class="background-container">
-        <div class="login-card">
-            
-            <div class="login-header">
-                <div class="logo-placeholder"></div>
-                <h2>Zona Huella</h2>
+  <!-- NAVBAR -->
+  <div id="navbar-container"></div>
+
+  <main class="register-background">
+    <div class="register-container">
+      <div class="register-card">
+        <div class="register-image">
+          <img
+            src="../assets/register/pexels-eren-arici-544063282-16600893.jpg"
+            alt="Ilustración mascota"
+            class="register-image-img">
+        </div>
+        <!-- =================================================
+             FORMULARIO
+             ================================================= -->
+        <div class="register-form">
+          <div class="register-header">
+            <h1 class="register-title">
+              Crea tu cuenta
+            </h1>
+          </div>
+          <p class="register-subtitle">
+            Compra más rápido y personaliza la experiencia de tu mascota
+          </p>
+          <!-- =================================================
+               FORMULARIO
+               ================================================= -->
+          <form id="registerForm">
+            <!-- NOMBRE Y APELLIDO -->
+            <div class="container text-center p-0">
+              <div class="row g-2">
+                <div class="col">
+                  <div class="register-input-group">
+                    <input
+                      type="text"
+                      id="reg-Nombre"
+                      placeholder="Nombre"
+                      required>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="register-input-group">
+                    <input
+                      type="text"
+                      id="reg-apellido"
+                      placeholder="Apellido"
+                      required>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p class="subtitle">Crea tu nueva cuenta</p>
-
-            <!-- Formulario de Registro -->
-            <form id="registerForm">
-                
-                <!-- Campo de Usuario -->
-                <div class="input-group">
-                    <input type="text" id="reg-username" placeholder="Elige un nombre de usuario" required>
-                </div>
-
-             
-                <div class="input-group">
-                    <input type="password" id="reg-password" placeholder="Escribe tu contraseña" autocomplete="new-password" required>
-                </div>
-
-                <div class="input-group">
-                    <input type="password" id="reg-confirm-password" placeholder="Confirma tu contraseña" autocomplete="new-password" required>
-                </div>
-
-                <button type="submit" class="btn-login" onclick="location.href='login.html'">Registrarse</button>
-                
-            </form>
-
-            <div class="login-footer">
-                <a href="login.html" class="forgot-link">¿Ya tienes cuenta? Inicia sesión</a>
-                <div class="footer-legal">
-                </div>
+            <!-- USUARIO -->
+            <div class="register-input-group">
+              <input
+                type="text"
+                id="reg-username"
+                placeholder="Nombre de usuario"
+                required>
             </div>
+            <!-- CORREO -->
+            <div class="register-input-group">
+              <input
+                type="email"
+                id="reg-correo"
+                placeholder="Correo electrónico"
+                required>
+            </div>
+
+
+            <!-- CONTRASEÑAS -->
+
+            <div class="container text-center p-0">
+
+              <div class="row g-2">
+
+                <!-- CONTRASEÑA -->
+
+                <div class="col">
+
+                  <div class="register-input-group register-password-wrapper">
+
+                    <input
+                      type="password"
+                      id="reg-password"
+                      placeholder="Escribe tu contraseña"
+                      autocomplete="off"
+                      required>
+
+
+                    <!-- TOOLTIP -->
+
+                    <div
+                      id="password-tooltip"
+                      class="register-password-tooltip">
+
+                      <p>
+                        Su contraseña debe cumplir estrictamente
+                        con los siguientes criterios:
+                      </p>
+
+                      <ul>
+
+                        <li id="req-length">
+                          Longitud mínima: Debe contener
+                          al menos 8 caracteres.
+                        </li>
+
+                        <li id="req-letters">
+                          Letras: Debe incluir al menos
+                          una letra minúscula y una letra mayúscula.
+                        </li>
+
+                        <li id="req-numbers">
+                          Números: Debe incorporar
+                          al menos un número.
+                        </li>
+
+                      </ul>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <!-- CONFIRMAR CONTRASEÑA -->
+
+                <div class="col">
+
+                  <div class="register-input-group">
+
+                    <input
+                      type="password"
+                      id="reg-confirm-password"
+                      placeholder="Confirma tu contraseña"
+                      autocomplete="new-password"
+                      required>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CHECKBOXES
+                 ================================================= -->
+
+            <div class="register-checkbox-group">
+
+
+              <!-- TÉRMINOS -->
+
+              <label class="register-custom-checkbox">
+
+                <input
+                  type="checkbox"
+                  id="terminos"
+                  required>
+
+                <span class="register-checkmark"></span>
+
+                <span class="register-checkbox-text">
+                  Acepto los términos y aviso de privacidad
+                </span>
+
+              </label>
+
+
+              <!-- PROMOCIONES -->
+
+              <label class="register-custom-checkbox">
+
+                <input
+                  type="checkbox"
+                  id="promociones">
+
+                <span class="register-checkmark"></span>
+
+                <span class="register-checkbox-text">
+                  Deseo recibir novedades y promociones
+                </span>
+
+              </label>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 BOTÓN
+                 ================================================= -->
+
+            <button
+              type="submit"
+              id="btn-registro"
+              class="register-button"
+              disabled>
+
+              Registrarse
+
+            </button>
+
+
+          </form>
+
+
+          <!-- =================================================
+               ENLACE LOGIN
+               ================================================= -->
+
+          <div class="register-footer">
+
+            <a
+              href="login.html"
+              class="register-login-link">
+
+              ¿Ya tienes cuenta? Inicia sesión
+
+            </a>
+
+          </div>
+
 
         </div>
+
+      </div>
+
     </div>
 
-    <script src="../js/Register.js"></script>
+  </main>
+
+
+  <!-- FOOTER -->
+  <div id="footer-container"></div>
+
+
+  <!-- BOOTSTRAP -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwxH9j09JcYn3nv7wiPVlz7YYWwJrVWrM7s5uV7s2hQz8G0tX6E"
+    crossorigin="anonymous">
+  </script>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script src="../js/Register.js"></script>
+
+  <script src="../js/loadComponents.js"></script>
+
 </body>
+
 </html>
