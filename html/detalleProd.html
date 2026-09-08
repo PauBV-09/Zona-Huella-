@@ -132,15 +132,18 @@
                         <span class="product-category">
                             Alimento
                         </span>
-
+                        
                         <h1 class="product-name">
                             Alimento premium para perro
                         </h1>
-
                     </div>
-
-                    <button class="favorite-button" type="button" aria-label="Agregar producto a favoritos" aria-pressed="false">
-                        <i class="bi bi-heart" aria-hidden="true"></i>
+                    <button
+                        class="fav-btn"
+                        type="button"
+                        aria-label="Añadir a favoritos"
+                        aria-pressed="false"
+                    >
+                        ♡
                     </button>
 
                 </div>
@@ -155,19 +158,16 @@
                         aria-label="Calificación: 4.8 de 5 estrellas"
                     >
                         <i class="bi bi-star-fill" aria-hidden="true"></i>
-                        <i class="bi bi-star-fill" aria-hidden="true"></i>
-                        <i class="bi bi-star-fill" aria-hidden="true"></i>
-                        <i class="bi bi-star-fill" aria-hidden="true"></i>
-                        <i class="bi bi-star-fill" aria-hidden="true"></i>
+                        
                     </div>
 
                     <span class="rating-value">
                         4.8
-                    </span>
+                    </span> 
 
-                    <a class="reviews-link" href="#productReviews">
+                    <!-- <a class="reviews-link" href="#productReviews">
                         126 reseñas
-                    </a>
+                    </a> -->
 
                 </div>
 
@@ -298,10 +298,6 @@
                     Detalles
                 </button>
 
-                <button class="detail-tab" type="button" role="tab">
-                    Opiniones
-                </button>
-
             </div>
 
 
@@ -416,10 +412,7 @@
                         aria-label="5 de 5 estrellas"
                     >
                         <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
+                        <p id="rating-opinion">5</p>
                     </div>
 
                 </div>
@@ -447,5 +440,3 @@
     <script src="../js/detalleProd.js"></script>
 
 </body>
-
-</html>
