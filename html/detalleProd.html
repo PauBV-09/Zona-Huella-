@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Producto</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:wght@300;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Estilos globales -->
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <!-- Estilos de detalle de producto -->
+    <link rel="stylesheet" href="../css/detalleProd.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar-container"></div>
+
+    <main class="product-detail">
+        <nav class="breadcrumb" aria-label="Ruta de navegación">
+            <a href="../index.html">Inicio / </a>
+            <span aria-current="page">Detalle de producto</span>
+        </nav>
+
+        <section class="main-product">
+
+            <section class="product-gallery">
+
+                <div class="main-image-container">
+
+                    <button class="gallery-button previous-image" type="button" aria-label="Imagen anterior">
+                        <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="main-image">
+
+                        <!-- src="https://www.petco.com.mx/medias/300ftw-104870.jpg?context=bWFzdGVyfHJvb3R8NTM2OTh8aW1hZ2UvanBlZ3xhRGxqTDJnek9TOHhNVEkxTkRjeE5UVXhORGt4TUM4ek1EQm1kSGRmTVRBME9EY3dMbXB3Wnd8N2FkMjQ0Nzg2MTUyNzQwODMzODYwZTVjN2VlNjBlODNkY2NlZjZhNmFlZTQzYTNhZTkxYzViNWZmNzdjOWEwOA" -->
+                        <img id="mainProductImage" 
+                        
+                        alt="Imagen principal del producto"
+                        >
+
+                    </div>
+
+                    <button class="gallery-button next-image" type="button" aria-label="Imagen siguiente">
+                        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                    </button>
+
+                </div>
+
+                <!-- Miniaturas -->
+                <div class="thumbnail-carousel">
+
+                    <button class="thumbnail-button previous-thumbnail" type="button" aria-label="Miniaturas anteriores">
+                        <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                    </button>
+
+                    <!--
+                        Estas miniaturas son temporales para mostrar el avance.
+                        Después serán generadas mediante JavaScript.
+                    -->
+
+                    <!---->
+                    <div class="thumbnail-list">
+
+                        <button
+                            class="thumbnail active-thumbnail"
+                            type="button"
+                            aria-label="Ver imagen 1"
+                        >
+                            <img
+                                src=""
+                                alt="Miniatura del producto"
+                            >
+                        </button>
+
+                        <button
+                            class="thumbnail"
+                            type="button"
+                            aria-label="Ver imagen 2"
+                        >
+                            <img
+                                src=""
+                                alt="Miniatura del producto"
+                            >
+                        </button>
+
+                        <button
+                            class="thumbnail"
+                            type="button"
+                            aria-label="Ver imagen 3"
+                        >
+                            <img
+                                src=""
+                                alt="Miniatura del producto"
+                            >
+                        </button>
+
+                    </div>
+
+                    <button class="thumbnail-button next-thumbnail" type="button" aria-label="Miniaturas siguientes">
+                        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- INFORMACIÓN DEL PRODUCTO -->
+            <section class="product-info">
+
+                <!-- Nombre + favoritos -->
+                <div class="product-header">
+
+                    <div class="product-title">
+
+                        <span class="product-category">
+                            Alimento
+                        </span>
+
+                        <h1 class="product-name">
+                            Alimento premium para perro
+                        </h1>
+
+                    </div>
+
+                    <button class="favorite-button" type="button" aria-label="Agregar producto a favoritos" aria-pressed="false">
+                        <i class="bi bi-heart" aria-hidden="true"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- Rating -->
+                <div class="product-rating">
+
+                    <div
+                        class="rating-stars"
+                        role="img"
+                        aria-label="Calificación: 4.8 de 5 estrellas"
+                    >
+                        <i class="bi bi-star-fill" aria-hidden="true"></i>
+                        <i class="bi bi-star-fill" aria-hidden="true"></i>
+                        <i class="bi bi-star-fill" aria-hidden="true"></i>
+                        <i class="bi bi-star-fill" aria-hidden="true"></i>
+                        <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    </div>
+
+                    <span class="rating-value">
+                        4.8
+                    </span>
+
+                    <a class="reviews-link" href="#productReviews">
+                        126 reseñas
+                    </a>
+
+                </div>
+
+
+                <!-- Precio -->
+                <div class="product-price-container">
+
+                    <p class="product-price">
+                        $1,560.00
+                    </p>
+
+                    <span class="stock-status">
+                        Disponible
+                    </span>
+
+                </div>
+
+
+                <!-- Descripción breve -->
+                <p class="product-summary">
+                    Producto diseñado para brindar calidad, comodidad y
+                    bienestar a tu mascota.
+                </p>
+
+
+                <!--
+                    En el futuro aquí podremos generar opciones
+                    adicionales dependiendo del modelo de Producto.
+                -->
+                <div class="product-options" id="productOptions">
+
+                </div>
+
+
+                <!-- Cantidad -->
+                <div class="purchase-controls">
+
+                    <div class="quantity-section">
+
+                        <span class="control-label">
+                            Cantidad
+                        </span>
+
+                        <div class="quantity-control">
+
+                            <button class="quantity-button" type="button" aria-label="Disminuir cantidad">
+                                <i class="bi bi-dash" aria-hidden="true"></i>
+                            </button>
+
+                            <span class="product-quantity" id="productQuantity">
+                                1
+                            </span>
+
+                            <button class="quantity-button" type="button" aria-label="Aumentar cantidad">
+                                <i class="bi bi-plus" aria-hidden="true"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Agregar al carrito -->
+                    <button class="add-cart-button" type="button">
+
+                        <i class="bi bi-cart-plus" aria-hidden="true"></i>
+
+                        Agregar al carrito
+
+                    </button>
+
+                </div>
+
+
+                <!-- Información adicional -->
+                <div class="purchase-benefits">
+
+                    <div class="benefit">
+
+                        <i class="bi bi-truck" aria-hidden="true"></i>
+
+                        <div>
+                            <span class="benefit-title">
+                                Entrega disponible
+                            </span>
+
+                            <span class="benefit-description">
+                                Consulta cobertura y tiempos de entrega.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <i class="bi bi-shield-check" aria-hidden="true"></i>
+
+                        <div>
+                            <span class="benefit-title">
+                                Compra segura
+                            </span>
+
+                            <span class="benefit-description">
+                                Tus datos están protegidos.
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- INFORMACIÓN DETALLADA -->
+        <section class="extra-info">
+
+            <div class="detail-tabs" role="tablist" aria-label="Información del producto">
+
+                <button class="detail-tab active-tab" type="button" role="tab">
+                    Descripción
+                </button>
+
+                <button class="detail-tab" type="button" role="tab">
+                    Detalles
+                </button>
+
+                <button class="detail-tab" type="button" role="tab">
+                    Opiniones
+                </button>
+
+            </div>
+
+
+            <!-- Contenido provisional -->
+            <div class="detail-content">
+
+                <div class="description-content">
+
+                    <h2>
+                        Sobre este producto
+                    </h2>
+
+                    <p>
+                        Una opción pensada para satisfacer las necesidades
+                        de tu mascota mediante productos seleccionados por
+                        su calidad y funcionalidad.
+                    </p>
+
+                    <p>
+                        La información mostrada actualmente es provisional
+                        y posteriormente será obtenida desde los datos
+                        correspondientes a cada producto.
+                    </p>
+
+                </div>
+
+
+                <!-- Ejemplo de detalles dinámicos -->
+                <div class="details-preview">
+
+                    <h2>
+                        Información destacada
+                    </h2>
+
+                    <div class="detail-row">
+                        <span class="detail-name">
+                            Marca
+                        </span>
+
+                        <span class="detail-value">
+                            Royal Canin
+                        </span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-name">
+                            Categoría
+                        </span>
+
+                        <span class="detail-value">
+                            Alimento
+                        </span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-name">
+                            Especie
+                        </span>
+
+                        <span class="detail-value">
+                            Perro
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- OPINIONES -->
+        <section
+            class="reviews-section"
+            id="productReviews"
+        >
+
+            <div class="reviews-header">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        Experiencias
+                    </span>
+
+                    <h2>
+                        Opiniones de clientes
+                    </h2>
+
+                </div>
+
+                <button
+                    class="review-button"
+                    type="button"
+                >
+                    Escribir una reseña
+                </button>
+
+            </div>
+
+
+            <div class="review-card">
+
+                <div class="review-card-header">
+
+                    <strong>
+                        Usuario
+                    </strong>
+
+                    <div
+                        class="review-stars"
+                        aria-label="5 de 5 estrellas"
+                    >
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+
+                </div>
+
+                <p>
+                    Excelente producto. Llegó en buenas condiciones y
+                    cumplió con lo esperado.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <div id="footer-container"></div>
+
+
+    <!-- Componentes compartidos -->
+    <script src="../js/loadComponents.js"></script>
+
+    <!-- JS propio -->
+    <script src="../js/detalleProd.js"></script>
+
+</body>
+
+</html>
