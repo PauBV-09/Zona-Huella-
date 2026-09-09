@@ -1,0 +1,544 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Caveat:wght@600;700&display=swap');
+
+
+/* =========================================================
+   ALTURA DEL NAVBAR
+   (misma variable usada en login.css / RecuperacionDeContraseña.css:
+   ajústala para que coincida con la altura real de tu navbar)
+   ========================================================= */
+
+:root {
+    --nav-h: 180px;
+
+    --zh-orange: #FF7E29;
+    --zh-blue: #0072ff;
+    --zh-blue-light: #00c6ff;
+    --zh-text: #121217;
+    --zh-text-soft: rgba(10, 15, 30, 0.6);
+    --zh-border: rgba(10, 15, 30, 0.1);
+}
+
+
+/* =========================================================
+   RESETEO
+   ========================================================= */
+
+.orders-page *,
+.orders-page *::before,
+.orders-page *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+
+.orders-page {
+    width: 100%;
+    min-height: 100vh;
+
+    background: #f2f3f5;
+
+    padding: calc(var(--nav-h) + 20px) 15px 60px;
+}
+
+
+.orders-wrapper {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.orders-title {
+    margin: 0 0 20px;
+
+    color: var(--zh-text);
+
+    font-family: 'Patrick Hand', cursive;
+
+    font-size: 34px;
+    font-weight: 700;
+
+    text-align: left;
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   BARRA DE HERRAMIENTAS
+   ========================================================= */
+
+.orders-toolbar {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 24px;
+}
+
+
+.orders-search {
+    flex: 1 1 260px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+}
+
+
+.orders-search i {
+    position: absolute;
+
+    left: 14px;
+
+    color: var(--zh-text-soft);
+
+    font-size: 15px;
+}
+
+
+.orders-search input {
+    width: 100%;
+
+    padding: 10px 14px 10px 38px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--zh-border);
+    border-radius: 999px;
+
+    color: var(--zh-text);
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+
+    outline: none;
+
+    transition: border-color 0.3s ease;
+}
+
+
+.orders-search input:focus {
+    border-color: var(--zh-blue-light);
+}
+
+
+.orders-filters {
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.orders-select {
+    padding: 9px 30px 9px 14px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--zh-border);
+    border-radius: 999px;
+
+    color: var(--zh-text);
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+.orders-count {
+    margin-left: auto;
+
+    color: var(--zh-text-soft);
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   GRUPOS POR FECHA
+   ========================================================= */
+
+.orders-groups {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+.orders-group {
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+
+.orders-group-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 20px;
+
+    border-bottom: 1px solid var(--zh-border);
+}
+
+
+.orders-group-date {
+    color: var(--zh-text);
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+.orders-group-action {
+    background: none;
+    border: none;
+
+    color: var(--zh-blue);
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.orders-group-action:hover {
+    color: var(--zh-orange);
+}
+
+
+/* =========================================================
+   TARJETA DE PEDIDO
+   ========================================================= */
+
+.order-card {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 18px;
+
+    padding: 18px 20px;
+}
+
+
+.order-card + .order-card {
+    border-top: 1px solid var(--zh-border);
+}
+
+
+.order-thumb {
+    flex-shrink: 0;
+
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f2f3f5;
+
+    border: 1px solid var(--zh-border);
+    border-radius: 10px;
+
+    color: var(--zh-blue-light);
+
+    font-size: 24px;
+
+    overflow: hidden;
+}
+
+
+.order-thumb img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.order-info {
+    flex: 1;
+
+    min-width: 0;
+
+    text-align: left;
+}
+
+
+.order-status {
+    display: inline-block;
+
+    margin-bottom: 4px;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.order-status.status-entregado {
+    color: #1a9e5c;
+}
+
+
+.order-status.status-camino {
+    color: var(--zh-blue);
+}
+
+
+.order-status.status-cancelado {
+    color: #e5484d;
+}
+
+
+.order-product {
+    margin: 0 0 2px;
+
+    color: var(--zh-text);
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+
+    line-height: 1.35;
+}
+
+
+.order-meta {
+    margin: 0 0 4px;
+
+    color: var(--zh-text-soft);
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 12.5px;
+}
+
+
+.order-seller {
+    margin: 0;
+
+    color: var(--zh-text-soft);
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 13px;
+}
+
+
+.order-seller strong {
+    color: var(--zh-text);
+}
+
+
+.order-actions {
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    width: 150px;
+}
+
+
+.btn-order-primary,
+.btn-order-secondary {
+    padding: 8px 10px;
+
+    border-radius: 8px;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+.btn-order-primary {
+    background: var(--zh-orange);
+
+    border: 1px solid var(--zh-orange);
+
+    color: #ffffff;
+}
+
+
+.btn-order-primary:hover {
+    box-shadow: 0 4px 12px rgba(255, 126, 41, 0.3);
+}
+
+
+.btn-order-secondary {
+    background: rgba(0, 198, 255, 0.08);
+
+    border: 1px solid rgba(0, 198, 255, 0.3);
+
+    color: var(--zh-blue);
+}
+
+
+.btn-order-secondary:hover {
+    background: rgba(0, 198, 255, 0.15);
+}
+
+
+/* =========================================================
+   ESTADO VACÍO
+   ========================================================= */
+
+.orders-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 60px 20px;
+
+    text-align: center;
+
+    color: var(--zh-text-soft);
+
+    font-family: 'Rubik', sans-serif;
+}
+
+
+.orders-empty i {
+    margin-bottom: 12px;
+
+    color: var(--zh-blue-light);
+
+    font-size: 40px;
+}
+
+
+.orders-empty-link {
+    margin-top: 10px;
+
+    color: var(--zh-blue) !important;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.orders-empty-link:hover {
+    color: var(--zh-orange) !important;
+}
+
+
+/* =========================================================
+   MODAL DETALLE
+   ========================================================= */
+
+.orders-modal-content {
+    border-radius: 16px;
+
+    font-family: 'Rubik', sans-serif;
+}
+
+.orders-modal-content .modal-title {
+    font-family: 'Patrick Hand', cursive;
+
+    font-size: 24px;
+}
+
+.orders-detail-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid var(--zh-border);
+
+    font-size: 14px;
+}
+
+.orders-detail-row span:first-child {
+    color: var(--zh-text-soft);
+}
+
+.orders-detail-row span:last-child {
+    color: var(--zh-text);
+    font-weight: 500;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    :root {
+        --nav-h: 120px;
+    }
+
+    .orders-count {
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    :root {
+        --nav-h: 180px;
+    }
+
+    .order-card {
+        flex-wrap: wrap;
+    }
+
+    .order-actions {
+        width: 100%;
+        flex-direction: row;
+    }
+
+    .btn-order-primary,
+    .btn-order-secondary {
+        flex: 1;
+    }
+
+}
