@@ -69,6 +69,37 @@
                 </div>
               </div>
             </div>
+            <!-- TELÉFONO -->
+            <div class="register-input-group register-phone-group">
+              <div class="register-phone-row">
+                <select
+                  id="reg-prefijo"
+                  class="register-phone-prefix"
+                  required>
+                  <option value="+52"selected>+52 MX</option>
+                  <option value="+1">+1 US/CA</option>
+                  <option value="+34">+34 ES</option>
+                  <option value="+57">+57 CO</option>
+                  <option value="+54">+54 AR</option>
+                  <option value="+56">+56 CL</option>
+                  <option value="+51">+51 PE</option>
+                  <option value="+593">+593 EC</option>
+                  <option value="+58">+58 VE</option>
+                  <option value="+44">+44 UK</option>
+                </select>
+                <input
+                  type="tel"
+                  id="reg-numero"
+                  class="register-phone-number"
+                  placeholder="(81) 1234 5678"
+                  inputmode="tel"
+                  maxlength="18"
+                  required>
+              </div>
+              <span class="register-phone-hint">
+                Agrega tu numero telefonico
+              </span>
+            </div>
             <!-- USUARIO -->
             <div class="register-input-group">
               <input
@@ -276,4 +307,4 @@
 
 </body>
 
-</html>
+</html> 
