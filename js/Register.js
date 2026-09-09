@@ -5,6 +5,9 @@ const apellidoInput = document.getElementById('reg-apellido');
 const usernameInput = document.getElementById('reg-username');
 const correoInput = document.getElementById('reg-correo');
 
+const prefijoInput = document.getElementById('reg-prefijo');
+const numeroInput = document.getElementById('reg-numero');
+
 const passwordInput = document.getElementById('reg-password');
 const confirmPasswordInput = document.getElementById('reg-confirm-password');
 
@@ -76,6 +79,29 @@ function validarCorreo() {
 
 
 // ============================================================
+// VALIDAR TELÉFONO (PREFIJO + CÓDIGO DE ÁREA Y NÚMERO JUNTOS)
+// ============================================================
+
+function validarTelefono() {
+
+    const prefijo = prefijoInput.value;
+
+    const numero = numeroInput.value.trim();
+
+    const soloDigitos = numero.replace(/\D/g, '');
+
+    const prefijoValido = prefijo !== "";
+
+    const numeroValido = /^\d{7,10}$/.test(soloDigitos);
+
+    return (
+        prefijoValido &&
+        numeroValido
+    );
+}
+
+
+// ============================================================
 // ACTUALIZAR ESTADO DEL BOTÓN
 // ============================================================
 
@@ -94,6 +120,9 @@ function actualizarEstadoBoton() {
 
     const correoValido =
         validarCorreo();
+
+    const telefonoValido =
+        validarTelefono();
 
 
     // Contraseña
@@ -124,6 +153,7 @@ function actualizarEstadoBoton() {
         apellidoValido &&
         usernameValido &&
         correoValido &&
+        telefonoValido &&
         passwordValida &&
         confirmMatch &&
         terminosAceptados;
@@ -169,6 +199,16 @@ usernameInput.addEventListener(
 );
 
 correoInput.addEventListener(
+    'input',
+    actualizarEstadoBoton
+);
+
+prefijoInput.addEventListener(
+    'change',
+    actualizarEstadoBoton
+);
+
+numeroInput.addEventListener(
     'input',
     actualizarEstadoBoton
 );
@@ -231,6 +271,15 @@ registerForm.addEventListener('submit', (e) => {
     const correo =
         correoInput.value.trim();
 
+    const prefijo =
+        prefijoInput.value;
+
+    const numero =
+        numeroInput.value.trim();
+
+    const telefono =
+        `${prefijo} ${numero}`;
+
     const nuevaPassword =
         passwordInput.value;
 
@@ -287,6 +336,8 @@ registerForm.addEventListener('submit', (e) => {
         username: username,
 
         email: correo,
+
+        telefono: telefono,
 
         password: nuevaPassword
 

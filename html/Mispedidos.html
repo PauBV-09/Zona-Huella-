@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Mis pedidos</title>
+ <link rel="stylesheet" href="../css/MisPedidos.css">
+ <link rel="stylesheet" href="../css/styles.css">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+ <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+ <link rel="icon" type="image/png" href="../assets/logo Huella.png">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar-container"></div>
+
+    <main class="orders-page">
+        <div class="orders-wrapper">
+
+            <h1 class="orders-title">Mis pedidos</h1>
+
+            <div class="orders-toolbar">
+                <div class="orders-search">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="ordersSearch" placeholder="Busca por pedido, producto o marca...">
+                </div>
+
+                <div class="orders-filters">
+                    <select id="filterCategoria" class="orders-select">
+                        <option value="todas">Categoría</option>
+                        <option value="perros">Perros</option>
+                        <option value="gatos">Gatos</option>
+                        <option value="ofertas">Ofertas</option>
+                    </select>
+
+                    <select id="filterFecha" class="orders-select">
+                        <option value="recientes">Más recientes</option>
+                        <option value="antiguos">Más antiguos</option>
+                    </select>
+                </div>
+
+                <span class="orders-count" id="ordersCount">0 pedidos</span>
+            </div>
+
+            <div id="ordersGroups" class="orders-groups"></div>
+
+            <div id="ordersEmpty" class="orders-empty d-none">
+                <i class="bi bi-bag-heart"></i>
+                <p>No encontramos pedidos con esos filtros.</p>
+                <a href="Tienda.html" class="orders-empty-link">Ir a la tienda</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- MODAL: DETALLE DE PEDIDO -->
+    <div class="modal fade" id="orderDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content orders-modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalle del pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body" id="orderDetailBody">
+                    <!-- JS llena este contenido -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/MisPedidos.js"></script>
+    <script src="../js/loadComponents.js"></script>
+</body>
+</html>
