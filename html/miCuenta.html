@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuenta | Zona Huella</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/miCuenta.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+
+  <!-- Bootstrap con CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+
+<body>
+  <!-- 1. CONTENEDOR NAVBAR (Inyectado y fijado arriba) -->
+  <div id="navbar-container"></div>
+
+  <!-- Seccion para contenido de la pagina -->
+  <section id="mi_cuenta">
+    <nav class="breadcrumb" aria-label="Ruta de navegacion">
+      <a href="../index.html">Inicio / </a>
+      <span id="breadcrumb_section" aria-current="page"> Mi cuenta</span>
+    </nav>
+
+    <div class="layout">
+      <!-- Inicio de la seccion de la barra lateral -->
+      <div class="barra_lateral">
+        <h2 class="header_barra">Mi Cuenta</h2>
+        <div class="formato_barra_lateral">
+          <button class="active" data-target="datos">Datos Personales</button>
+          <button data-target="direcciones">Direcciones</button>
+          <button data-target="perfil_mascota">Perfil de Mascota</button>
+          <button data-target="favoritos">Favoritos</button>
+          <button data-target="pedidos">Mis Pedidos</button>
+          <button data-target="sesion">Cerrar sesión</button>
+        </div>
+      </div>
+
+
+      <!-- Seccion para datos personales dentro del formato mi cuenta -->
+      <div id="datos" class="section">
+        <h3 class="titulo_seccion">Datos personales</h3>
+        <form method="post">
+          <fieldset>
+            <div class="form-row two-cols">
+              <div class="col">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Escribe aquí" required />
+              </div>
+              <div class="col">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" id="apellidos" name="apellidos" placeholder="Escribe aquí" required />
+              </div>
+            </div>
+
+            <div class="form-row full_width">
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" name="correo" placeholder="usuario@correo.com" required />
+            </div>
+
+            <div class="form-row two-cols">
+              <div class="col">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Escribe aquí" required />
+              </div>
+              <div class="col">
+                <label for="fecha">Fecha de nacimiento</label>
+                <input type="date" id="fecha" name="fecha" required />
+              </div>
+            </div>
+
+            <div class="form-row boton-row">
+              <button type="submit" class="btn-guardar">Guardar cambios</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+
+      <!-- Seccion para direcciones dentro del formato mi cuenta -->
+      <div id="direcciones" class="section" style="display: none">
+        <h3 class="titulo_seccion">Direcciones</h3>
+        <form method="post">
+          <fieldset>
+            <div class="form-row two-cols">
+              <div class="col">
+                <label for="calle">Calle</label>
+                <input type="text" id="calle" name="calle" placeholder="Escribe aquí" required />
+              </div>
+              <div class="col">
+                <label for="numero">Numero</label>
+                <input type="number" id="numero" name="numero" placeholder="Escribe aquí" required />
+              </div>
+            </div>
+
+            <div class="form-row two-cols">
+              <div class="col">
+                <label for="ciudad">Ciudad</label>
+                <input type="text" id="ciudad" name="ciudad" placeholder="Escribe aquí" required />
+              </div>
+              <div class="col">
+                <label for="estado">Estado</label>
+                <input type="text" id="estado" name="estado" placeholder="Escribe aquí" required />
+              </div>
+            </div>
+
+            <div class="form-row boton-row">
+              <button type="submit" class="btn-guardar">Guardar cambios</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      <!-- Seccion para perfil mascota dentro del formato mi cuenta -->
+      <div id="perfil_mascota" class="section" style="display: none">
+        <h3 class="titulo_seccion">Perfil de Mascota</h3>
+        <div class="perfil_mascota_content">
+          <div class="picture_mascota">
+            <img
+              src="https://media.istockphoto.com/id/1971124912/es/foto/golden.jpg?s=612x612&w=0&k=20&c=BSBFISvYmki-AxDQEQxCTh2M6qHmSvwk-Lncp72S7uY="
+              alt="perfil mascota">
+          </div>
+          <form method="post">
+            <fieldset>
+              <div class="form-row two-cols">
+                <div class="col">
+                  <label for="nombre_mascota">Nombre</label>
+                  <input type="text" id="nombre_mascota" name="nombre_mascota" placeholder="Escribe aquí" required />
+                </div>
+                <div class="col">
+                  <label for="especie">Especie</label>
+                  <select id="especie" name="especie" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="1">Perro</option>
+                    <option value="2">Gato</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row two-cols">
+                <div class="col">
+                  <label for="edad">Edad</label>
+                  <select id="edad" name="edad" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="1">Cachorro</option>
+                    <option value="2">Adulto Joven</option>
+                    <option value="3">Adulto</option>
+                    <option value="4">Adulto Avanzado</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="tamanio">Tamaño</label>
+                  <select id="tamanio" name="tamanio" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="1">XS (Extra chico)</option>
+                    <option value="2">S (Chico)</option>
+                    <option value="3">M (Mediano)</option>
+                    <option value="4">L (Grande)</option>
+                    <option value="5">XL (Extra Grande)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label class="recomendaciones_text">
+                  <input type="checkbox" id="recomendaciones" name="recomendaciones" />
+                  Recibir recomendaciones basadas en mi mascota
+                </label>
+              </div>
+
+              <div class="form-row boton-row">
+                <button type="submit" class="btn-guardar">Guardar cambios</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <div id="favoritos" class="section" style="display: none">
+        Contenido de favoritos
+      </div>
+      <div id="pedidos" class="section" style="display: none">
+        Contenido de pedidos
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CONTENEDOR FOOTER -->
+  <footer>
+    <div id="footer-container"></div>
+  </footer>
+
+  <!-- Modal de confirmación cerrar sesión -->
+  <div id="modal-cerrar-sesion" class="modal-overlay" style="display: none">
+    <div class="modal-box">
+      <p class="modal-mensaje">¿Estás seguro de que quieres cerrar sesión?</p>
+      <div class="modal-botones">
+        <button id="btn-confirmar-si" class="btn-modal btn-si">Sí</button>
+        <button id="btn-confirmar-no" class="btn-modal btn-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Inyección de componentes comunes -->
+  <script src="../js/loadComponents.js"></script>
+
+  <script src="../js/miCuenta.js"></script>
+</body>
+
+</html>

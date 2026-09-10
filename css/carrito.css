@@ -1,0 +1,49 @@
+html,
+body {
+	height: 100%; /* ocupa toda la ventana */
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column; /* apila header, body y footer */
+	background-color: #fefefe;
+}
+
+/* ================= FUENTES GOOGLE (Rubik & Patrick Hand) ================= */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:wght@300;900&display=swap");
+
+/* ================= VARIABLES GLOBALES DE DISEÑO (CUIDADITO CON MOVERLE AQUI WASAUSKIS)================= */
+:root {
+	--font-base: "Rubik", sans-serif;
+	--font-heading: "Patrick Hand", cursive;
+
+	--color-text-main: #121217;
+	--color-brand-blue: #3b82f6;
+	--color-accent-orange: #ff7e29;
+	--color-bg-page: #fefefe;
+	--color-shadow: #edeff8;
+
+	--navy-dark: #0f172a; /* Azul marino  para Navbar y Footer */
+	--navy-light: #1e293b;
+	--search-box-bg: #334155; /* Fondo buscador */
+}
+
+section {
+	flex: 1;
+}
+
+#footer-container {
+	color: white;
+	text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: var(--font-heading);
+}
+
+p {
+	font-family: var(--font-base);
+}
