@@ -1,0 +1,517 @@
+.pagina-pago {
+    --azul: #0F172A;
+    --azul-acento: #249BD3;
+    --gris-claro: #EDEFF8;
+    --blanco: #FEFEFE;
+    --naranja: #FF7E29;
+    --negro: #121217;
+    --borde: #CBD5E1;
+
+    min-height: 100vh;
+    padding: 105px 0 70px;
+    background-color: var(--blanco);
+    color: var(--negro);
+    font-family: "Rubik", sans-serif;
+}
+
+.pagina-pago,
+.pagina-pago * {
+    box-sizing: border-box;
+}
+
+.contenedor-pago {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Pasos de la compra */
+
+.pasos-compra {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 680px;
+    margin: 0 auto 32px;
+    padding: 0;
+    list-style: none;
+}
+
+.pasos-compra::before,
+.pasos-compra::after {
+    content: "";
+    position: absolute;
+    top: 17px;
+    left: 12.5%;
+    height: 2px;
+}
+
+.pasos-compra::before {
+    width: 75%;
+    background-color: var(--borde);
+}
+
+.pasos-compra::after {
+    /* Une Carrito, Envío y Pago */
+    width: 50%;
+    background-color: var(--naranja);
+}
+
+.paso {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    color: #8992A3;
+    font-size: 0.78rem;
+}
+
+.circulo-paso {
+    display: flex;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--borde);
+    border-radius: 50%;
+    background-color: var(--blanco);
+    font-size: 0.8rem;
+}
+
+/* Pasos anteriores */
+
+.paso.completado {
+    color: #475569;
+}
+
+.paso.completado .circulo-paso {
+    border-color: var(--naranja);
+    background-color: var(--blanco);
+    color: var(--naranja);
+}
+
+/* Paso actual */
+
+.paso.activo {
+    color: var(--azul);
+    font-weight: 700;
+}
+
+.paso.activo .circulo-paso {
+    border-color: var(--naranja);
+    background-color: var(--naranja);
+    color: var(--blanco);
+}
+
+/* Contenido principal */
+
+.pagina-pago h1 {
+    margin: 0 0 22px;
+    font-family: "Patrick Hand", cursive;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--azul);
+}
+
+.contenido-pago {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(290px, 0.85fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.tarjeta-pago,
+.resumen-pedido {
+    border: 1.5px solid var(--borde);
+    border-radius: 12px;
+    background-color: var(--blanco);
+    box-shadow: 0 8px 24px rgb(15 23 42 / 7%);
+}
+
+/* Formulario de pago */
+
+.tarjeta-pago {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 28px;
+}
+
+/* Opciones de pago */
+
+.metodos-pago {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.opcion-pago {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    margin: 0;
+    border: 1.5px solid var(--naranja);
+    border-radius: 8px;
+    padding: 11px 13px;
+    color: #424958;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.opcion-pago:hover {
+    border-color: var(--azul-acento);
+}
+
+.opcion-pago:has(input:checked) {
+    border-color: var(--naranja);
+    background-color: #FFF1E8;
+    color: var(--azul);
+    font-weight: 600;
+}
+
+.opcion-pago input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--naranja);
+}
+
+/* Datos de la tarjeta */
+
+.datos-tarjeta {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.fila-tarjeta {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 2fr) minmax(110px, 0.65fr) minmax(90px, 0.45fr);
+    gap: 18px;
+}
+
+.pagina-pago .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.pagina-pago .campo label {
+    color: var(--azul);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.pagina-pago .campo input {
+    width: 100%;
+    border: 1.5px solid var(--borde);
+    border-radius: 8px;
+    padding: 11px 13px;
+    background-color: var(--blanco);
+    color: var(--negro);
+    font-family: "Rubik", sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.pagina-pago .campo input::placeholder {
+    color: #9AA3B3;
+}
+
+.pagina-pago .campo input:focus {
+    border-color: var(--naranja);
+    box-shadow: 0 0 0 3px rgb(255 126 41 / 15%);
+}
+
+/* Transferencia bancaria */
+
+.datos-transferencia {
+    display: none;
+    border: 1.5px solid #D7E0EA;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #F8FAFC;
+}
+
+.encabezado-transferencia {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 14px;
+}
+
+.icono-transferencia {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #EAF7FD;
+    color: var(--naranja);
+    font-size: 1.25rem;
+}
+
+.encabezado-transferencia h3 {
+    margin: 0 0 3px;
+    color: var(--azul);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.encabezado-transferencia p {
+    margin: 0;
+    color: #64748B;
+    font-size: 0.82rem;
+}
+
+.etiqueta-simulacion {
+    display: inline-block;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    padding: 5px 10px;
+    background-color: #FFF1E8;
+    color: #B84D08;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.datos-bancarios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+}
+
+.dato-bancario {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 10px;
+}
+
+.dato-bancario span {
+    color: #64748B;
+    font-size: 0.75rem;
+}
+
+.dato-bancario strong {
+    color: var(--azul);
+    font-size: 0.87rem;
+    overflow-wrap: anywhere;
+}
+
+.aviso-transferencia {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 16px 0 0;
+    color: #64748B;
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.aviso-transferencia i {
+    color: var(--azul-acento);
+}
+
+/* Cambio visual entre tarjeta y transferencia */
+
+.tarjeta-pago:has(#metodo-tarjeta:checked) .datos-tarjeta {
+    display: flex;
+}
+
+.tarjeta-pago:has(#metodo-tarjeta:checked) .datos-transferencia {
+    display: none;
+}
+
+.tarjeta-pago:has(#metodo-transferencia:checked) .datos-tarjeta {
+    display: none;
+}
+
+.tarjeta-pago:has(#metodo-transferencia:checked) .datos-transferencia {
+    display: block;
+}
+
+/* Términos de compra */
+
+.aceptar-terminos {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: fit-content;
+    margin: 3px 0 0;
+    color: #525B6B;
+    font-size: 0.82rem;
+    cursor: pointer;
+}
+
+.aceptar-terminos input {
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    accent-color: var(--naranja);
+}
+
+/* Botón de pago */
+
+.acciones-pago {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 3px;
+}
+
+.btn-pagar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-width: 210px;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    background-color: var(--naranja);
+    color: var(--blanco);
+    font-family: "Rubik", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn-pagar:hover {
+    background-color: #E96E1D;
+    transform: translateY(-1px);
+    box-shadow: 0 7px 15px rgb(15 23 42 / 15%);
+}
+
+/* Resumen del pedido */
+
+.resumen-pedido {
+    position: sticky;
+    top: 95px;
+    padding: 24px;
+}
+
+.resumen-pedido h2 {
+    margin: 0 0 24px;
+    font-family: "Patrick Hand", cursive;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--azul);
+}
+
+.resumen-detalles {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.resumen-fila {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: #525B6B;
+    font-size: 0.86rem;
+}
+
+.resumen-fila strong {
+    color: var(--azul);
+    font-weight: 700;
+}
+
+.total-pedido {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 26px;
+    border-top: 1px solid #DCE1EA;
+    padding-top: 20px;
+    color: var(--azul);
+}
+
+.total-pedido strong {
+    font-size: 1.05rem;
+}
+
+/* Tabletas */
+
+@media (max-width: 900px) {
+    .contenido-pago {
+        grid-template-columns: 1fr;
+    }
+
+    .resumen-pedido {
+        position: static;
+    }
+}
+
+/* Celulares */
+
+@media (max-width: 650px) {
+    .pagina-pago {
+        padding: 165px 0 45px;
+    }
+
+    .contenedor-pago {
+        padding: 0 16px;
+    }
+
+    .tarjeta-pago,
+    .resumen-pedido {
+        padding: 20px;
+    }
+
+    .fila-tarjeta {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .campo-numero {
+        grid-column: 1 / -1;
+    }
+
+    .nombre-paso {
+        font-size: 0.68rem;
+    }
+
+    .acciones-pago {
+        justify-content: stretch;
+    }
+
+    .btn-pagar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .datos-bancarios {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 430px) {
+    .fila-tarjeta {
+        grid-template-columns: 1fr;
+    }
+
+    .campo-numero {
+        grid-column: auto;
+    }
+}
