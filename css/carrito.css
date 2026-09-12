@@ -1,3 +1,6 @@
+/* ================= FUENTES GOOGLE (Rubik & Patrick Hand) ================= */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:wght@300;900&display=swap");
+
 html,
 body {
 	height: 100%; /* ocupa toda la ventana */
@@ -7,9 +10,6 @@ body {
 	flex-direction: column; /* apila header, body y footer */
 	background-color: #fefefe;
 }
-
-/* ================= FUENTES GOOGLE (Rubik & Patrick Hand) ================= */
-@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:wght@300;900&display=swap");
 
 /* ================= VARIABLES GLOBALES DE DISEÑO (CUIDADITO CON MOVERLE AQUI WASAUSKIS)================= */
 :root {
@@ -46,4 +46,26 @@ h5 {
 
 p {
 	font-family: var(--font-base);
+}
+
+.add_cart {
+	align-self: flex-end;
+	background-color: var(--color-accent-orange);
+	border: none;
+	border-radius: 10px;
+	height: 40px;
+	color: #fefefe;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+
+.ver_productos {
+	background-color: var(--color-accent-orange);
+	border: none;
+	border-radius: 10px;
+	height: 40px;
+	color: #fefefe;
+	font-size: 1.5rem;
+	cursor: pointer;
+	text-decoration: none;
 }

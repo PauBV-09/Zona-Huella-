@@ -185,16 +185,18 @@ const carrito = [];
 
 function agregarCarrito(id) {
 	const producto = productos.find((p) => p.id === id);
-	const cantidadProducto = document.getElementById(`cantidad_${id}`);
-	const cantidad = parseInt(cantidadProducto.value);
+	if (!producto) {
+		console.log(`Producto con id: ${id} no encontrado`);
+		return;
+	}
 
 	// Buscar si ya existe en el carrito
 	let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 	const existe = carrito.find((item) => item.id === id);
 	if (existe) {
-		existe.cantidad += cantidad;
+		existe.cantidad += 1;
 	} else {
-		carrito.push({ ...producto, cantidad });
+		carrito.push({ ...producto, cantidad: 1 });
 	}
 
 	// Guardar carrito en localStorage
@@ -213,6 +215,23 @@ function renderCarrito() {
 	const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 	let total = 0;
 
+	if (carrito.length === 0) {
+		lista.innerHTML = `
+      <div class="d-flex flex-column align-items-center text-center py-5">
+        <i class="bi bi-cart-x display-1 text-muted mb-3"></i>
+        <h4 class="mb-2">Tu carrito está vacío</h4>
+        <p class="text-muted mb-4">Explora nuestros productos y encuentra algo para tu mascota.</p>
+        <a href="listProd.html" class="ver_productos px-4">Ver productos</a>
+      </div>
+    `;
+
+		const totalElement = document.getElementById("total");
+		if (totalElement) {
+			totalElement.textContent = "$0";
+		}
+		return;
+	}
+
 	carrito.forEach((item) => {
 		const subtotal = item.precio * item.cantidad;
 		total += subtotal;
@@ -224,13 +243,21 @@ function renderCarrito() {
       <img src="${item.img}" alt="${item.nombre}" class="img-thumbnail me-3" style="width:100px; height:100px; object-fit:cover;">
       <div class="flex-grow-1">
         <h5>${item.nombre}</h5>
-        <p>Precio: $${item.precio} x ${item.cantidad}</p>
+        <p>Precio: $${item.precio}</p>
         <p class="fw-bold">Subtotal: $${subtotal}</p>
       </div>
-      <div class="d-flex flex-column align-items-end">
-        <input type="number" id="eliminar_${item.id}" class="form-control form-control-sm mb-2" 
-               value="1" min="1" max="${item.cantidad}">
-        <button class="btn btn-sm btn-danger" onclick="eliminarProducto(${item.id})">Eliminar</button>
+
+			 <div class="d-flex flex-column align-items-end gap-2">
+        <div class="d-flex align-items-center gap-2">
+          <div class="btn-group" role="group" aria-label="Cantidad">
+            <button class="btn btn-sm btn-outline-secondary" onclick="restarCantidad(${item.id})">-</button>
+            <span class="btn btn-sm btn-outline-secondary pe-none fw-bold px-3">${item.cantidad}</span>
+            <button class="btn btn-sm btn-outline-secondary" onclick="sumarCantidad(${item.id})">+</button>
+          </div>
+          <button class="btn btn-sm btn-danger" onclick="eliminarProducto(${item.id})" title="Eliminar producto">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
       </div>
     `;
 		lista.appendChild(card);
@@ -242,8 +269,16 @@ function renderCarrito() {
 	}
 }
 
+const navbarContainer = document.getElementById("navbar-container");
+if (navbarContainer) {
+	const badgeObserver = new MutationObserver(() => {
+		actualizarBadgeCarrito();
+	});
+	badgeObserver.observe(navbarContainer, { childList: true, subtree: true });
+}
+
 function actualizarBadgeCarrito() {
-	const badge = document.getElementById("carrito-badge");
+	const badge = document.getElementById("cart-badge");
 	if (!badge) return;
 
 	const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -254,22 +289,39 @@ function actualizarBadgeCarrito() {
 	}
 }
 
-function eliminarProducto(id) {
+function sumarCantidad(id) {
 	let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-	const cantidadEliminar = parseInt(
-		document.getElementById(`eliminar_${id}`).value,
-	);
-
 	const producto = carrito.find((item) => item.id === id);
 	if (producto) {
-		if (cantidadEliminar >= producto.cantidad) {
-			// Si se elimina igual o más de lo que hay, quitar el producto completo
+		producto.cantidad += 1;
+	}
+
+	localStorage.setItem("carrito", JSON.stringify(carrito));
+	renderCarrito();
+	actualizarBadgeCarrito();
+}
+
+function restarCantidad(id) {
+	let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+	const producto = carrito.find((item) => item.id === id);
+
+	if (producto) {
+		if (producto.cantidad <= 1) {
+			// Si ya está en 1, restar lo elimina por completo
 			carrito = carrito.filter((item) => item.id !== id);
 		} else {
-			// Restar la cantidad indicada
-			producto.cantidad -= cantidadEliminar;
+			producto.cantidad -= 1;
 		}
 	}
+
+	localStorage.setItem("carrito", JSON.stringify(carrito));
+	renderCarrito();
+	actualizarBadgeCarrito();
+}
+
+function eliminarProducto(id) {
+	let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+	carrito = carrito.filter((item) => item.id !== id);
 
 	localStorage.setItem("carrito", JSON.stringify(carrito));
 	renderCarrito();
