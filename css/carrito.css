@@ -1,39 +1,34 @@
-html,
-body {
-	height: 100%; /* ocupa toda la ventana */
-	margin: 0;
-	padding: 0;
-	display: flex;
-	flex-direction: column; /* apila header, body y footer */
-	background-color: #fefefe;
-}
-
 /* ================= FUENTES GOOGLE (Rubik & Patrick Hand) ================= */
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:wght@300;900&display=swap");
 
+html,
+body {
+  height: 100%; /* ocupa toda la ventana */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* apila header, body y footer */
+  background-color: #fefefe;
+}
+
 /* ================= VARIABLES GLOBALES DE DISEÑO (CUIDADITO CON MOVERLE AQUI WASAUSKIS)================= */
 :root {
-	--font-base: "Rubik", sans-serif;
-	--font-heading: "Patrick Hand", cursive;
+  --font-base: "Rubik", sans-serif;
+  --font-heading: "Patrick Hand", cursive;
 
-	--color-text-main: #121217;
-	--color-brand-blue: #3b82f6;
-	--color-accent-orange: #ff7e29;
-	--color-bg-page: #fefefe;
-	--color-shadow: #edeff8;
+  --color-text-main: #121217;
+  --color-brand-blue: #3b82f6;
+  --color-accent-orange: #ff7e29;
+  --color-bg-page: #fefefe;
+  --color-shadow: #edeff8;
 
-	--navy-dark: #0f172a; /* Azul marino  para Navbar y Footer */
-	--navy-light: #1e293b;
-	--search-box-bg: #334155; /* Fondo buscador */
+  --navy-dark: #0f172a; /* Azul marino  para Navbar y Footer */
+  --navy-light: #1e293b;
+  --search-box-bg: #334155; /* Fondo buscador */
 }
 
 section {
-	flex: 1;
-}
-
-#footer-container {
-	color: white;
-	text-align: center;
+  flex: 1;
 }
 
 h1,
@@ -41,9 +36,65 @@ h2,
 h3,
 h4,
 h5 {
-	font-family: var(--font-heading);
+  font-family: var(--font-heading);
 }
 
 p {
-	font-family: var(--font-base);
+  font-family: var(--font-base);
+}
+
+/* ================= CARRITO: ALINEACIÓN CON EL NAVBAR (desktop) ================= */
+
+.navbar_avoid {
+  margin-top: 54px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 992px) {
+  .navbar_avoid {
+    margin-top: 130px;
+    margin-bottom: 40px;
+  }
+}
+
+/* ================= CARRITO: TARJETAS DE PRODUCTO RESPONSIVAS ================= */
+.cart-item-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  #carrito_resumen_col {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .cart-item-img {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+.add_cart {
+  align-self: flex-end;
+  background-color: var(--color-accent-orange);
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  color: #fefefe;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.ver_productos {
+  background-color: var(--color-accent-orange);
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  color: #fefefe;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-decoration: none;
 }
