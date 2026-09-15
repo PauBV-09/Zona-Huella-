@@ -4,34 +4,32 @@ const botonFiltrosMovil = document.querySelector(".boton-filtros-movil");
 const panelFiltros = document.querySelector(".filtros");
 
 botonFiltrosMovil.addEventListener("click", () => {
+  panelFiltros.classList.toggle("activo");
 
-    panelFiltros.classList.toggle("activo");
+  const filtrosAbiertos = panelFiltros.classList.contains("activo");
 
-    const filtrosAbiertos = panelFiltros.classList.contains("activo");
+  botonFiltrosMovil.setAttribute("aria-expanded", filtrosAbiertos);
 
-    botonFiltrosMovil.setAttribute(
-        "aria-expanded",
-        filtrosAbiertos
-    );
-
-    if (filtrosAbiertos) {
-      botonFiltrosMovil.textContent = "X";
+  if (filtrosAbiertos) {
+    botonFiltrosMovil.textContent = "X";
   } else {
-      botonFiltrosMovil.textContent = "☰";
+    botonFiltrosMovil.textContent = "☰";
   }
-
 });
 
 // Para ajuste a formatPrice cuando viene "Sin precio"
 function formatPrice(value) {
   if (!value || value === "Sin precio") return "Sin precio";
-  const numero = typeof value === "number" ? value : parseFloat(String(value).replace(/[^0-9.]/g, ""));
+  const numero =
+    typeof value === "number"
+      ? value
+      : parseFloat(String(value).replace(/[^0-9.]/g, ""));
   return isNaN(numero) ? "Sin precio" : "$" + numero.toFixed(2);
 }
 
 // Función para agregar elementos usando la estructura legitima del JSON
 // Claves usadas directamente: producto.nombre, producto.marca, producto.precio, producto.imagen
-function renderProducts(listaProductos) {
+function renderProducts(listaProductos, categoria) {
   const grid = document.getElementById("productGrid");
   grid.innerHTML = "";
 
@@ -62,19 +60,30 @@ function renderProducts(listaProductos) {
   });
 
   //Para los botones de agregar
-  grid.querySelectorAll(".add-btn").forEach(btn => {
+  grid.querySelectorAll(".add-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const i = btn.dataset.index;
+      const producto = listaProductos[i];
       console.log("Agregado al carrito:", listaProductos[i].nombre);
+
+      // Se antepone la categoría (nombre del JSON) al id para que no
+      // choque con productos de otras categorías que reutilicen el mismo id.
+      agregarProductoAlCarrito({
+        id: `${categoria}-${producto.id}`,
+        nombre: producto.nombre,
+        precio: producto.precio,
+        img: producto.imagen,
+      });
+
       btn.textContent = "✓";
       setTimeout(() => (btn.textContent = "+"), 800);
     });
   });
 
   // Para botones de favoritos
-  grid.querySelectorAll(".fav-btn").forEach(btn => {
+  grid.querySelectorAll(".fav-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      e.stopPropagation(); 
+      e.stopPropagation();
       const i = btn.dataset.index;
       const producto = listaProductos[i];
       btn.classList.toggle("favorito");
@@ -96,13 +105,15 @@ async function cargarProductosDesdeJSON(rutaJSON) {
     if (!respuesta.ok) {
       throw new Error(`Error HTTP: ${respuesta.status}`);
     }
-    
+
     // Obtención de los productos con la estructura JSON directamente
     const productos = await respuesta.json();
 
-    // Se envían directamente a la función que los agrega al contenedor/lista
-    renderProducts(productos);
+    // Nombre de categoría derivado del archivo (ej. "dogsecos.json" -> "dogsecos")
+    const categoria = rutaJSON.split("/").pop().replace(".json", "");
 
+    // Se envían directamente a la función que los agrega al contenedor/lista
+    renderProducts(productos, categoria);
   } catch (error) {
     console.error("Error al cargar los productos:", error);
   }
