@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Envío | Zona Huella</title>
+
+    <!-- Tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/direccionEnvio.css">
+</head>
+
+<body>
+
+    <!-- Navbar inyectado -->
+    <div id="navbar-container"></div>
+
+    <main class="pagina-envio">
+
+        <div class="container contenedor-envio">
+
+            <!-- Pasos del proceso de compra -->
+            <ol class="pasos-compra" aria-label="Proceso de compra">
+
+                <li class="paso completado">
+                    <span class="circulo-paso">1</span>
+                    <span class="nombre-paso">Carrito</span>
+                </li>
+
+                <li class="paso activo" aria-current="step">
+                    <span class="circulo-paso">2</span>
+                    <span class="nombre-paso">Envío</span>
+                </li>
+
+                <li class="paso">
+                    <span class="circulo-paso">3</span>
+                    <span class="nombre-paso">Pago</span>
+                </li>
+
+                <li class="paso">
+                    <span class="circulo-paso">4</span>
+                    <span class="nombre-paso">Confirmación</span>
+                </li>
+
+            </ol>
+
+            <h1>Dirección de envío</h1>
+
+            <div class="contenido-envio">
+
+                <!-- Formulario -->
+                <form id="form-envio" class="tarjeta-envio">
+
+                    <div class="fila-dos">
+
+                        <div class="campo">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Escribe aquí"
+                                autocomplete="given-name" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" id="apellidos" name="apellidos" placeholder="Escribe aquí"
+                                autocomplete="family-name" required>
+                        </div>
+
+                    </div>
+
+                    <div class="campo">
+                        <label for="calle">Calle y número</label>
+                        <input type="text" id="calle" name="calle" placeholder="Ej. Avenida Reforma 125"
+                            autocomplete="street-address" required>
+                    </div>
+
+                    <div class="fila-tres">
+
+                        <div class="campo">
+                            <label for="codigoPostal">Código postal</label>
+                            <input type="text" id="codigoPostal" name="codigoPostal" placeholder="Ej. 55740"
+                                inputmode="numeric" maxlength="5" pattern="[0-9]{5}" autocomplete="postal-code"
+                                required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="ciudad">Ciudad</label>
+                            <input type="text" id="ciudad" name="ciudad" placeholder="Escribe aquí"
+                                autocomplete="address-level2" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="estado">Estado</label>
+                            <input type="text" id="estado" name="estado" placeholder="Escribe aquí"
+                                autocomplete="address-level1" required>
+                        </div>
+
+                    </div>
+
+                    <div class="campo">
+                        <label for="referencias">Referencias de entrega</label>
+                        <textarea id="referencias" name="referencias" rows="3" maxlength="250"
+                            placeholder="Ej. Casa blanca, portón negro"></textarea>
+                    </div>
+
+                    <label class="guardar-direccion">
+                        <input type="checkbox" id="guardarDireccion" name="guardarDireccion">
+
+                        <span>Guardar esta dirección</span>
+                    </label>
+
+                    <div class="acciones-envio">
+                        <button type="submit" id="btn-continuar" class="btn-continuar">
+
+                            Continuar al pago
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+
+                </form>
+
+                <!-- Resumen del carrito -->
+                <aside class="resumen-pedido">
+
+                    <h2>Tu pedido</h2>
+
+                    <div id="lista-pedido" class="lista-pedido" aria-live="polite">
+                    </div>
+
+                    <div class="total-pedido">
+                        <span>Total</span>
+                        <strong id="total-pedido">$0</strong>
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer inyectado -->
+    <div id="footer-container"></div>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Componentes comunes -->
+    <script src="../js/loadComponents.js"></script>
+</body>
+
+</html>

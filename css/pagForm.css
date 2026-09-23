@@ -144,23 +144,25 @@ label {
 	font-size: 0.92rem;
 }
 input,
-textarea {
-	/* Estilo base compartido para todos los campos */
-	width: 100%;
-	padding: 11px 12px;
-	border: 1.5px solid #b9c3e2;
-	border-radius: 10px;
-	font-family: "Rubik", sans-serif;
-	font-size: 0.95rem;
-	background-color: #fdfdff;
-	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+textarea,
+.form-control,
+.form-select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1.5px solid #b9c3e2;
+    border-radius: 10px;
+    font-family: "Rubik", sans-serif;
+    font-size: 0.95rem;
+    background-color: #fdfdff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 input:focus,
-textarea:focus {
-	/* Realce de foco para mejorar accesibilidad visual */
-	outline: none;
-	border-color: var(--azul);
-	box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.15);
+textarea:focus,
+.form-control:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.15);
 }
 textarea {
 	resize: vertical;

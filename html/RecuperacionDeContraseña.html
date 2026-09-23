@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Recuperar contraseña</title>
+ <link rel="stylesheet" href="../css/RecuperacionDeContraseña.css">
+ <link rel="stylesheet" href="../css/styles.css">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+ <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+ <link rel="icon" type="image/png" href="../assets/logo Huella.png">
+
+ <!-- EmailJS: usado para enviar el correo de recuperación sin backend propio -->
+ <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar-container"></div>
+
+    <div class="recovery-background-container">
+        <div class="recovery-container">
+            <div class="recovery-card">
+
+                <div class="recovery-icon">
+                    <i class="bi bi-paw"></i>
+                </div>
+                 <img src="../assets/logo Huella.png" alt="Zona Huella" class="recovery-logo">
+                <h1 class="recovery-tittle">Recupera tu contraseña</h1>
+                <p class="recovery-subtitle">Te enviaremos un enlace para restablecerla</p>
+
+                <form id="recoveryForm" novalidate>
+                    <div class="input-group text-start">
+                        <label for="recoveryEmail" class="recovery-label">Correo electrónico</label>
+                        <input
+                            type="email"
+                            id="recoveryEmail"
+                            placeholder="Escribe aquí"
+                            autocomplete="email"
+                            required
+                        >
+                        <small id="recoveryError" class="recovery-error"></small>
+                    </div>
+
+                    <button type="submit" id="btn-submit-recovery" class="btn-recovery">
+                        <span class="btn-text">Enviar enlace</span>
+                        <span class="btn-spinner d-none" aria-hidden="true"></span>
+                    </button>
+
+                    <div id="recoverySuccess" class="recovery-success d-none">
+                        Revisa tu bandeja de entrada, te enviamos un enlace para restablecer tu contraseña.
+                    </div>
+                </form>
+
+                <div class="recovery-footer">
+                    <a href="Login.html" class="recovery-link">Volver a iniciar sesión</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/RecuperacionDeContraseña.js"></script>
+    <script src="../js/loadComponents.js"></script>
+</body>
+</html>
