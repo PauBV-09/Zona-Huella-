@@ -1,35 +1,50 @@
 <header class="custom-navbar-wrapper">
   <div class="container-fluid px-3 px-lg-5">
     <div class="navbar-responsive-layout py-2">
-
       <!-- Fila 1: Logo (Izq), Buscador Centrado (PC) y Acciones (Der) -->
-      <div class="d-flex align-items-center justify-content-between w-100 top-nav-bar">
-
+      <div
+        class="d-flex align-items-center justify-content-between w-100 top-nav-bar"
+      >
         <!-- Lado Izquierdo: Logo Oficial y Categorías en PC -->
         <div class="nav-brand-group d-flex align-items-center gap-3">
-          <a class="d-flex align-items-center text-decoration-none" href="../index.html">
-            <img src="../assets/Logo ZonaHuella blanco0.png" alt="Logo Zona Huella" class="navbar-logo">
+          <a
+            class="d-flex align-items-center text-decoration-none"
+            href="../index.html"
+          >
+            <img
+              src="../assets/Logo ZonaHuella blanco0.png"
+              alt="Logo Zona Huella"
+              class="navbar-logo"
+            />
           </a>
 
           <!-- Categorías al lado del logo en Desktop -->
           <nav class="d-none d-lg-flex align-items-center gap-3 ms-2">
-            <a class="nav-text-link" href="./listProd.html?categoria=perros">Perros</a>
-            <a class="nav-text-link" href="./listProd.html?categoria=gatos">Gatos</a>
-            <a class="nav-text-link" href="./listProd.html?ofertas=true">Ofertas</a>
+            <a class="nav-text-link" href="../html/listProd.html">Perros</a>
+            <a class="nav-text-link" href="../html/listProd.html">Gatos</a>
+            <a class="nav-text-link" href="../html/listProd.html">Ofertas</a>
           </nav>
         </div>
 
         <!-- Buscador Centrado en Desktop (Ocupa el centro exacto) -->
-        <div class="nav-search-desktop d-none d-lg-flex justify-content-center flex-grow-1 mx-4">
-          <div class="search-wrapper w-100" style="max-width: 440px;">
-            <input type="search" class="custom-search-input" placeholder="Buscar productos, marcas..."
-              aria-label="Buscar productos, marcas">
+        <div
+          class="nav-search-desktop d-none d-lg-flex justify-content-center flex-grow-1 mx-4"
+        >
+          <div class="search-wrapper w-100" style="max-width: 440px">
+            <input
+              type="search"
+              class="custom-search-input"
+              placeholder="Buscar productos, marcas..."
+              aria-label="Buscar productos, marcas"
+            />
           </div>
         </div>
 
         <!-- Lado Derecho: Acciones del Usuario (Arriba a la derecha siempre) -->
-        <div class="nav-actions d-flex align-items-center justify-content-end gap-3 gap-lg-4 ms-auto ms-lg-0">
-          <a class="nav-text-link" href="./login.html" title="Cuenta">
+        <div
+          class="nav-actions d-flex align-items-center justify-content-end gap-3 gap-lg-4 ms-auto ms-lg-0"
+        >
+          <a class="nav-text-link" href="../html/login.html" title="Cuenta">
             <i class="bi bi-person-circle fs-5 d-inline d-lg-none"></i>
             <span class="d-none d-lg-inline">Cuenta</span>
           </a>
@@ -37,36 +52,49 @@
             <i class="bi bi-heart fs-5 d-inline d-lg-none"></i>
             <span class="d-none d-lg-inline">Favoritos</span>
           </a>
-          <a class="nav-text-link position-relative" href="./pagForm.html" title="Carrito">
+          <a
+            class="nav-text-link position-relative"
+            href="./pagForm.html"
+            title="Carrito"
+          >
             <i class="bi bi-cart3 fs-5 d-inline d-lg-none"></i>
             <span class="d-none d-lg-inline">Carrito</span>
             <span id="cart-badge" class="badge-cart-dot d-inline-block"></span>
           </a>
         </div>
-
       </div>
 
       <!-- Fila 2: Buscador Centrado en Celulares y Tablets -->
-      <div class="nav-search-mobile d-flex d-lg-none justify-content-center w-100 pt-2">
-        <div class="search-wrapper w-100" style="max-width: 440px;">
-          <input type="search" class="custom-search-input text-center" placeholder="Buscar productos, marcas..."
-            aria-label="Buscar productos, marcas">
+      <div
+        class="nav-search-mobile d-flex d-lg-none justify-content-center w-100 pt-2"
+      >
+        <div class="search-wrapper w-100" style="max-width: 440px">
+          <input
+            type="search"
+            class="custom-search-input text-center"
+            placeholder="Buscar productos, marcas..."
+            aria-label="Buscar productos, marcas"
+          />
         </div>
       </div>
 
       <!-- Fila 3: Categorías Perros, Gatos y Ofertas Centradas en Móvil -->
-      <div class="mobile-categories-bar d-flex d-lg-none justify-content-center align-items-center gap-2 pt-2 pb-1">
-        <a class="mobile-cat-pill" href="./listProd.html?categoria=perros">
+      <div
+        class="mobile-categories-bar d-flex d-lg-none justify-content-center align-items-center gap-2 pt-2 pb-1"
+      >
+        <a class="mobile-cat-pill" href="../html/listProd.html">
           <i class="bi bi-tag-fill me-1"></i>Perros
         </a>
-        <a class="mobile-cat-pill" href="./listProd.html?categoria=gatos">
+        <a class="mobile-cat-pill" href="../html/listProd.html">
           <i class="bi bi-tag-fill me-1"></i>Gatos
         </a>
-        <a class="mobile-cat-pill text-warning-custom" href="./listProd.html?ofertas=true">
+        <a
+          class="mobile-cat-pill text-warning-custom"
+          href="../html/listProd.html"
+        >
           <i class="bi bi-lightning-charge-fill me-1"></i>Ofertas
         </a>
       </div>
-
     </div>
   </div>
 </header>
