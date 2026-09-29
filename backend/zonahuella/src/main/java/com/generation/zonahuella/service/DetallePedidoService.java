@@ -12,169 +12,130 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class DetallePedidoService {
 
-    private final DetallePedidoRepository detalleRepo;
-    private final PedidoRepository pedidoRepo;
-    private final ProductoRepository productoRepo;
+    private final DetallePedidoRepository detalleRepository;
+    private final PedidoRepository pedidoRepository;
+    private final ProductoRepository productoRepository;
 
-    public DetallePedidoService(DetallePedidoRepository detalleRepo,
-                                PedidoRepository pedidoRepo,
-                                ProductoRepository productoRepo) {
-        this.detalleRepo = detalleRepo;
-        this.pedidoRepo = pedidoRepo;
-        this.productoRepo = productoRepo;
+    public DetallePedidoService(DetallePedidoRepository detalleRepository,
+                                PedidoRepository pedidoRepository,
+                                ProductoRepository productoRepository) {
+        this.detalleRepository = detalleRepository;
+        this.pedidoRepository = pedidoRepository;
+        this.productoRepository = productoRepository;
     }
-
-    // ============================================================ CONSULTAS
 
     @Transactional(readOnly = true)
     public List<DetallePedido> listar(Integer idPedido) {
-        buscarPedido(idPedido);
-        return detallesDelPedido(idPedido);
+        Pedido pedido = buscarPedido(idPedido);
+        return detalleRepository.findByPedido(pedido);
     }
 
     @Transactional(readOnly = true)
     public DetallePedido obtener(Integer idPedido, Integer idProducto) {
-        buscarPedido(idPedido);
-        DetallePedido detalle = buscarDetalle(idPedido, idProducto);
-        if (detalle == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    "El producto " + idProducto + " no está en el pedido " + idPedido);
-        }
-        return detalle;
+        Pedido pedido = buscarPedido(idPedido);
+        Producto producto = buscarProducto(idProducto);
+        return buscarDetalle(pedido, producto);
     }
 
-    // ============================================================ OPERACIONES
-
     @Transactional
-    public DetallePedido agregar(Integer idPedido, Integer idProducto, int cantidad) {
+    public DetallePedido agregar(Integer idPedido, Integer idProducto, Integer cantidad) {
         validarCantidad(cantidad);
         Pedido pedido = buscarPedido(idPedido);
         Producto producto = buscarProducto(idProducto);
 
-        // 1. Revisar y descontar stock
-        if (producto.getStock() < cantidad) {
+        if (detalleRepository.findByPedidoAndProducto(pedido, producto).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT,
-                    "Stock insuficiente de " + producto.getNombre()
-                            + ". Disponible: " + producto.getStock());
-        }
-        producto.setStock(producto.getStock() - cantidad);
-        productoRepo.save(producto);
-
-        // 2. Crear el renglón o sumar a uno existente
-        DetallePedido detalle = buscarDetalle(idPedido, idProducto);
-        if (detalle == null) {
-            detalle = new DetallePedido();
-            detalle.setPedidoId(idPedido);
-            detalle.setProductoId(idProducto);
-            detalle.setCantidad(cantidad);
-            detalle.setPrecioUnitario(producto.getPrecio());
-        } else {
-            detalle.setCantidad(detalle.getCantidad() + cantidad);
+                    "El producto " + idProducto + " ya está en el pedido " + idPedido
+                            + "; usa PUT para cambiar la cantidad");
         }
 
-        // 3. Calcular subtotal, guardar y actualizar total del pedido
-        detalle.setSubtotal(calcularSubtotal(detalle));
-        DetallePedido guardado = detalleRepo.save(detalle);
-        actualizarTotal(pedido);
+        DetallePedido detalle = new DetallePedido();
+        detalle.setPedido(pedido);
+        detalle.setProducto(producto);
+        detalle.setCantidad(cantidad);
+        // El precio se congela al momento de agregar el producto al pedido
+        detalle.setPrecioUnitario(producto.getPrecio());
+        detalle.setSubtotal(calcularSubtotal(detalle.getPrecioUnitario(), cantidad));
+
+        DetallePedido guardado = detalleRepository.save(detalle);
+        recalcularTotal(pedido);
         return guardado;
     }
 
     @Transactional
-    public DetallePedido cambiarCantidad(Integer idPedido, Integer idProducto, int nuevaCantidad) {
-        validarCantidad(nuevaCantidad);
-        Pedido pedido = buscarPedido(idPedido);
+    public DetallePedido cambiarCantidad(Integer idPedido, Integer idProducto, Integer cantidad) {
+        validarCantidad(cantidad);
         DetallePedido detalle = obtener(idPedido, idProducto);
-        Producto producto = buscarProducto(idProducto);
 
-        // diferencia > 0: pide más, se descuenta stock
-        // diferencia < 0: pide menos, se regresa stock
-        int diferencia = nuevaCantidad - detalle.getCantidad();
-        if (diferencia > 0 && producto.getStock() < diferencia) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT,
-                    "Stock insuficiente de " + producto.getNombre()
-                            + ". Disponible: " + producto.getStock());
-        }
-        producto.setStock(producto.getStock() - diferencia);
-        productoRepo.save(producto);
+        detalle.setCantidad(cantidad);
+        detalle.setSubtotal(calcularSubtotal(detalle.getPrecioUnitario(), cantidad));
 
-        detalle.setCantidad(nuevaCantidad);
-        detalle.setSubtotal(calcularSubtotal(detalle));
-        DetallePedido guardado = detalleRepo.save(detalle);
-        actualizarTotal(pedido);
+        DetallePedido guardado = detalleRepository.save(detalle);
+        recalcularTotal(detalle.getPedido());
         return guardado;
     }
 
     @Transactional
     public void quitar(Integer idPedido, Integer idProducto) {
-        Pedido pedido = buscarPedido(idPedido);
         DetallePedido detalle = obtener(idPedido, idProducto);
+        Pedido pedido = detalle.getPedido();
 
-        Producto producto = buscarProducto(idProducto);
-        producto.setStock(producto.getStock() + detalle.getCantidad());
-        productoRepo.save(producto);
-
-        detalleRepo.delete(detalle);
-        actualizarTotal(pedido);
+        // Se quita también de la lista del pedido para que el cascade ALL no lo vuelva a guardar
+        if (pedido.getDetalles() != null) {
+            pedido.getDetalles().remove(detalle);
+        }
+        detalleRepository.delete(detalle);
+        recalcularTotal(pedido);
     }
 
-    // ============================================================ AYUDANTES
+    // ---------- Métodos auxiliares ----------
 
     private Pedido buscarPedido(Integer idPedido) {
-        return pedidoRepo.findById(idPedido)
+        return pedidoRepository.findById(idPedido)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Pedido " + idPedido + " no encontrado"));
+                        "No existe el pedido " + idPedido));
     }
 
     private Producto buscarProducto(Integer idProducto) {
-        return productoRepo.findById(idProducto)
+        return productoRepository.findById(idProducto)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Producto " + idProducto + " no encontrado"));
+                        "No existe el producto " + idProducto));
     }
 
-    private List<DetallePedido> detallesDelPedido(Integer idPedido) {
-        List<DetallePedido> resultado = new ArrayList<>();
-        for (DetallePedido d : detalleRepo.findAll()) {
-            if (idPedido.equals(d.getPedidoId())) {
-                resultado.add(d);
-            }
-        }
-        return resultado;
+    private DetallePedido buscarDetalle(Pedido pedido, Producto producto) {
+        return detalleRepository.findByPedidoAndProducto(pedido, producto)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "El producto no está en este pedido"));
     }
 
-    private DetallePedido buscarDetalle(Integer idPedido, Integer idProducto) {
-        for (DetallePedido d : detallesDelPedido(idPedido)) {
-            if (idProducto.equals(d.getProductoId())) {
-                return d;
-            }
-        }
-        return null;
-    }
+    private void recalcularTotal(Pedido pedido) {
+        detalleRepository.flush();
+        BigDecimal total = detalleRepository.findByPedido(pedido).stream()
+                .map(DetallePedido::getSubtotal)
+                .filter(subtotal -> subtotal != null)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-    private BigDecimal calcularSubtotal(DetallePedido detalle) {
-        return detalle.getPrecioUnitario().multiply(BigDecimal.valueOf(detalle.getCantidad()));
-    }
-
-    private void actualizarTotal(Pedido pedido) {
-        BigDecimal total = BigDecimal.ZERO;
-        for (DetallePedido d : detallesDelPedido(pedido.getIdPedido())) {
-            if (d.getSubtotal() != null) {
-                total = total.add(d.getSubtotal());
-            }
-        }
         pedido.setTotal(total);
-        pedidoRepo.save(pedido);
+        pedidoRepository.save(pedido);
     }
 
-    private void validarCantidad(int cantidad) {
-        if (cantidad <= 0) {
+    private void validarCantidad(Integer cantidad) {
+        if (cantidad == null || cantidad <= 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "La cantidad debe ser mayor a 0");
         }
+    }
+
+    private BigDecimal calcularSubtotal(BigDecimal precioUnitario, Integer cantidad) {
+        if (precioUnitario == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "El producto no tiene precio asignado");
+        }
+        return precioUnitario.multiply(BigDecimal.valueOf(cantidad));
     }
 }
