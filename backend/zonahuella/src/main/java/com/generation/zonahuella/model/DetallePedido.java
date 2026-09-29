@@ -4,21 +4,19 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "detalle_pedido")
+@Table(name = "detallepedido")
+@IdClass(DetallePedidoId.class)
 public class DetallePedido {
 
-    @EmbeddedId
-    private Integer detallePedidoId;
-
+    @Id
     @ManyToOne
-    @MapsId("idPedido")
     @JoinColumn(name = "id_pedido")
-    private Integer pedidoId;
+    private Pedido pedido;
 
+    @Id
     @ManyToOne
-    @MapsId("idProducto")
     @JoinColumn(name = "id_producto")
-    private Integer productoId;
+    private Producto producto;
 
     private Integer cantidad;
 
@@ -31,29 +29,20 @@ public class DetallePedido {
     public DetallePedido() {
     }
 
-    public DetallePedido(Integer detallePedidoId, Integer pedidoId, Integer productoId, Integer cantidad, BigDecimal precioUnitario, BigDecimal subtotal) {
-        this.detallePedidoId = detallePedidoId;
-        this.pedidoId = pedidoId;
-        this.productoId = productoId;
-        this.cantidad = cantidad;
-        this.precioUnitario = precioUnitario;
-        this.subtotal = subtotal;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public BigDecimal getSubtotal() {
-        return subtotal;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
-    public void setSubtotal(BigDecimal subtotal) {
-        this.subtotal = subtotal;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public BigDecimal getPrecioUnitario() {
-        return precioUnitario;
-    }
-
-    public void setPrecioUnitario(BigDecimal precioUnitario) {
-        this.precioUnitario = precioUnitario;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Integer getCantidad() {
@@ -64,19 +53,19 @@ public class DetallePedido {
         this.cantidad = cantidad;
     }
 
-    public Integer getProductoId() {
-        return productoId;
+    public BigDecimal getPrecioUnitario() {
+        return precioUnitario;
     }
 
-    public void setProductoId(Integer productoId) {
-        this.productoId = productoId;
+    public void setPrecioUnitario(BigDecimal precioUnitario) {
+        this.precioUnitario = precioUnitario;
     }
 
-    public Integer getPedidoId() {
-        return pedidoId;
+    public BigDecimal getSubtotal() {
+        return subtotal;
     }
 
-    public void setPedidoId(Integer pedidoId) {
-        this.pedidoId = pedidoId;
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
     }
 }

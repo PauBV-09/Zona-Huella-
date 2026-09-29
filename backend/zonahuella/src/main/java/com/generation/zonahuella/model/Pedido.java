@@ -3,20 +3,27 @@ package com.generation.zonahuella.model;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
 public class Pedido {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pedido")
     private Integer idPedido;
 
-    @Column(name = "id_usuario")
-    private Integer idUsuario;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
 
-    @Column(name = "id_direccion")
-    private Integer idDireccion;
+    @ManyToOne
+    @JoinColumn(name = "id_direccion", nullable = false)
+    private Direccion direccion;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<DetallePedido> detalles;
 
     @Column(name = "fecha_pedido")
     private LocalDateTime fechaPedido;
@@ -41,20 +48,28 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Integer getIdDireccion() {
-        return idDireccion;
+    public Direccion getDireccion() {
+        return direccion;
     }
 
-    public void setIdDireccion(Integer idDireccion) {
-        this.idDireccion = idDireccion;
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+
+    public List<DetallePedido> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<DetallePedido> detalles) {
+        this.detalles = detalles;
     }
 
     public LocalDateTime getFechaPedido() {
