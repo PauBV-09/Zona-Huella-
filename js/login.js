@@ -60,7 +60,7 @@ if (loginForm) {
         if (usuarioEncontrado) {
             if (usuarioEncontrado.password === password) {
                 alert(`¡Qué onda, ${usuario}! Has iniciado sesión correctamente. 🎉`);
-                localStorage.setItem('sesionActiva', usuario);
+                localStorage.setItem('usuario', usuario);
                 window.location.href = '../index.html';
             } else {
                 alert("❌ Contraseña incorrecta. Inténtalo de nuevo.");
