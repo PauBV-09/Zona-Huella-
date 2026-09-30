@@ -1,13 +1,12 @@
 package com.generation.zonahuella.service;
 
-import com.generation.zonahuella.exceptions.UserNotFoundException;
+import com.generation.zonahuella.exception.UserNotFoundException;
 import com.generation.zonahuella.model.User;
-import com.generation.zonahuella.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.generation.zonahuella.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -17,17 +16,17 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getUsers() {
+    public List<User> getUsuarios() {
         return userRepository.findAll();
     }
 
-    public User createUser(User newUser){
-        return userRepository.save(newUser);
+    public User createUsuario(User newUsuario){
+        return userRepository.save(newUsuario);
     }
 
 
-    public User findByUsername(String username){
-        return userRepository.findByUsername(username);
+    public User findByNombre(String nombre){
+        return userRepository.findByNombre(nombre);
     }
 
 
@@ -36,29 +35,29 @@ public class UserService {
     }
 
 
-    public User findById(Long id){
+    public User findById(Integer id){
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
     }
 
     // 4. deleteUser
-    public void deleteById(Long id){
-        if (userRepository.existsById(id)){
-            userRepository.deleteById(id);
+    public void deleteById(Integer id_usuario){
+        if (userRepository.existsById(id_usuario)){
+            userRepository.deleteById(id_usuario);
         }else{
-            throw new UserNotFoundException(id);
+            throw new UserNotFoundException(id_usuario);
         }
     }
 
-    public User updateUser(User user, Long id){
-        return userRepository.findById(id)
+    public User updateUsuarios(User usuarios, Integer id_usuario){
+        return userRepository.findById(id_usuario)
                 .map(data -> {
-                    data.setUsername(user.getUsername());
-                    data.setEmail(user.getEmail());
-                    data.setContrasenia(user.getContrasenia());
+                    data.setNombre(usuarios.getNombre());
+                    data.setEmail(usuarios.getEmail());
+                    data.setContrasenia(usuarios.getContrasenia());
                     return userRepository.save(data);
                 })
-                .orElseThrow(()-> new UserNotFoundException(id));
+                .orElseThrow(()-> new UserNotFoundException(id_usuario));
     }
 
 }
