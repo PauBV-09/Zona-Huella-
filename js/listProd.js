@@ -62,6 +62,16 @@ function renderProducts(listaProductos, categoria) {
   //Para los botones de agregar
   grid.querySelectorAll(".add-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
+  
+      // CANDADO DE AUTENTICACIÓN
+      const usuarioLogueado = localStorage.getItem("usuario");
+
+      if (!usuarioLogueado) {
+        alert("¡Hola! Para poder añadir productos a tu carrito y realizar compras, necesitas iniciar sesión o crear una cuenta.");
+        window.location.href = "../html/login.html"; // Redirige al login
+        return; // Detiene la función por completo
+      }
+
       const i = btn.dataset.index;
       const producto = listaProductos[i];
       console.log("Agregado al carrito:", listaProductos[i].nombre);
