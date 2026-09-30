@@ -3,9 +3,13 @@ package com.generation.zonahuella.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "productos")
+@Table(name = "Productos")
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,12 +35,48 @@ public class Producto {
     private BigDecimal descuento;
 
     @Column(name = "en_oferta", nullable = false)
-    private Boolean enOferta = false;
+    private boolean enOferta = false;
+
+    @ManyToMany
+    @JoinTable(
+            name = "ProductoCategoria",
+            joinColumns = @JoinColumn(name = "id_producto"),
+            inverseJoinColumns = @JoinColumn(name = "id_categoria")
+    )
+    private Set<Categoria> categorias = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "ProductoEspecie",
+            joinColumns = @JoinColumn(name = "id_producto"),
+            inverseJoinColumns = @JoinColumn(name = "id_especie")
+    )
+    private Set<Especie> especies = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "ProductoTamanioMascota",
+            joinColumns = @JoinColumn(name = "id_producto"),
+            inverseJoinColumns = @JoinColumn(name = "id_tamanio")
+    )
+    private Set<Tamanio> tamanios = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "ProductoEtapaVida",
+            joinColumns = @JoinColumn(name = "id_producto"),
+            inverseJoinColumns = @JoinColumn(name = "id_etapa_vida")
+    )
+    private Set<EtapaVida> etapasVida = new HashSet<>();
+
+    @OneToMany(mappedBy = "producto")
+    @OrderBy("Orden ASC")
+    private List<ProductoImagenes> imagenes = new ArrayList<>();
 
     public Producto() {
     }
 
-    public Producto(Integer idProducto, String nombre, String marca, BigDecimal precio, String descripcion, Integer stock, BigDecimal descuento, Boolean enOferta) {
+    public Producto(Integer idProducto, String nombre, String marca, BigDecimal precio, String descripcion, Integer stock, BigDecimal descuento, boolean enOferta) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.marca = marca;
@@ -45,6 +85,30 @@ public class Producto {
         this.stock = stock;
         this.descuento = descuento;
         this.enOferta = enOferta;
+    }
+
+    public Producto(Integer idProducto, String nombre, String marca, BigDecimal precio, String descripcion, Integer stock, BigDecimal descuento, boolean enOferta, Set<Categoria> categorias, Set<Especie> especies, Set<Tamanio> tamanios, Set<EtapaVida> etapasVida, List<ProductoImagenes> imagenes) {
+        this.idProducto = idProducto;
+        this.nombre = nombre;
+        this.marca = marca;
+        this.precio = precio;
+        this.descripcion = descripcion;
+        this.stock = stock;
+        this.descuento = descuento;
+        this.enOferta = enOferta;
+        this.categorias = categorias;
+        this.especies = especies;
+        this.tamanios = tamanios;
+        this.etapasVida = etapasVida;
+        this.imagenes = imagenes;
+    }
+
+    public List<ProductoImagenes> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(List<ProductoImagenes> imagenes) {
+        this.imagenes = imagenes;
     }
 
     public Integer getIdProducto() {
@@ -99,12 +163,49 @@ public class Producto {
         this.descuento = descuento;
     }
 
-    public Boolean getEnOferta() {
+
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public boolean isEnOferta() {
         return enOferta;
     }
 
-    public void setEnOferta(Boolean enOferta) {
+    public void setEnOferta(boolean enOferta) {
         this.enOferta = enOferta;
+    }
+
+    public Set<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(Set<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public Set<Especie> getEspecies() {
+        return especies;
+    }
+
+    public void setEspecies(Set<Especie> especies) {
+        this.especies = especies;
+    }
+
+    public Set<Tamanio> getTamanios() {
+        return tamanios;
+    }
+
+    public void setTamanios(Set<Tamanio> tamanios) {
+        this.tamanios = tamanios;
+    }
+
+    public Set<EtapaVida> getEtapasVida() {
+        return etapasVida;
+    }
+
+    public void setEtapasVida(Set<EtapaVida> etapasVida) {
+        this.etapasVida = etapasVida;
     }
 
     @Override
@@ -118,6 +219,10 @@ public class Producto {
                 ", stock=" + stock +
                 ", descuento=" + descuento +
                 ", enOferta=" + enOferta +
+                ", categorias=" + categorias +
+                ", especies=" + especies +
+                ", tamanios=" + tamanios +
+                ", etapasVida=" + etapasVida +
                 '}';
     }
 }
