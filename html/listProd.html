@@ -16,19 +16,12 @@
 
     <link
         href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:wght@300;500;600;700;900&display=swap"
-        rel="stylesheet"
-    >
+        rel="stylesheet">
 
     <!-- Bootstrap con CSS -->
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-/>
-<!-- Bootstrap Icons -->
-<link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="icon" type="image/png" href="../assets/logo Huella.png">
@@ -83,7 +76,8 @@
         <div class="catalogo-contenido">
 
             <!--Boton para movil-->
-            <button class="boton-filtros-movil", type="button", aria-label="Abrir filtros", aria-expanded="false" aria-controls="panel-filtros">☰</button>
+            <button class="boton-filtros-movil" , type="button" , aria-label="Abrir filtros" , aria-expanded="false"
+                aria-controls="panel-filtros">☰</button>
 
             <div class="fondo-filtros"></div>
             <!-- FILTROS -->
@@ -92,135 +86,91 @@
                 <h2>Filtros</h2>
 
                 <form class="formulario-filtros">
- <fieldset class="grupo-filtro">
-
                     <fieldset class="grupo-filtro">
 
-                        <legend>Especie</legend>
+                        <fieldset class="grupo-filtro">
 
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="especie"
-                                value="perro"
-                            >
-                            Perro
-                        </label>
+                            <legend>Especie</legend>
 
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="especie"
-                                value="gato"
-                            >
-                            Gato
-                        </label>
-
-                    </fieldset>
-
-                    <fieldset class="grupo-filtro">
-
-                        <legend>Tamaño</legend>
-
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="tamaño"
-                                value="grande"
-                            >
-                            Grande
-                        </label>
-
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="tamaño"
-                                value="mediano"
-                            >
-                            Mediano
-                        </label>
-
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="tamaño"
-                                value="chico"
-                            >
-                            Chico
-                        </label>
-
-                    </fieldset>
-
-
-                    <fieldset class="grupo-filtro">
-
-                        <legend>Categoría</legend>
-
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="categoria"
-                                value="alimento"
-                            >
-                            Alimento
-                        </label>
-
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="categoria"
-                                value="higiene"
-                            >
-                            Higiene
-                        </label>
-
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="categoria"
-                                value="juguetes"
-                            >
-                            Juguetes
-                        </label>
                             <label>
-                            <input
-                                type="checkbox"
-                                name="categoria"
-                                value="accesorios"
-                            >
-                            Accesorios
-                        </label>
+                                <input type="checkbox" name="especie" value="perro">
+                                Perro
+                            </label>
 
-                    </fieldset>
+                            <label>
+                                <input type="checkbox" name="especie" value="gato">
+                                Gato
+                            </label>
 
-                    <fieldset class="grupo-filtro">
+                        </fieldset>
 
-                        <legend>Etapa de Vida</legend>
+                        <fieldset class="grupo-filtro">
 
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="etapa"
-                                value="adulto"
-                            >
-                            Adulto
-                        </label>
+                            <legend>Tamaño</legend>
 
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="etapa"
-                                value="cachorro"
-                            >
-                            Cachorro
-                        </label>
+                            <label>
+                                <input type="checkbox" name="tamaño" value="grande">
+                                Grande
+                            </label>
 
-                    </fieldset>
+                            <label>
+                                <input type="checkbox" name="tamaño" value="mediano">
+                                Mediano
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="tamaño" value="chico">
+                                Chico
+                            </label>
+
+                        </fieldset>
 
 
-                    <button class="boton-filtros" type="submit">
-                        Aplicar filtros
-                    </button>
+                        <fieldset class="grupo-filtro">
+
+                            <legend>Categoría</legend>
+
+                            <label>
+                                <input type="checkbox" name="categoria" value="alimentos">
+                                Alimento
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="categoria" value="higiene">
+                                Higiene
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="categoria" value="juguetes">
+                                Juguetes
+                            </label>
+                            <label>
+                                <input type="checkbox" name="categoria" value="accesorios">
+                                Accesorios
+                            </label>
+
+                        </fieldset>
+
+                        <fieldset class="grupo-filtro">
+
+                            <legend>Etapa de Vida</legend>
+
+                            <label>
+                                <input type="checkbox" name="etapa" value="adulto">
+                                Adulto
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="etapa" value="cachorro">
+                                Cachorro
+                            </label>
+
+                        </fieldset>
+
+
+                        <button class="boton-filtros" type="submit">
+                            Aplicar filtros
+                        </button>
 
                 </form>
 
