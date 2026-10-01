@@ -37,7 +37,7 @@ if (loginForm) {
         event.preventDefault();
         
         if (!userInput || !passwordInput) {
-            console.error("❌ Error Crítico: No se pudieron localizar los campos de entrada de datos en el HTML.");
+            console.error("Error Crítico: No se pudieron localizar los campos de entrada de datos en el HTML.");
             alert("Ocurrió un problema técnico en la interfaz. Por favor, repórtalo con soporte.");
             return;
         }
@@ -46,7 +46,7 @@ if (loginForm) {
         const password = passwordInput.value;
         
         if (usuario === "" || password === "") {
-            alert("⚠️ Por favor, llena todos los campos necesarios.");
+            alert("Por favor, llena todos los campos necesarios.");
             if (usuario === "") userInput.focus();
             else passwordInput.focus();
             return;
@@ -59,21 +59,21 @@ if (loginForm) {
         
         if (usuarioEncontrado) {
             if (usuarioEncontrado.password === password) {
-                alert(`¡Qué onda, ${usuario}! Has iniciado sesión correctamente. 🎉`);
-                localStorage.setItem('sesionActiva', usuario);
+                alert(`¡Qué onda, ${usuario}! Has iniciado sesión correctamente.`);
+                localStorage.setItem('usuario', usuario);
                 window.location.href = '../index.html';
             } else {
-                alert("❌ Contraseña incorrecta. Inténtalo de nuevo.");
+                alert("Contraseña incorrecta. Inténtalo de nuevo.");
                 passwordInput.value = "";
                 passwordInput.focus();
             }
         } else {
-            alert("❌ El nombre de usuario o correo no se encuentra registrado.");
+            alert("El nombre de usuario o correo no se encuentra registrado.");
             userInput.focus();
         }
     });
 } else {
-    console.warn("⚠️ Advertencia: No se encontró ninguna etiqueta <form> en este archivo HTML.");
+    console.warn("Advertencia: No se encontró ninguna etiqueta <form> en este archivo HTML.");
     
     const usuarioEncontrado = usuariosRegistrados.find(
         u => u.username === usuario || u.email === usuario

@@ -44,8 +44,9 @@ modalCerrarSesion.addEventListener("click", (e) => {
 
 // Botón "Sí" del modal: aquí va la lógica real de cerrar sesión
 btnConfirmarSi.addEventListener("click", () => {
-	// TODO: aquí pon tu lógica real (limpiar sesión, redirigir, etc.)
-	// Por ejemplo: window.location.href = "../index.html";
-	console.log("Sesión cerrada");
+    // 1. Borramos al usuario del almacenamiento local
+    localStorage.removeItem("usuario");
+    // 2. Redirigimos inmediatamente a la pantalla de inicio de sesión
+    window.location.href = "../html/login.html";
 	modalCerrarSesion.style.display = "none";
 });
