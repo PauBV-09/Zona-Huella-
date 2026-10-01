@@ -38,6 +38,14 @@ public class Producto {
     @Column(name = "en_oferta", nullable = false)
     private boolean enOferta = false;
 
+    // Reseña del producto (columna "resenas" de la tabla Productos)
+    @Column(name = "resenas", length = 500)
+    private String resenas;
+
+    // Calificación de 0 a 5 (columna "estrellas", admite medias: 4.5)
+    @Column(name = "estrellas", precision = 2, scale = 1)
+    private BigDecimal estrellas;
+
     @ManyToMany
     @JoinTable(
             name = "ProductoCategoria",
@@ -182,6 +190,22 @@ public class Producto {
         this.enOferta = enOferta;
     }
 
+    public String getResenas() {
+        return resenas;
+    }
+
+    public void setResenas(String resenas) {
+        this.resenas = resenas;
+    }
+
+    public BigDecimal getEstrellas() {
+        return estrellas;
+    }
+
+    public void setEstrellas(BigDecimal estrellas) {
+        this.estrellas = estrellas;
+    }
+
     public Set<Categoria> getCategorias() {
         return categorias;
     }
@@ -225,6 +249,8 @@ public class Producto {
                 ", stock=" + stock +
                 ", descuento=" + descuento +
                 ", enOferta=" + enOferta +
+                ", resenas='" + resenas + '\'' +
+                ", estrellas=" + estrellas +
                 ", categorias=" + categorias +
                 ", especies=" + especies +
                 ", tamanios=" + tamanios +

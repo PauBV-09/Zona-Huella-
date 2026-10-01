@@ -1,0 +1,100 @@
+/* ============================================================
+   Animaciones para detallePed.html
+   Enlázalo DESPUÉS de detallePed.css
+   ============================================================ */
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes brillo {
+    0%   { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+}
+
+@keyframes pulso {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 122, 26, 0.45); }
+    50%      { box-shadow: 0 0 0 10px rgba(255, 122, 26, 0); }
+}
+
+/* --- Encabezado --- */
+.pedido,
+.date {
+    animation: aparecer 0.5s ease both;
+}
+.date { animation-delay: 0.08s; }
+
+/* --- Tarjetas de producto: entran una tras otra --- */
+.productos-ind.aparecer {
+    animation: aparecer 0.5s ease both;
+    animation-delay: calc(var(--i, 0) * 90ms + 150ms);
+}
+
+.productos-ind {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.productos-ind:not(.skeleton):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+}
+
+/* Imagen: aparece suave cuando llega la foto real */
+.productos-img {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.productos-img.img-cargando {
+    opacity: 0.35;
+    transform: scale(0.96);
+}
+
+/* --- Sidebar --- */
+.sidebar > section {
+    animation: aparecer 0.5s ease both;
+    animation-delay: 0.25s;
+}
+.sidebar > section + section {
+    animation-delay: 0.35s;
+}
+
+/* --- Esqueleto de carga --- */
+.skeleton .sk-img,
+.skeleton .sk-linea {
+    background: linear-gradient(90deg, #e8ebf2 25%, #f4f6fa 50%, #e8ebf2 75%);
+    background-size: 800px 100%;
+    animation: brillo 1.2s linear infinite;
+    border-radius: 8px;
+}
+.skeleton .sk-img {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+}
+.skeleton .sk-linea {
+    height: 14px;
+    width: 160px;
+    margin: 10px 0;
+}
+.skeleton .sk-linea.larga { width: 240px; height: 20px; }
+.skeleton .sk-linea.corta { width: 90px; }
+
+/* --- Badge de estado --- */
+#preparation {
+    transition: background-color 0.3s ease;
+}
+#preparation.estado-animado {
+    animation: aparecer 0.5s ease both, pulso 2s ease-in-out 0.6s 3;
+}
+#preparation.estado-pendiente      { background-color: #94a3b8; }
+#preparation.estado-en-preparacion { background-color: #ff7a1a; }
+#preparation.estado-enviado        { background-color: #3b82f6; }
+#preparation.estado-entregado      { background-color: #22c55e; }
+#preparation.estado-cancelado      { background-color: #ef4444; }
+
+/* --- Accesibilidad: sin animaciones si el usuario lo pidió --- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

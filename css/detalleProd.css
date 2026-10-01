@@ -816,6 +816,110 @@ body {
 }
 
 
+/* PESTAÑAS: solo se ve el panel activo */
+
+.detail-panel {
+    flex: 1 1 100%;
+}
+
+.detail-panel[hidden],
+.product-rating[hidden],
+.thumbnail-carousel[hidden],
+.gallery-button[hidden] {
+    display: none !important;
+}
+
+.thumbnail-list {
+    justify-content: flex-start;
+    scroll-behavior: smooth;
+}
+
+.thumbnail-list .thumbnail:first-child {
+    margin-left: auto;
+}
+
+.thumbnail-list .thumbnail:last-child {
+    margin-right: auto;
+}
+
+
+/* ESTADOS DE CARGA / ERROR */
+
+.product-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    min-height: 50vh;
+
+    color: #64748b;
+    text-align: center;
+}
+
+.product-status .spinner-border {
+    color: var(--color-accent-orange);
+}
+
+.product-status.is-error i {
+    font-size: 3rem;
+    color: var(--color-accent-orange);
+}
+
+.status-link {
+    flex: 0 0 auto;
+    text-decoration: none;
+}
+
+
+/* STOCK */
+
+.stock-status.is-low {
+    background-color: #fff7ed;
+    color: #c2410c;
+}
+
+.stock-status.is-out {
+    background-color: #fef2f2;
+    color: #b91c1c;
+}
+
+
+/* BOTONES DESHABILITADOS */
+
+.quantity-button:disabled,
+.add-cart-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.quantity-button:disabled:hover {
+    background-color: #ffffff;
+}
+
+
+/* LISTA DE RESEÑAS */
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.reviews-empty {
+    padding: 1.5rem;
+
+    border: 1px dashed var(--color-shadow);
+    border-radius: 1rem;
+
+    color: #64748b;
+    text-align: center;
+}
+
+
 /* Resposivo */
 
 @media (max-width: 991px){
@@ -946,4 +1050,3 @@ body {
     }
 
 }
-
