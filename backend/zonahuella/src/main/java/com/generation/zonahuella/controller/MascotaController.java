@@ -4,6 +4,7 @@ import com.generation.zonahuella.model.Mascota;
 import com.generation.zonahuella.service.MascotaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.generation.zonahuella.dto.MascotaDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,17 +28,50 @@ public class MascotaController {
     }
 
     @PostMapping
-    public Mascota crear(@RequestBody Mascota mascota) {
-        return mascotaService.crear(mascota);
+    public Mascota crear(@RequestBody MascotaDTO dto) {
+        return mascotaService.crear(dto);
     }
 
     @PutMapping("/{id}")
-    public Mascota actualizar(@PathVariable Integer id, @RequestBody Mascota mascota) {
-        return mascotaService.actualizar(id, mascota);
+    public Mascota actualizar(
+            @PathVariable Integer id,
+            @RequestBody MascotaDTO dto) {
+
+        return mascotaService.actualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Integer id) {
         mascotaService.eliminar(id);
     }
+
+    @GetMapping(params = "usuarioId")
+    public List<Mascota> listarPorUsuario(
+            @RequestParam Integer usuarioId) {
+
+        return mascotaService.listarPorUsuario(usuarioId);
+    }
+
+    @GetMapping(params = "especieId")
+    public List<Mascota> listarPorEspecie(
+            @RequestParam Integer especieId) {
+
+        return mascotaService.listarPorEspecie(especieId);
+    }
+
+    @GetMapping(params = "etapaVidaId")
+    public List<Mascota> listarPorEtapaVida(
+            @RequestParam Integer etapaVidaId) {
+
+        return mascotaService.listarPorEtapaVida(etapaVidaId);
+    }
+
+    @GetMapping(params = "tamanioId")
+    public List<Mascota> listarPorTamanio(
+            @RequestParam Integer tamanioId) {
+
+        return mascotaService.listarPorTamanio(tamanioId);
+    }
+
+
 }

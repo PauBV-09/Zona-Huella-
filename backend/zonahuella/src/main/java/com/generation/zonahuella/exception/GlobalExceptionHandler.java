@@ -1,5 +1,6 @@
 package com.generation.zonahuella.exception;
 
+import com.generation.zonahuella.exceptions.RecursoNoEncontradoExceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,6 +15,25 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
+                .body(exception.getMessage());
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> manejarUserNotFoundException(
+            UserNotFoundException exception) {
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(exception.getMessage());
+    }
+
+
+    @ExceptionHandler(RecursoNoEncontradoExceptions.class)
+    public ResponseEntity<String> manejarRecursoNoEncontrado(
+            RecursoNoEncontradoExceptions exception) {
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
                 .body(exception.getMessage());
     }
 }

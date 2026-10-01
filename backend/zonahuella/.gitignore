@@ -38,3 +38,4 @@ out/
 
 ### properties DB ###
 *.properties
+!src/main/resources/application.properties

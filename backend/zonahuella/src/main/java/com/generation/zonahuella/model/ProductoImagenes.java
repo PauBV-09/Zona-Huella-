@@ -1,37 +1,36 @@
 package com.generation.zonahuella.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "productoImagenes")
+@Table(name = "ProductoImagenes")
 public class ProductoImagenes {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_imagen")
-    private Long id;
-    @Column(nullable = false)
+    private Integer id;
+
+    @Column(name = "fuente", nullable = false)
     private String fuente;
-    @Column(nullable = false)
+
+    @Column(name = "orden", nullable = false)
     private Integer orden;
 
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "id_producto")
+    @JoinColumn(name = "id_producto", nullable = false)
     private Producto producto;
-
-    public ProductoImagenes(Long id, String fuente, Integer orden) {
-        this.id = id;
-        this.fuente = fuente;
-        this.orden = orden;
-    }
 
     public ProductoImagenes() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -51,12 +50,11 @@ public class ProductoImagenes {
         this.orden = orden;
     }
 
-    @Override
-    public String toString() {
-        return "ProductoImagenes{" +
-                "id=" + id +
-                ", fuente='" + fuente + '\'' +
-                ", order=" + orden +
-                '}';
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 }
