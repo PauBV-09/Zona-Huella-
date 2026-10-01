@@ -11,6 +11,7 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
+
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -21,19 +22,13 @@ public class UserService {
     }
 
     public User createUsuario(User newUsuario){
+        newUsuario.setIdUsuario(null);
         return userRepository.save(newUsuario);
     }
-
-
-    public User findByNombre(String nombre){
-        return userRepository.findByNombre(nombre);
-    }
-
 
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
     }
-
 
     public User findById(Integer id){
         return userRepository.findById(id)
@@ -55,6 +50,8 @@ public class UserService {
                     data.setNombre(usuarios.getNombre());
                     data.setEmail(usuarios.getEmail());
                     data.setContrasenia(usuarios.getContrasenia());
+                    data.setTelefono(usuarios.getTelefono());
+                    data.setRol(usuarios.getRol());
                     return userRepository.save(data);
                 })
                 .orElseThrow(()-> new UserNotFoundException(id_usuario));

@@ -1,47 +1,78 @@
 package com.generation.zonahuella.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table (name = "usuarios")
+@Table (name = "Usuarios")
 
 public class User {
 
-    @Id // Definir PK
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
-    private Integer id_usuario;
+    private Integer idUsuario;
 
-    @Column(unique = true, nullable = false, length = 100)
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
-    @Column(unique = true, nullable = false, length = 200)
+    @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(nullable = false, length = 60)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(name = "contrasenia", nullable = false, length = 255)
     private String contrasenia;
 
-    @Column(nullable = false, length = 10)
+    @Column(name = "telefono", length = 20)
     private String telefono;
 
-    public User(Integer id_usuario, String nombre, String email, String contrasenia, String telefono) {
-        this.id_usuario = id_usuario;
-        this.nombre = nombre;
-        this.email = email;
-        this.contrasenia = contrasenia;
-        this.telefono = telefono;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "rol", nullable = false)
+    private Rol rol = Rol.CLIENTE;
+
+    public enum Rol {
+        CLIENTE,
+        ADMIN
     }
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "Favoritos",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_producto")
+    )
+    private Set<Producto> favoritos = new HashSet<>();
 
     public User() {
     }
 
-    public Integer getId_usuario() {
-        return id_usuario;
+    public Set<Producto> getFavoritos() {
+        return favoritos;
     }
 
-    public User setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
-        return this;
+    public void setFavoritos(Set<Producto> favoritos) {
+        this.favoritos = favoritos;
+    }
+
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     public String getNombre() {
@@ -83,11 +114,12 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id_usuario=" + id_usuario +
-                ", nombre='" + nombre + '\'' +
+                "telefono='" + telefono + '\'' +
+                ", rol=" + rol +
+                ", favoritos=" + favoritos +
                 ", email='" + email + '\'' +
-                ", contrasenia='" + contrasenia + '\'' +
-                ", telefono='" + telefono + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", idUsuario=" + idUsuario +
                 '}';
     }
 }
