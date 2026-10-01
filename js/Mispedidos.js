@@ -1,16 +1,13 @@
 /* =========================================================
    MIS PEDIDOS — ZONA HUELLA
    =========================================================
-   Lee (o genera, si no existen) la lista de pedidos del
-   usuario desde localStorage, cada uno con su propio ID único,
+   Lee la lista de pedidos del usuario desde la API,
    y la pinta agrupada por fecha, con búsqueda, filtro por
    categoría y orden por fecha.
    ========================================================= */
 
-const ORDERS_STORAGE_KEY = "pedidosZonaHuella";
-const CART_STORAGE_KEY   = "carritoZonaHuella";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
     const groupsContainer = document.getElementById("ordersGroups");
     const emptyState      = document.getElementById("ordersEmpty");
@@ -23,7 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const detailBody     = document.getElementById("orderDetailBody");
     const detailModal    = new bootstrap.Modal(detailModalEl);
 
-    let pedidos = getPedidos();
+    let pedidos = [];
+    try {
+        pedidos = (await ZonaAPI.request('/api/pedidos?usuarioId='+ZonaAPI.userId())).map(p => ({
+            id: String(p.idPedido), fecha: p.fechaPedido.slice(0,10), estado: p.estado || 'registrado',
+            categoria: (p.detalles?.[0]?.producto?.especies?.[0]?.nombre || '').toLowerCase() === 'perro' ? 'perros' : (p.detalles?.[0]?.producto?.especies?.[0]?.nombre || '').toLowerCase() === 'gato' ? 'gatos' : '',
+            producto: (p.detalles || []).map(d => d.producto.nombre).join(', '),
+            cantidad: (p.detalles || []).reduce((n,d)=>n+d.cantidad,0), vendedor: 'Zona Huella', detalles:p.detalles || []
+        }));
+    } catch(error) { ZonaAPI.error(error); }
+
 
     render();
 
@@ -37,81 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     /* -----------------------------------------------------
        OBTENER / GENERAR PEDIDOS
        ----------------------------------------------------- */
-
-    function getPedidos() {
-        const stored = localStorage.getItem(ORDERS_STORAGE_KEY);
-
-        if (stored) {
-            return JSON.parse(stored);
-        }
-
-        const seed = buildSeedPedidos();
-        localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(seed));
-        return seed;
-    }
-
-    // Datos de ejemplo, solo para que la página no se vea vacía la
-    // primera vez. En cuanto conectes tu flujo real de compra, en
-    // vez de esto deberías llamar a addPedido(...) (ver abajo) cada
-    // vez que el usuario complete una compra.
-    function buildSeedPedidos() {
-        return [
-            {
-                id: generatePedidoId(1),
-                fecha: "2026-08-06",
-                estado: "entregado",
-                categoria: "gatos",
-                producto: "Arena aglomerante para gatos 10kg",
-                cantidad: 1,
-                vendedor: "Tienda oficial Zona Huella"
-            },
-            {
-                id: generatePedidoId(2),
-                fecha: "2026-08-06",
-                estado: "camino",
-                categoria: "perros",
-                producto: "Correa retráctil para perro mediano",
-                cantidad: 1,
-                vendedor: "PetSupplies MX"
-            },
-            {
-                id: generatePedidoId(3),
-                fecha: "2026-07-25",
-                estado: "entregado",
-                categoria: "perros",
-                producto: "Croquetas adulto raza pequeña 3kg",
-                cantidad: 2,
-                vendedor: "Tienda oficial Zona Huella"
-            },
-            {
-                id: generatePedidoId(4),
-                fecha: "2026-07-25",
-                estado: "cancelado",
-                categoria: "ofertas",
-                producto: "Rascador para gato con torre",
-                cantidad: 1,
-                vendedor: "CatWorld"
-            }
-        ];
-    }
-
-    function generatePedidoId(secuencia) {
-        const year = new Date().getFullYear();
-        return `ZH-${year}-${String(secuencia).padStart(6, "0")}`;
-    }
-
-    // Úsala desde tu flujo de compra real para agregar un pedido
-    // nuevo con un ID único generado automáticamente.
-    function addPedido(datosPedido) {
-        const nuevoId = generatePedidoId(pedidos.length + 1);
-        const pedido = { id: nuevoId, fecha: new Date().toISOString().slice(0, 10), ...datosPedido };
-
-        pedidos.push(pedido);
-        localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(pedidos));
-
-        return pedido;
-    }
-
 
     /* -----------------------------------------------------
        RENDER
@@ -277,13 +208,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const pedido = pedidos.find((p) => p.id === id);
         if (!pedido) return;
 
-        const carrito = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || "[]");
-        carrito.push({
-            producto: pedido.producto,
-            cantidad: pedido.cantidad,
-            precioReferencia: null // reemplaza con el precio real de tu catálogo
+        pedido.detalles.forEach(d => {
+            const p = ZonaAPI.product(d.producto);
+            for(let i=0;i<d.cantidad;i++) agregarProductoAlCarrito({id:p.id,nombre:p.nombre,precio:p.precio,img:p.imagen});
         });
-        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(carrito));
 
         if (!opciones.silencioso) {
             const boton = groupsContainer.querySelector(`.order-card[data-id="${id}"] .btn-order-secondary`);

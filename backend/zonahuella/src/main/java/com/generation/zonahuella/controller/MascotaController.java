@@ -17,6 +17,11 @@ public class MascotaController {
     @Autowired
     private MascotaService mascotaService;
 
+    @GetMapping("/catalogos")
+    public java.util.Map<String, Object> catalogos() {
+        return mascotaService.catalogos();
+    }
+
     @GetMapping
     public List<Mascota> listar() {
         return mascotaService.listar();

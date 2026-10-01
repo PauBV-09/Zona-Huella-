@@ -22,6 +22,16 @@ public class UserController {
     }
 
 
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody User credenciales) {
+        User usuario = userService.findByEmail(credenciales.getEmail());
+        if (usuario == null || credenciales.getContrasenia() == null
+                || !credenciales.getContrasenia().equals(usuario.getContrasenia())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.ok(usuario);
+    }
+
     @GetMapping
     public List<User> getUsuarios() {
         return userService.getUsuarios();

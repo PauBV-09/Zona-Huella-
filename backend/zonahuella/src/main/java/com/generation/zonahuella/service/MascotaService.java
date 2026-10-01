@@ -29,6 +29,11 @@ public class MascotaService {
     private TamanioRepository tamanioRepo;
 
 
+    public java.util.Map<String, Object> catalogos() {
+        return java.util.Map.of("especies", especieRepo.findAll(),
+                "etapasVida", etapaVidaRepo.findAll(), "tamanios", tamanioRepo.findAll());
+    }
+
     public List<Mascota> listar() {
         return mascotaRepo.findAll();
     }

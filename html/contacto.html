@@ -19,14 +19,17 @@
 
   <!-- Estilos globales y propios -->
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/contactenos.css">
-  <link rel="icon" type="image/png" href="../assets/logo Huella.png">
+  <link rel="stylesheet" href="../css/contacto.css">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
 
   <!-- NAVBAR-->
   <div id="navbar-container"></div>
+
+  <p class="breadcrumb"><a href="../index.html">Inicio</a>
+    / Contacto
+  </p>
 
   <div class="formato-col">
 
@@ -49,7 +52,7 @@
         </p>
         <p>
           <label for="subject">Asunto*: </label>
-          <input type="text" name="subject" id="subject" required />
+          <input type="text" name="subject" id="subject" placeholder="Ejemplo: Producto defectuoso" required />
         </p>
         <p>
           <label for="message">Mensaje*:</label>
@@ -57,10 +60,15 @@
             required />
         </p>
 
-        <label>
+
+        <label class="check-privacidad">
           <input type="checkbox" id="acepto" name="acepto">
-          He leído y acepto el
-          <a href="aviso-privacidad.html" target="_blank">Aviso de Privacidad</a>.
+          <span>
+            He leído y acepto el
+            <button type="button" id="btnAviso">
+              Aviso de Privacidad
+            </button>
+          </span>
         </label>
         <div id="errorAviso" class="error"></div>
 
@@ -95,9 +103,54 @@
   <!-- Bootstrap 5 Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/loadComponents.js"></script>
-  <script src="../js/carrito.js"></script>
 
   <script src="../js/contactenos.js"></script>
+  <script src="../js/carrito.js"></script>
+
+  <!-- MODAL AVISO DE PRIVACIDAD -->
+  <div id="modalPrivacidad" class="modal-privacidad">
+
+    <div class="contenido-privacidad">
+
+      <button id="cerrarAviso" class="cerrar-aviso" type="button">
+        &times;
+      </button>
+
+      <h2>Aviso de Privacidad</h2>
+
+      <div class="texto-privacidad">
+
+        <h3>Zona Huella</h3>
+
+        <p>
+          En Zona Huella nos comprometemos a proteger la
+          privacidad de nuestros usuarios y a mantener segura
+          la información proporcionada a través de este sitio.
+        </p>
+
+        <p>
+          Los datos personales proporcionados mediante el
+          formulario de contacto serán utilizados únicamente
+          para atender solicitudes, dudas, comentarios o
+          sugerencias.
+        </p>
+
+        <p>
+          La información proporcionada no será utilizada para
+          fines distintos a los establecidos en este aviso.
+        </p>
+
+        <p>
+          Para cualquier duda relacionada con el tratamiento
+          de sus datos personales, puede ponerse en contacto
+          con nuestro equipo.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
 </body>
 
 </html>

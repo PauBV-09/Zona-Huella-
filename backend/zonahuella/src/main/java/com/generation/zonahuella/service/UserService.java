@@ -49,7 +49,9 @@ public class UserService {
                 .map(data -> {
                     data.setNombre(usuarios.getNombre());
                     data.setEmail(usuarios.getEmail());
-                    data.setContrasenia(usuarios.getContrasenia());
+                    if (usuarios.getContrasenia() != null && !usuarios.getContrasenia().isBlank()) {
+                        data.setContrasenia(usuarios.getContrasenia());
+                    }
                     data.setTelefono(usuarios.getTelefono());
                     data.setRol(usuarios.getRol());
                     return userRepository.save(data);
