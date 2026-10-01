@@ -1,5 +1,6 @@
 package com.generation.zonahuella.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -69,8 +70,13 @@ public class Producto {
     )
     private Set<EtapaVida> etapasVida = new HashSet<>();
 
-    @OneToMany(mappedBy = "producto")
-    @OrderBy("Orden ASC")
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "producto",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @OrderBy("orden ASC")
     private List<ProductoImagenes> imagenes = new ArrayList<>();
 
     public Producto() {

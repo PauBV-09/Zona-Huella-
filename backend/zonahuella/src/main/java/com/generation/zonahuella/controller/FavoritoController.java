@@ -1,42 +1,72 @@
 package com.generation.zonahuella.controller;
 
-import com.generation.zonahuella.model.Favorito;
+import com.generation.zonahuella.model.Producto;
 import com.generation.zonahuella.service.FavoritoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/favoritos")
-@CrossOrigin(origins = "*")
 public class FavoritoController {
-
     private final FavoritoService favoritoService;
 
+    @Autowired
     public FavoritoController(FavoritoService favoritoService) {
         this.favoritoService = favoritoService;
     }
 
-    @GetMapping("/usuario/{idUsuario}")
-    public List<Favorito> obtenerFavoritos(
-            @PathVariable Integer idUsuario) {
+    //Obtener lista de favoritos
+    @GetMapping
+    public ResponseEntity<Set<Producto>> obtenerFavoritos(
+            @RequestParam Integer usuarioId) {
 
-        return favoritoService.obtenerFavoritosPorUsuario(idUsuario);
+        return ResponseEntity.ok(
+                favoritoService.obtenerFavoritos(usuarioId)
+        );
+    }
+    //Agregar Favorito a lista de productos
+    @PostMapping
+    public ResponseEntity<Producto> agregarFavorito(
+            @RequestParam Integer usuarioId,
+            @RequestParam Integer productoId) {
+
+        Producto producto = favoritoService
+                .agregarFavorito(usuarioId, productoId);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(producto);
     }
 
-    @PostMapping("/usuario/{idUsuario}/producto/{idProducto}")
-    public Favorito agregarFavorito(
-            @PathVariable Integer idUsuario,
-            @PathVariable Integer idProducto) {
+    //Eliminar producto de las lista de favoritos
+    @DeleteMapping
+    public ResponseEntity<Void> eliminarFavorito(
+            @RequestParam Integer usuarioId,
+            @RequestParam Integer productoId) {
 
-        return favoritoService.agregarFavorito(idUsuario, idProducto);
+        favoritoService.eliminarFavorito(
+                usuarioId,
+                productoId
+        );
+
+        return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/usuario/{idUsuario}/producto/{idProducto}")
-    public void eliminarFavorito(
-            @PathVariable Integer idUsuario,
-            @PathVariable Integer idProducto) {
+    //Verificar si el producto ya está en favoritos
+    @GetMapping("/verificar")
+    public ResponseEntity<Boolean> esFavorito(
+            @RequestParam Integer usuarioId,
+            @RequestParam Integer productoId) {
 
-        favoritoService.eliminarFavorito(idUsuario, idProducto);
+        return ResponseEntity.ok(
+                favoritoService.esFavorito(
+                        usuarioId,
+                        productoId
+                )
+        );
     }
 }

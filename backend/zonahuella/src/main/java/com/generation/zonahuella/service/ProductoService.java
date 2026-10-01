@@ -17,6 +17,7 @@ public class ProductoService {
     private final TamanioRepository tamanioRepository;
     private final EtapaVidaRepository etapaVidaRepository;
 
+    @Autowired
     public ProductoService(ProductoRepository productoRepository, CategoriaRepository categoriaRepository, EspecieRepository especieRepository, TamanioRepository tamanioRepository, EtapaVidaRepository etapaVidaRepository) {
         this.productoRepository = productoRepository;
         this.categoriaRepository = categoriaRepository;
@@ -24,11 +25,6 @@ public class ProductoService {
         this.tamanioRepository = tamanioRepository;
         this.etapaVidaRepository = etapaVidaRepository;
     }
-
-    @Autowired
-
-
-
 
     public List<Producto> obtenerProductos(){
         return productoRepository.findAll();

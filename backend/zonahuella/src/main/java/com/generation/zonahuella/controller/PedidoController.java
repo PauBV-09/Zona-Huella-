@@ -1,5 +1,6 @@
 package com.generation.zonahuella.controller;
 
+import com.generation.zonahuella.dto.PedidoDTO;
 import com.generation.zonahuella.model.Pedido;
 import com.generation.zonahuella.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,38 +42,44 @@ public class PedidoController {
 
     // POST /api/pedidos
     @PostMapping
-    public ResponseEntity<Pedido> crearPedido(@RequestBody Pedido pedido) {
+    public ResponseEntity<Pedido> crearPedido(
+            @RequestBody PedidoDTO dto) {
 
-        Pedido nuevoPedido = pedidoService.guardarPedido(pedido);
+        Pedido nuevoPedido =
+                pedidoService.guardarPedido(dto);
 
-        return new ResponseEntity<>(nuevoPedido, HttpStatus.CREATED);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(nuevoPedido);
     }
 
     // PUT /api/pedidos/{id}
     @PutMapping("/{id}")
     public ResponseEntity<Pedido> actualizarPedido(
             @PathVariable Integer id,
-            @RequestBody Pedido pedido) {
+            @RequestBody PedidoDTO dto) {
 
-        Pedido pedidoActualizado = pedidoService.actualizarPedido(id, pedido);
+        Pedido pedidoActualizado =
+                pedidoService.actualizarPedido(id, dto);
 
-        if (pedidoActualizado != null) {
-            return ResponseEntity.ok(pedidoActualizado);
-        }
-
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(pedidoActualizado);
     }
 
     // DELETE /api/pedidos/{id}
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarPedido(@PathVariable Integer id) {
+    public ResponseEntity<Void> eliminarPedido(
+            @PathVariable Integer id) {
 
-        boolean eliminado = pedidoService.eliminarPedido(id);
+        pedidoService.eliminarPedido(id);
 
-        if (eliminado) {
-            return ResponseEntity.noContent().build();
-        }
+        return ResponseEntity.noContent().build();
+    }
 
-        return ResponseEntity.notFound().build();
+    //Obtener por usuario
+    @GetMapping(params = "usuarioId")
+    public List<Pedido> obtenerPorUsuario(
+            @RequestParam Integer usuarioId) {
+
+        return pedidoService.obtenerPorUsuario(usuarioId);
     }
 }
