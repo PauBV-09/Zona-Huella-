@@ -15,7 +15,7 @@ public class Mascota {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario usuario;
+    private User usuario;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_especie", nullable = false)
@@ -48,11 +48,11 @@ public class Mascota {
         this.idMascota = idMascota;
     }
 
-    public Usuario getUsuario() {
+    public User getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
 

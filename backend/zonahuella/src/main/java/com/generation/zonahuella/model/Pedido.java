@@ -1,12 +1,14 @@
 package com.generation.zonahuella.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "pedidos")
+@Table(name = "Pedidos")
 public class Pedido {
 
     @Id
@@ -16,25 +18,26 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario usuario;
+    private User usuario;
 
     @ManyToOne
     @JoinColumn(name = "id_direccion", nullable = false)
     private Direccion direccion;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<DetallePedido> detalles;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetallePedido> detalles = new ArrayList<>();
 
-    @Column(name = "fecha_pedido")
+    @Column(name = "fecha_pedido", nullable = false)
     private LocalDateTime fechaPedido;
 
-    @Column(name = "total", precision = 10, scale = 2)
+    @Column(name = "total", nullable = false, precision = 10, scale = 2)
     private BigDecimal total;
 
     @Column(name = "metodo_pago", length = 50)
     private String metodoPago;
 
-    @Column(name = "notas", columnDefinition = "TEXT")
+    @Column(name = "notas", length = 255)
     private String notas;
 
     public Pedido() {
@@ -48,11 +51,11 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public Usuario getUsuario() {
+    public User getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
 

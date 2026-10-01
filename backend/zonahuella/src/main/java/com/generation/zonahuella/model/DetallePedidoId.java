@@ -14,6 +14,11 @@ public class DetallePedidoId implements Serializable {
     public Integer getProducto() { return producto; }
     public void setProducto(Integer producto) { this.producto = producto; }
 
+    public DetallePedidoId(Integer pedido, Integer producto) {
+        this.pedido = pedido;
+        this.producto = producto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

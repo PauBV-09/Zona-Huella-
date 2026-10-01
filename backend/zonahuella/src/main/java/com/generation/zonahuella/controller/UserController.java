@@ -12,72 +12,91 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/ZH")
+@RequestMapping("/api/usuarios")
 public class UserController {
+
     private final UserService userService;
 
-
-    @Autowired
-    public UserController(UserService userService){ this.userService = userService;}
-
-    @GetMapping("/UsuarioZH")
-    public List<User> getUsuarios(){ return userService.getUsuarios();}
-
-    @PostMapping("/crear-usuario")
-    public ResponseEntity<User> createUsuario(@RequestBody User newUsuario){
-        User userByNombre = userService.findByNombre(newUsuario.getNombre());
-        User userByEmail = userService.findByEmail(newUsuario.getEmail());
-
-        if (userByNombre != null || userByEmail != null) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }else {
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(userService.createUsuario(newUsuario));
-        }
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping("/ZonaHuella/{id}")
-    public ResponseEntity<User> findById(@PathVariable Integer id) {
-        // 200 o 404
-        try {
-            return ResponseEntity.ok(userService.findById(id));
-        } catch (UserNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
+    @GetMapping
+    public List<User> getUsuarios() {
+        return userService.getUsuarios();
     }
 
-    //4. Mapear deleteById
-    @DeleteMapping("/eliminnar-usuario-ZH/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable Integer id) {
-        try {
-            //204
-            userService.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } catch (UserNotFoundException e) { //404
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> findById(
+            @PathVariable Integer id) {
+
+        return ResponseEntity.ok(
+                userService.findById(id)
+        );
     }
 
-    //updateById
-    @PutMapping("/actualizar-ZH/{id}")
-    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Integer id) {
-        try { //204
-            userService.updateUsuarios(user, id);
-            return ResponseEntity.noContent().build();
-        } catch (UserNotFoundException e) { //404
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 
-    //Mapear findByEmail
-    @GetMapping("/ZHmail")
-    public ResponseEntity<User> getByEmail(@RequestParam String email){
+    @GetMapping(params = "email")
+    public ResponseEntity<User> getByEmail(
+            @RequestParam String email) {
 
-        User userByEmail = userService.findByEmail(email);
-        if(userByEmail ==null) { //404
+        User usuario = userService.findByEmail(email);
+
+        if (usuario == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(userByEmail); //200
+
+        return ResponseEntity.ok(usuario);
     }
 
+
+    @PostMapping
+    public ResponseEntity<User> createUsuario(
+            @RequestBody User nuevoUsuario) {
+
+        User usuarioExistente =
+                userService.findByEmail(
+                        nuevoUsuario.getEmail()
+                );
+
+        if (usuarioExistente != null) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .build();
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(
+                        userService.createUsuario(
+                                nuevoUsuario
+                        )
+                );
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(
+            @RequestBody User usuario,
+            @PathVariable Integer id) {
+
+        return ResponseEntity.ok(
+                userService.updateUsuarios(
+                        usuario,
+                        id
+                )
+        );
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(
+            @PathVariable Integer id) {
+
+        userService.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
