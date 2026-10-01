@@ -5,6 +5,9 @@ const apellidoInput = document.getElementById('reg-apellido');
 const usernameInput = document.getElementById('reg-username');
 const correoInput = document.getElementById('reg-correo');
 
+const prefijoInput = document.getElementById('reg-prefijo');
+const numeroInput = document.getElementById('reg-numero');
+
 const passwordInput = document.getElementById('reg-password');
 const confirmPasswordInput = document.getElementById('reg-confirm-password');
 
@@ -76,6 +79,29 @@ function validarCorreo() {
 
 
 // ============================================================
+// VALIDAR TELÉFONO (PREFIJO + CÓDIGO DE ÁREA Y NÚMERO JUNTOS)
+// ============================================================
+
+function validarTelefono() {
+
+    const prefijo = prefijoInput.value;
+
+    const numero = numeroInput.value.trim();
+
+    const soloDigitos = numero.replace(/\D/g, '');
+
+    const prefijoValido = prefijo !== "";
+
+    const numeroValido = /^\d{7,10}$/.test(soloDigitos);
+
+    return (
+        prefijoValido &&
+        numeroValido
+    );
+}
+
+
+// ============================================================
 // ACTUALIZAR ESTADO DEL BOTÓN
 // ============================================================
 
@@ -94,6 +120,9 @@ function actualizarEstadoBoton() {
 
     const correoValido =
         validarCorreo();
+
+    const telefonoValido =
+        validarTelefono();
 
 
     // Contraseña
@@ -124,6 +153,7 @@ function actualizarEstadoBoton() {
         apellidoValido &&
         usernameValido &&
         correoValido &&
+        telefonoValido &&
         passwordValida &&
         confirmMatch &&
         terminosAceptados;
@@ -173,6 +203,16 @@ correoInput.addEventListener(
     actualizarEstadoBoton
 );
 
+prefijoInput.addEventListener(
+    'change',
+    actualizarEstadoBoton
+);
+
+numeroInput.addEventListener(
+    'input',
+    actualizarEstadoBoton
+);
+
 passwordInput.addEventListener(
     'input',
     actualizarEstadoBoton
@@ -193,7 +233,7 @@ terminosCheckbox.addEventListener(
 // ENVÍO DEL FORMULARIO
 // ============================================================
 
-registerForm.addEventListener('submit', (e) => {
+registerForm.addEventListener('submit', async (e) => {
 
     e.preventDefault();
 
@@ -231,6 +271,15 @@ registerForm.addEventListener('submit', (e) => {
     const correo =
         correoInput.value.trim();
 
+    const prefijo =
+        prefijoInput.value;
+
+    const numero =
+        numeroInput.value.trim();
+
+    const telefono =
+        `${prefijo} ${numero}`;
+
     const nuevaPassword =
         passwordInput.value;
 
@@ -239,84 +288,13 @@ registerForm.addEventListener('submit', (e) => {
     // OBTENER USUARIOS EXISTENTES
     // ========================================================
 
-    let usuariosRegistrados =
-        JSON.parse(
-            localStorage.getItem('usuarios')
-        ) || [];
-
-
-    // ========================================================
-    // COMPROBAR USUARIO O CORREO DUPLICADO
-    // ========================================================
-
-    const existe =
-        usuariosRegistrados.some(
-
-            usuario =>
-                usuario.username.toLowerCase() ===
-                username.toLowerCase()
-
-                ||
-
-                usuario.email.toLowerCase() ===
-                correo.toLowerCase()
-
-        );
-
-
-    if (existe) {
-
-        alert(
-            'Ese usuario o correo ya está registrado.'
-        );
-
-        return;
-    }
-
-
-    // ========================================================
-    // CREAR NUEVO USUARIO
-    // ========================================================
-
-    const nuevoUsuario = {
-
-        nombre: nombre,
-
-        apellido: apellido,
-
-        username: username,
-
-        email: correo,
-
-        password: nuevaPassword
-
-    };
-
-
-    // ========================================================
-    // GUARDAR EN LOCALSTORAGE
-    // ========================================================
-
-    usuariosRegistrados.push(nuevoUsuario);
-
-    localStorage.setItem(
-        'usuarios',
-        JSON.stringify(usuariosRegistrados)
-    );
-
-
-    // ========================================================
-    // REGISTRO EXITOSO
-    // ========================================================
-
-    alert(
-        '¡Registro completado correctamente!'
-    );
-
-
-    // ========================================================
-    // REDIRECCIÓN AL LOGIN
-    // ========================================================
+    try {
+        await ZonaAPI.request('/api/usuarios', 'POST', {
+            nombre: `${nombre} ${apellido}`, email: correo,
+            telefono: telefono.replace(/\s/g, ''), contrasenia: nuevaPassword
+        });
+        alert('¡Registro completado correctamente!');
+    } catch (error) { ZonaAPI.error(error); return; }
 
     window.location.href = 'login.html';
 

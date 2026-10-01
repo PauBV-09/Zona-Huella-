@@ -12,68 +12,73 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/imagenes")
 public class ProductoImagenesController {
+
     private final ProductoImagenesService productoImagenesService;
 
-    @Autowired
-    public ProductoImagenesController(ProductoImagenesService productoImagenesService){
-        this.productoImagenesService = productoImagenesService;
+    public ProductoImagenesController(
+            ProductoImagenesService productoImagenesService) {
+
+        this.productoImagenesService =
+                productoImagenesService;
     }
 
-    // Mappear getImagenesService()
-    @GetMapping("/")
-    public List<ProductoImagenes> getImagenesService() {
-        return productoImagenesService.getImagenes();
+
+    @GetMapping
+    public ResponseEntity<List<ProductoImagenes>> obtenerImagenes() {
+
+        return ResponseEntity.ok(
+                productoImagenesService.obtenerImagenes()
+        );
     }
 
-    // Mapear addImagen() -- ResponseEntity para manejar codigos de estado de peticion
-    @PostMapping("imagen")
-    public ResponseEntity<ProductoImagenes> addImagen(@RequestBody ProductoImagenes newImagen){
-        // Validar si el usuario existe mediante id
-        ProductoImagenes imagenById = productoImagenesService.findById(newImagen.getId());
-        // Si un usuario existe te lanza un estado
-        if (imagenById != null){
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        } else {
-            // Si no existe crearlo y mostrar codigo de estado 201 (CREATED)
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(productoImagenesService.addUser(newImagen));
-        }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductoImagenes> obtenerPorId(
+            @PathVariable Integer id) {
+
+        return ResponseEntity.ok(
+                productoImagenesService.buscarPorId(id)
+        );
     }
 
-    // Mapear findById() -- ResponseEntity para manejar codigos de estado de peticion
-    @GetMapping("/imagen/{id}")
-    public ResponseEntity<ProductoImagenes> findById(@PathVariable Long id){
-        // 200 o 404
-        try {
-            return ResponseEntity.ok(productoImagenesService.findById(id));
-        } catch (ProductoNotFoundExceptionnn e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
+    @PostMapping
+    public ResponseEntity<ProductoImagenes> crearImagen(
+            @RequestParam Integer productoId,
+            @RequestBody ProductoImagenes imagen) {
+
+        ProductoImagenes creada =
+                productoImagenesService.crearImagen(
+                        productoId,
+                        imagen
+                );
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(creada);
     }
 
-    // Mapear deleteById
-    @DeleteMapping("/adios-imagen/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable Long id){
-        try {
-            // 204
-            productoImagenesService.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } catch (ProductoNotFoundExceptionnn e) { //404
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductoImagenes> actualizarImagen(
+            @PathVariable Integer id,
+            @RequestBody ProductoImagenes imagen) {
+
+        return ResponseEntity.ok(
+                productoImagenesService
+                        .actualizarImagen(id, imagen)
+        );
     }
 
-    // Mapear updateById
-    @PutMapping("/update-imagen/{id}")
-    public ResponseEntity<?> updateById(@RequestBody ProductoImagenes imagen, @PathVariable Long id){
-        try {
-            // 204
-            productoImagenesService.updateById(imagen, id);
-            return ResponseEntity.noContent().build();
-        } catch (ProductoNotFoundExceptionnn e) { //404
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarImagen(
+            @PathVariable Integer id) {
+
+        productoImagenesService.eliminarImagen(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

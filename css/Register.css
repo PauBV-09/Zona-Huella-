@@ -219,6 +219,129 @@
 
 
 /* =========================================================
+   TELÉFONO (PREFIJO INTERNACIONAL + CÓDIGO DE ÁREA + NÚMERO)
+   ========================================================= */
+
+.register-phone-group {
+    text-align: left;
+}
+
+
+.register-phone-row {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+/* Selector de prefijo internacional (estilo "pill") */
+
+.register-phone-prefix {
+    flex: 0 0 118px;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    padding: 10px 32px 10px 14px;
+
+    background-color: rgba(255, 255, 255, 0.55);
+
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='14' height='14'%3E%3Cpath fill='%23121217' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+
+    border: 1px solid rgba(10, 15, 30, 0.18);
+
+    border-radius: 10px;
+
+    color: #121217;
+
+    font-family: 'Rubik', sans-serif;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    outline: none;
+
+    transition:
+        border-color 0.3s ease,
+        background-color 0.3s ease;
+}
+
+
+.register-phone-prefix:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+
+.register-phone-prefix:focus {
+
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* Código de área + número en una sola caja */
+
+.register-phone-number {
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+    padding: 10px 5px;
+
+    background: transparent;
+
+    border: none;
+
+    border-bottom: 1px solid rgba(10, 15, 30, 0.3);
+
+    color: #121217;
+
+    font-family: 'Rubik', sans-serif;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: border-bottom-color 0.3s ease;
+}
+
+
+.register-phone-number:focus {
+    border-bottom-color: #FF7E29;
+}
+
+
+.register-phone-number::placeholder {
+    color: rgba(10, 15, 30, 0.5);
+}
+
+
+.register-phone-hint {
+    display: block;
+
+    margin-top: 8px;
+
+    color: rgba(10, 15, 30, 0.55);
+
+    font-family: 'Rubik', sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+
+    text-align: left;
+}
+
+
+/* =========================================================
    PASSWORD WRAPPER
    ========================================================= */
 
@@ -772,6 +895,21 @@
         min-width: 100%;
 
         bottom: 135%;
+    }
+
+    .register-phone-row {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 14px;
+    }
+
+    .register-phone-prefix,
+    .register-phone-number {
+        flex: 1 1 auto;
+
+        width: 100%;
     }
 
 }

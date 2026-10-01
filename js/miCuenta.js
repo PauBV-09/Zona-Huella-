@@ -24,7 +24,7 @@ buttons.forEach((btn) => {
 		// ocultar todas las secciones
 		sections.forEach((sec) => (sec.style.display = "none"));
 		// mostrar la sección correspondiente
-		document.getElementById(target).style.display = "block";
+		if (document.getElementById(target)) document.getElementById(target).style.display = "block";
 
 		breadcrumbSection.textContent = btn.textContent;
 	});
@@ -44,8 +44,13 @@ modalCerrarSesion.addEventListener("click", (e) => {
 
 // Botón "Sí" del modal: aquí va la lógica real de cerrar sesión
 btnConfirmarSi.addEventListener("click", () => {
-	// TODO: aquí pon tu lógica real (limpiar sesión, redirigir, etc.)
-	// Por ejemplo: window.location.href = "../index.html";
-	console.log("Sesión cerrada");
+    // 1. Borramos al usuario del almacenamiento local
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("usuarioId");
+    localStorage.removeItem("usuarioEmail");
+    localStorage.removeItem("carrito");
+    sessionStorage.removeItem("direccionPedido");
+    // 2. Redirigimos inmediatamente a la pantalla de inicio de sesión
+    window.location.href = "../html/login.html";
 	modalCerrarSesion.style.display = "none";
 });

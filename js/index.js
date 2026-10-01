@@ -17,12 +17,7 @@ async function cargarRecomendados(rutaJSON, cantidad = 4) {
   if (!contenedor) return;
 
   try {
-    const respuesta = await fetch(rutaJSON);
-    if (!respuesta.ok) {
-      throw new Error(`Error HTTP: ${respuesta.status}`);
-    }
-
-    const productos = await respuesta.json();
+    const productos = await ZonaAPI.recommendedProducts();
 
     // Nombre de categoría derivado del archivo (ej. "dogsecos.json" -> "dogsecos")
     // Se usa como prefijo del id para no chocar con otras categorías.
@@ -31,6 +26,11 @@ async function cargarRecomendados(rutaJSON, cantidad = 4) {
     const seleccionados = productos.slice(0, cantidad);
 
     contenedor.innerHTML = "";
+    if (!seleccionados.length) {
+      const message = document.createElement('p');
+      message.textContent = 'No hay productos que coincidan con la especie, edad y tamaño de tu mascota.';
+      message.setAttribute('role','status'); contenedor.appendChild(message);
+    }
 
     seleccionados.forEach((producto) => {
       const card = document.createElement("div");
@@ -51,7 +51,7 @@ async function cargarRecomendados(rutaJSON, cantidad = 4) {
       const btnAgregar = card.querySelector(".add_cart");
       btnAgregar.addEventListener("click", () => {
         agregarProductoAlCarrito({
-          id: `${categoria}-${producto.id}`,
+          id: producto.id,
           nombre: producto.nombre,
           precio: producto.precio,
           img: producto.imagen,
@@ -61,10 +61,13 @@ async function cargarRecomendados(rutaJSON, cantidad = 4) {
         setTimeout(() => (btnAgregar.textContent = "+"), 800);
       });
 
+    card.querySelectorAll('h2, h3, img').forEach(el => el.addEventListener('click', () => {
+        window.location.href = 'html/detalleProd.html?id=' + producto.id;
+    }));
       contenedor.appendChild(card);
     });
   } catch (error) {
-    console.error("Error al cargar productos recomendados:", error);
+    ZonaAPI.error(error);
   }
 }
 

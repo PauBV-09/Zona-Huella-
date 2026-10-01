@@ -11,9 +11,9 @@
 
 					<!-- Categorías al lado del logo en Desktop -->
 					<nav class="d-none d-lg-flex align-items-center gap-3 ms-2">
-						<a class="nav-text-link" href="../html/listProd.html">Perros</a>
-						<a class="nav-text-link" href="../html/listProd.html">Gatos</a>
-						<a class="nav-text-link" href="../html/listProd.html">Ofertas</a>
+						<a class="nav-text-link" href="../html/listProd.html?especie=perro">Perros</a>
+						<a class="nav-text-link" href="../html/listProd.html?especie=gato">Gatos</a>
+						<a class="nav-text-link" href="../html/listProd.html?ofertas=1">Ofertas</a>
 					</nav>
 				</div>
 
@@ -27,7 +27,7 @@
 
 				<!-- Lado Derecho: Acciones del Usuario (Arriba a la derecha siempre) -->
 				<div class="nav-actions d-flex align-items-center justify-content-end gap-3 gap-lg-4 ms-auto ms-lg-0">
-					<a class="nav-text-link" href="../html/login.html" title="Cuenta">
+					<a class="nav-text-link" href="../html/login.html" title="Cuenta" id="nav-cuenta-link">
 						<i class="bi bi-person-circle fs-5 d-inline d-lg-none"></i>
 						<span class="d-none d-lg-inline">Cuenta</span>
 					</a>
@@ -53,13 +53,13 @@
 
 			<!-- Fila 3: Categorías Perros, Gatos y Ofertas Centradas en Móvil -->
 			<div class="mobile-categories-bar d-flex d-lg-none justify-content-center align-items-center gap-2 pt-2 pb-1">
-				<a class="mobile-cat-pill" href="../html/listProd.html">
+				<a class="mobile-cat-pill" href="../html/listProd.html?especie=perro">
 					<i class="bi bi-tag-fill me-1"></i>Perros
 				</a>
-				<a class="mobile-cat-pill" href="../html/listProd.html">
+				<a class="mobile-cat-pill" href="../html/listProd.html?especie=gato">
 					<i class="bi bi-tag-fill me-1"></i>Gatos
 				</a>
-				<a class="mobile-cat-pill text-warning-custom" href="../html/listProd.html">
+				<a class="mobile-cat-pill text-warning-custom" href="../html/listProd.html?ofertas=1">
 					<i class="bi bi-lightning-charge-fill me-1"></i>Ofertas
 				</a>
 			</div>
