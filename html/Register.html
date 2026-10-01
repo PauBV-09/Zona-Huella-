@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="es-MX">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro</title>
+  <title>Registro | Zona Huella</title>
   <link rel="stylesheet" href="../css/Register.css">>
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="icon" type="image/png" href="../assets/logo Huella.png">
 
 </head>
@@ -25,9 +23,7 @@
     <div class="register-container">
       <div class="register-card">
         <div class="register-image">
-          <img
-            src="../assets/register/pexels-eren-arici-544063282-16600893.jpg"
-            alt="Ilustración mascota"
+          <img src="../assets/register/pexels-eren-arici-544063282-16600893.jpg" alt="Ilustración mascota"
             class="register-image-img">
         </div>
         <!-- =================================================
@@ -51,20 +47,12 @@
               <div class="row g-2">
                 <div class="col">
                   <div class="register-input-group">
-                    <input
-                      type="text"
-                      id="reg-Nombre"
-                      placeholder="Nombre"
-                      required>
+                    <input type="text" id="reg-Nombre" placeholder="Nombre" required>
                   </div>
                 </div>
                 <div class="col">
                   <div class="register-input-group">
-                    <input
-                      type="text"
-                      id="reg-apellido"
-                      placeholder="Apellido"
-                      required>
+                    <input type="text" id="reg-apellido" placeholder="Apellido" required>
                   </div>
                 </div>
               </div>
@@ -72,11 +60,8 @@
             <!-- TELÉFONO -->
             <div class="register-input-group register-phone-group">
               <div class="register-phone-row">
-                <select
-                  id="reg-prefijo"
-                  class="register-phone-prefix"
-                  required>
-                  <option value="+52"selected>+52 MX</option>
+                <select id="reg-prefijo" class="register-phone-prefix" required>
+                  <option value="+52" selected>+52 MX</option>
                   <option value="+1">+1 US/CA</option>
                   <option value="+34">+34 ES</option>
                   <option value="+57">+57 CO</option>
@@ -87,14 +72,8 @@
                   <option value="+58">+58 VE</option>
                   <option value="+44">+44 UK</option>
                 </select>
-                <input
-                  type="tel"
-                  id="reg-numero"
-                  class="register-phone-number"
-                  placeholder="(81) 1234 5678"
-                  inputmode="tel"
-                  maxlength="18"
-                  required>
+                <input type="tel" id="reg-numero" class="register-phone-number" placeholder="(81) 1234 5678"
+                  inputmode="tel" maxlength="18" required>
               </div>
               <span class="register-phone-hint">
                 Agrega tu numero telefonico
@@ -102,19 +81,11 @@
             </div>
             <!-- USUARIO -->
             <div class="register-input-group">
-              <input
-                type="text"
-                id="reg-username"
-                placeholder="Nombre de usuario"
-                required>
+              <input type="text" id="reg-username" placeholder="Nombre de usuario" required>
             </div>
             <!-- CORREO -->
             <div class="register-input-group">
-              <input
-                type="email"
-                id="reg-correo"
-                placeholder="Correo electrónico"
-                required>
+              <input type="email" id="reg-correo" placeholder="Correo electrónico" required>
             </div>
 
 
@@ -130,19 +101,13 @@
 
                   <div class="register-input-group register-password-wrapper">
 
-                    <input
-                      type="password"
-                      id="reg-password"
-                      placeholder="Escribe tu contraseña"
-                      autocomplete="off"
+                    <input type="password" id="reg-password" placeholder="Escribe tu contraseña" autocomplete="off"
                       required>
 
 
                     <!-- TOOLTIP -->
 
-                    <div
-                      id="password-tooltip"
-                      class="register-password-tooltip">
+                    <div id="password-tooltip" class="register-password-tooltip">
 
                       <p>
                         Su contraseña debe cumplir estrictamente
@@ -181,12 +146,8 @@
 
                   <div class="register-input-group">
 
-                    <input
-                      type="password"
-                      id="reg-confirm-password"
-                      placeholder="Confirma tu contraseña"
-                      autocomplete="new-password"
-                      required>
+                    <input type="password" id="reg-confirm-password" placeholder="Confirma tu contraseña"
+                      autocomplete="new-password" required>
 
                   </div>
 
@@ -208,10 +169,7 @@
 
               <label class="register-custom-checkbox">
 
-                <input
-                  type="checkbox"
-                  id="terminos"
-                  required>
+                <input type="checkbox" id="terminos" required>
 
                 <span class="register-checkmark"></span>
 
@@ -226,9 +184,7 @@
 
               <label class="register-custom-checkbox">
 
-                <input
-                  type="checkbox"
-                  id="promociones">
+                <input type="checkbox" id="promociones">
 
                 <span class="register-checkmark"></span>
 
@@ -246,11 +202,7 @@
                  BOTÓN
                  ================================================= -->
 
-            <button
-              type="submit"
-              id="btn-registro"
-              class="register-button"
-              disabled>
+            <button type="submit" id="btn-registro" class="register-button" disabled>
 
               Registrarse
 
@@ -266,9 +218,7 @@
 
           <div class="register-footer">
 
-            <a
-              href="login.html"
-              class="register-login-link">
+            <a href="login.html" class="register-login-link">
 
               ¿Ya tienes cuenta? Inicia sesión
 
@@ -292,19 +242,19 @@
 
   <!-- BOOTSTRAP -->
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwxH9j09JcYn3nv7wiPVlz7YYWwJrVWrM7s5uV7s2hQz8G0tX6E"
-    crossorigin="anonymous">
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwxH9j09JcYn3nv7wiPVlz7YYWwJrVWrM7s5uV7s2hQz8G0tX6E" crossorigin="anonymous">
+    </script>
 
 
   <!-- JAVASCRIPT -->
 
+  <script src="../js/api.js"></script>
   <script src="../js/Register.js"></script>
 
   <script src="../js/loadComponents.js"></script>
+  <script src="../js/carrito.js"></script>
 
 </body>
 
-</html> 
+</html>

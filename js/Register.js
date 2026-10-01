@@ -233,7 +233,7 @@ terminosCheckbox.addEventListener(
 // ENVÍO DEL FORMULARIO
 // ============================================================
 
-registerForm.addEventListener('submit', (e) => {
+registerForm.addEventListener('submit', async (e) => {
 
     e.preventDefault();
 
@@ -288,86 +288,13 @@ registerForm.addEventListener('submit', (e) => {
     // OBTENER USUARIOS EXISTENTES
     // ========================================================
 
-    let usuariosRegistrados =
-        JSON.parse(
-            localStorage.getItem('usuarios')
-        ) || [];
-
-
-    // ========================================================
-    // COMPROBAR USUARIO O CORREO DUPLICADO
-    // ========================================================
-
-    const existe =
-        usuariosRegistrados.some(
-
-            usuario =>
-                usuario.username.toLowerCase() ===
-                username.toLowerCase()
-
-                ||
-
-                usuario.email.toLowerCase() ===
-                correo.toLowerCase()
-
-        );
-
-
-    if (existe) {
-
-        alert(
-            'Ese usuario o correo ya está registrado.'
-        );
-
-        return;
-    }
-
-
-    // ========================================================
-    // CREAR NUEVO USUARIO
-    // ========================================================
-
-    const nuevoUsuario = {
-
-        nombre: nombre,
-
-        apellido: apellido,
-
-        username: username,
-
-        email: correo,
-
-        telefono: telefono,
-
-        password: nuevaPassword
-
-    };
-
-
-    // ========================================================
-    // GUARDAR EN LOCALSTORAGE
-    // ========================================================
-
-    usuariosRegistrados.push(nuevoUsuario);
-
-    localStorage.setItem(
-        'usuarios',
-        JSON.stringify(usuariosRegistrados)
-    );
-
-
-    // ========================================================
-    // REGISTRO EXITOSO
-    // ========================================================
-
-    alert(
-        '¡Registro completado correctamente!'
-    );
-
-
-    // ========================================================
-    // REDIRECCIÓN AL LOGIN
-    // ========================================================
+    try {
+        await ZonaAPI.request('/api/usuarios', 'POST', {
+            nombre: `${nombre} ${apellido}`, email: correo,
+            telefono: telefono.replace(/\s/g, ''), contrasenia: nuevaPassword
+        });
+        alert('¡Registro completado correctamente!');
+    } catch (error) { ZonaAPI.error(error); return; }
 
     window.location.href = 'login.html';
 

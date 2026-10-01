@@ -56,6 +56,9 @@ function renderProducts(listaProductos, categoria) {
       </div>
     `;
 
+    card.querySelectorAll('h2, h3, img').forEach(el => el.addEventListener('click', () => {
+        window.location.href = 'detalleProd.html?id=' + producto.id;
+    }));
     grid.appendChild(card);
   });
 
@@ -79,7 +82,7 @@ function renderProducts(listaProductos, categoria) {
       // Se antepone la categoría (nombre del JSON) al id para que no
       // choque con productos de otras categorías que reutilicen el mismo id.
       agregarProductoAlCarrito({
-        id: `${categoria}-${producto.id}`,
+        id: producto.id,
         nombre: producto.nombre,
         precio: producto.precio,
         img: producto.imagen,
@@ -92,10 +95,12 @@ function renderProducts(listaProductos, categoria) {
 
   // Para botones de favoritos
   grid.querySelectorAll(".fav-btn").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("click", async (e) => {
       e.stopPropagation();
       const i = btn.dataset.index;
       const producto = listaProductos[i];
+      try { await ZonaAPI.favorite(producto.id, !btn.classList.contains('favorito')); }
+      catch (error) { ZonaAPI.error(error); return; }
       btn.classList.toggle("favorito");
       if (btn.classList.contains("favorito")) {
         btn.textContent = "❤️";
@@ -108,26 +113,65 @@ function renderProducts(listaProductos, categoria) {
   });
 }
 
-//  Función para cargar el JSON y llamar la función de agregar
-async function cargarProductosDesdeJSON(rutaJSON) {
-  try {
-    const respuesta = await fetch(rutaJSON);
-    if (!respuesta.ok) {
-      throw new Error(`Error HTTP: ${respuesta.status}`);
-    }
-
-    // Obtención de los productos con la estructura JSON directamente
-    const productos = await respuesta.json();
-
-    // Nombre de categoría derivado del archivo (ej. "dogsecos.json" -> "dogsecos")
-    const categoria = rutaJSON.split("/").pop().replace(".json", "");
-
-    // Se envían directamente a la función que los agrega al contenedor/lista
-    renderProducts(productos, categoria);
-  } catch (error) {
-    console.error("Error al cargar los productos:", error);
-  }
+// Botones y filtros consultan los endpoints del catálogo.
+const catalogParams = new URLSearchParams(location.search);
+const filterFields = [['especie','especie'], ['tamaño','tamanio'], ['categoria','categoria'], ['etapa','etapa']];
+for (const [name,key] of filterFields) {
+    const initial = catalogParams.get(key);
+    if (initial) document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+        input.checked = input.value === initial;
+    });
 }
-
-// Enlace de la carpeta dogsecos.json
-cargarProductosDesdeJSON("../json/dogsecos.json");
+let catalogoProductos = [];
+let catalogRequest = 0;
+function mostrarCatalogo() {
+    const lista = catalogoProductos.slice();
+    const order = document.querySelector('.orden-productos').value;
+    if (order !== 'recomendados') lista.sort((a,b) => order === 'precio-menor' ? a.precio-b.precio : b.precio-a.precio);
+    renderProducts(lista, 'api');
+    if (!lista.length) {
+        const message = document.createElement('p');
+        message.textContent = 'No se encontraron productos con esta búsqueda y filtros.';
+        message.setAttribute('role', 'status');
+        document.getElementById('productGrid').appendChild(message);
+    }
+    if (!localStorage.getItem('usuarioId')) return;
+    const request = catalogRequest;
+    ZonaAPI.request(`/api/favoritos?usuarioId=${ZonaAPI.userId()}`).then(favs => {
+        if (request !== catalogRequest) return;
+        const ids = new Set(favs.map(p => String(p.idProducto)));
+        document.querySelectorAll('#productGrid .fav-btn').forEach(btn => {
+            const selected = ids.has(lista[btn.dataset.index].id);
+            btn.classList.toggle('favorito', selected); btn.textContent = selected ? '❤️' : '♡';
+        });
+    }).catch(() => {});
+}
+async function aplicarFiltros() {
+    const request = ++catalogRequest;
+    const filters = {};
+    for (const [name,key] of filterFields) {
+        filters[key] = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`), input =>
+            (input.value === 'chico' ? 'PEQUENO' : input.value.toUpperCase()));
+    }
+    const grid = document.getElementById('productGrid');
+    grid.setAttribute('aria-busy', 'true');
+    try {
+        const products = await ZonaAPI.catalog(filters, catalogParams.get('q') || '', catalogParams.get('ofertas') === '1');
+        if (request !== catalogRequest) return;
+        catalogoProductos = products;
+        mostrarCatalogo();
+    } catch(error) {
+        if (request !== catalogRequest) return;
+        catalogoProductos = [];
+        grid.replaceChildren();
+        const message = document.createElement('p');
+        message.textContent = 'No se pudo cargar el catálogo. Intenta aplicar los filtros de nuevo.';
+        grid.appendChild(message);
+        ZonaAPI.error(error);
+    } finally {
+        if (request === catalogRequest) grid.setAttribute('aria-busy', 'false');
+    }
+}
+document.querySelector('.formulario-filtros').addEventListener('submit', e => {e.preventDefault(); aplicarFiltros();});
+document.querySelector('.orden-productos').addEventListener('change', mostrarCatalogo);
+aplicarFiltros();

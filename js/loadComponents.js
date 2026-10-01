@@ -15,6 +15,23 @@ async function loadComponent(elementId, filePath) {
       // 2. Ejecutamos la actualización porque el HTML ya existe en el DOM
       if (elementId === 'navbar-container') {
         actualizarNavbar();
+        const searchTerm = new URLSearchParams(location.search).get('q') || '';
+        container.querySelectorAll('.custom-search-input').forEach(input => {
+          input.value = searchTerm;
+          input.addEventListener('keydown', event => {
+            if (event.key !== 'Enter' || event.isComposing) return;
+            event.preventDefault();
+            const term = input.value.trim();
+            const catalog = new URL(location.pathname.includes('/html/') ? 'listProd.html' : 'html/listProd.html', location.href);
+            if (term) catalog.searchParams.set('q', term);
+            location.href = catalog.href;
+          });
+        });
+        if (!location.pathname.includes('/html/')) {
+          container.querySelectorAll('[href^="../"]').forEach(link => link.setAttribute('href',link.getAttribute('href').slice(3)));
+        }
+        const favorite = container.querySelector('a[title="Favoritos"]');
+        if (favorite) favorite.href = (location.pathname.includes('/html/') ? '' : 'html/') + 'miCuenta.html#favoritos';
       }
       
       // Actualizar automáticamente el año si es el footer
@@ -49,6 +66,7 @@ async function loadComponent(elementId, filePath) {
 
 // Inyección automática al cargar el documento
 document.addEventListener('DOMContentLoaded', () => {
-  loadComponent('navbar-container', '../components/navbar.html');
-  loadComponent('footer-container', '../components/footer.html');
+  const prefix = location.pathname.includes('/html/') ? '../' : '';
+  loadComponent('navbar-container', prefix + 'components/navbar.html');
+  loadComponent('footer-container', prefix + 'components/footer.html');
 });

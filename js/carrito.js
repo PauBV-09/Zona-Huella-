@@ -115,7 +115,7 @@ function actualizarBadgeCarrito() {
 
 function sumarCantidad(id) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  const producto = carrito.find((item) => item.id === id);
+  const producto = carrito.find((item) => String(item.id) === String(id));
   if (producto) {
     producto.cantidad += 1;
   }
@@ -127,12 +127,12 @@ function sumarCantidad(id) {
 
 function restarCantidad(id) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  const producto = carrito.find((item) => item.id === id);
+  const producto = carrito.find((item) => String(item.id) === String(id));
 
   if (producto) {
     if (producto.cantidad <= 1) {
       // Si ya está en 1, restar lo elimina por completo
-      carrito = carrito.filter((item) => item.id !== id);
+      carrito = carrito.filter((item) => String(item.id) !== String(id));
     } else {
       producto.cantidad -= 1;
     }
@@ -145,12 +145,18 @@ function restarCantidad(id) {
 
 function eliminarProducto(id) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  carrito = carrito.filter((item) => item.id !== id);
+  carrito = carrito.filter((item) => String(item.id) !== String(id));
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
   renderCarrito();
   actualizarBadgeCarrito();
 }
+
+document.querySelector('#carrito_resumen_col .add_cart')?.addEventListener('click', () => {
+  if (!localStorage.getItem('usuarioId')) {alert('Inicia sesión para continuar.'); location.href='login.html'; return;}
+  if (!JSON.parse(localStorage.getItem('carrito') || '[]').length) {alert('Tu carrito está vacío.'); return;}
+  location.href='direccionEnvio.html';
+});
 
 window.onload = () => {
   renderCarrito();

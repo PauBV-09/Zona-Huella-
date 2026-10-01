@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="es-MX">
+
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Mis pedidos</title>
- <link rel="stylesheet" href="../css/MisPedidos.css">
- <link rel="stylesheet" href="../css/styles.css">
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
- <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
- <link rel="icon" type="image/png" href="../assets/logo Huella.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis pedidos | Zona Huella</title>
+    <link rel="stylesheet" href="../css/MisPedidos.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="icon" type="image/png" href="../assets/logo Huella.png">
 </head>
+
 <body>
 
     <!-- NAVBAR -->
@@ -52,7 +51,7 @@
             <div id="ordersEmpty" class="orders-empty d-none">
                 <i class="bi bi-bag-heart"></i>
                 <p>No encontramos pedidos con esos filtros.</p>
-                <a href="Tienda.html" class="orders-empty-link">Ir a la tienda</a>
+                <a href="listProd.html" class="orders-empty-link">Ir a la tienda</a>
             </div>
 
         </div>
@@ -76,8 +75,11 @@
     <!-- FOOTER -->
     <div id="footer-container"></div>
 
+    <script src="../js/api.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/MisPedidos.js"></script>
+    <script src="../js/carrito.js"></script>
+    <script src="../js/Mispedidos.js"></script>
     <script src="../js/loadComponents.js"></script>
 </body>
+
 </html>
