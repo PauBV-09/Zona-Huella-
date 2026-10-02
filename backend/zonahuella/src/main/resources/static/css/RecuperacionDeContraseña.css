@@ -1,0 +1,548 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Caveat:wght@600;700&display=swap');
+
+
+/* =========================================================
+   ALTURA DEL NAVBAR POR RESOLUCIÓN
+   (misma lógica que login.css: ajusta --nav-h para que
+   coincida con la altura real de tu navbar en cada tamaño)
+   ========================================================= */
+
+:root {
+    --nav-h: 80px;
+}
+
+
+/* =========================================================
+   RECUPERAR CONTRASEÑA - RESETEO
+   ========================================================= */
+
+.recovery-background-container *,
+.recovery-background-container *::before,
+.recovery-background-container *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+
+.recovery-background-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: calc(var(--nav-h) + 20px) 15px 40px;
+
+    text-align: center;
+}
+
+
+.recovery-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================================================
+   TARJETA
+   ========================================================= */
+
+.recovery-card {
+    width: 100%;
+    max-width: 420px;
+
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 1px solid rgba(10, 15, 30, 0.1);
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   ÍCONO
+   ========================================================= */
+
+.recovery-icon {
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #00c6ff;
+
+    font-size: 28px;
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+ 
+.recovery-logo {
+    width: 90px;
+    height: auto;
+    margin-bottom: 12px;
+ 
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.recovery-tittle {
+    margin: 0 0 6px;
+    padding: 0;
+
+    color: #121217;
+
+    font-family: 'Patrick Hand', cursive;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    line-height: 1.1;
+
+    letter-spacing: 0.5px;
+
+    text-align: center;
+}
+
+
+.recovery-subtitle {
+    margin: 0 0 28px;
+
+    color: rgba(10, 15, 30, 0.6);
+
+    font-family: 'Rubik', sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.4;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+
+#recoveryForm {
+    width: 100%;
+}
+
+
+.recovery-card .input-group {
+    width: 100%;
+
+    position: relative;
+
+    margin-bottom: 8px;
+}
+
+
+.recovery-label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: rgba(10, 15, 30, 0.7);
+
+    font-family: 'Rubik', sans-serif;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+.recovery-card .input-group input {
+    width: 100%;
+
+    padding: 10px 5px;
+
+    background: transparent;
+
+    border: none;
+    border-bottom: 1px solid rgba(10, 15, 30, 0.3);
+
+    color: #121217;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 15px;
+
+    outline: none;
+
+    transition: border-bottom-color 0.3s ease;
+}
+
+
+.recovery-card .input-group input:focus {
+    border-bottom-color: #00c6ff;
+}
+
+
+.recovery-card .input-group input::placeholder {
+    color: rgba(10, 15, 30, 0.5);
+}
+
+
+.recovery-card .input-group input.is-invalid {
+    border-bottom-color: #e5484d;
+}
+
+
+.recovery-error {
+    display: block;
+
+    min-height: 18px;
+
+    margin-top: 4px;
+
+    color: #e5484d;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 12px;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   BOTÓN ENVIAR ENLACE
+   ========================================================= */
+
+.btn-recovery {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 18px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    background: #FF7E29;
+
+    border: 1px solid #FF7E29;
+    border-radius: 8px;
+
+    color: #FEFEFE;
+
+    font-family: 'Patrick Hand', cursive;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+.btn-recovery:hover {
+    transform: translateY(-1px);
+
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.25);
+}
+
+
+.btn-recovery:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+
+.btn-spinner {
+    width: 16px;
+    height: 16px;
+
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+
+    animation: recovery-spin 0.7s linear infinite;
+}
+
+
+@keyframes recovery-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   MENSAJE DE ÉXITO
+   ========================================================= */
+
+.recovery-success {
+    margin-top: 16px;
+
+    padding: 12px 14px;
+
+    background: rgba(0, 198, 255, 0.1);
+
+    border: 1px solid rgba(0, 198, 255, 0.3);
+    border-radius: 8px;
+
+    color: #0072ff;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 13px;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   FOOTER TARJETA
+   ========================================================= */
+
+.recovery-footer {
+    margin-top: 22px;
+}
+
+
+.recovery-link {
+    color: #0072ff !important;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+
+    text-decoration: none;
+
+    transition: color 0.3s ease;
+}
+
+
+.recovery-link:hover {
+    color: #FF7E29 !important;
+}
+
+
+/* =========================================================
+   BREAKPOINTS
+   =========================================================
+   Rangos SIN traslape (min+max explícitos) para que nunca se
+   sumen dos reglas de espaciado a la vez, que fue justo el bug
+   que causaba el hueco enorme en iPad Air: --nav-h: 180px del
+   contenedor SUMADO a un margin-top: 100px extra en la tarjeta.
+   Aquí todo el espacio superior lo controla únicamente --nav-h
+   (vía el padding-top del contenedor); la tarjeta ya no vuelve
+   a llevar margin-top propio en ningún breakpoint.
+   ========================================================= */
+
+
+/* ---- Monitores grandes / 4K (2560px – 3300px+) ---- */
+@media (min-width: 3000px) {
+
+    :root {
+        --nav-h: 110px;
+    }
+
+    .recovery-card {
+        max-width: 640px;
+
+        padding: 60px;
+    }
+
+    .recovery-tittle {
+        font-size: 44px;
+    }
+
+    .recovery-subtitle {
+        font-size: 19px;
+    }
+
+    .btn-recovery {
+        font-size: 26px;
+
+        padding: 16px;
+    }
+
+}
+
+
+/* ---- Monitores 2K (2200px – 2999px) ---- */
+@media (min-width: 2200px) and (max-width: 2999px) {
+
+    :root {
+        --nav-h: 96px;
+    }
+
+    .recovery-card {
+        max-width: 560px;
+
+        padding: 50px;
+    }
+
+    .recovery-tittle {
+        font-size: 38px;
+    }
+
+}
+
+
+/* ---- Laptops grandes / PC (1600px – 2199px) ---- */
+@media (min-width: 1600px) and (max-width: 2199px) {
+
+    :root {
+        --nav-h: 180px;
+    }
+
+    .recovery-card {
+        max-width: 480px;
+    }
+
+}
+
+
+/* ---- Laptops estándar (1200px – 1599px) ---- */
+@media (min-width: 1200px) and (max-width: 1599px) {
+
+    :root {
+        --nav-h: 180px;
+    }
+
+}
+
+
+/* ---- Laptops pequeñas / tablets en horizontal, incluye
+   iPad Air en landscape (1180px de ancho) (992px – 1199px) ---- */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    :root {
+        --nav-h: 180px;
+    }
+
+}
+
+
+/* ---- Tablets en vertical, incluye iPad Air en portrait
+   (820px de ancho) (768px – 991px) ---- */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    :root {
+        --nav-h: 150px;
+    }
+
+    .recovery-card {
+        width: 90%;
+    }
+
+}
+
+
+/* ---- Tablets pequeñas / phablets (576px – 767px) ---- */
+@media (min-width: 576px) and (max-width: 767px) {
+
+    :root {
+        --nav-h: 120px;
+    }
+
+    .recovery-background-container {
+        align-items: flex-start;
+    }
+
+    .recovery-card {
+        width: 95%;
+    }
+
+}
+
+
+/* ---- Celulares estándar, incluye Galaxy Note 3
+   (360px de ancho) (400px – 575px) ---- */
+@media (min-width: 400px) and (max-width: 575px) {
+
+    :root {
+        --nav-h: 180px;
+    }
+
+    .recovery-background-container {
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 30px;
+    }
+
+    .recovery-card {
+        width: 95%;
+
+        padding: 30px 20px;
+    }
+
+    .recovery-tittle {
+        font-size: 28px;
+    }
+
+    .recovery-subtitle {
+        font-size: 14px;
+    }
+
+}
+
+
+/* ---- Celulares pequeños, incluye Galaxy Note 3
+   angosto en modo apretado (hasta 399px) ---- */
+@media (max-width: 399px) {
+
+    :root {
+        --nav-h: 180px;
+    }
+
+    .recovery-background-container {
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 30px;
+    }
+
+    .recovery-card {
+        width: 100%;
+
+        padding: 24px 16px;
+    }
+
+    .recovery-tittle {
+        font-size: 25px;
+    }
+
+    .recovery-subtitle {
+        font-size: 13px;
+    }
+
+    .btn-recovery {
+        font-size: 18px;
+    }
+
+}
