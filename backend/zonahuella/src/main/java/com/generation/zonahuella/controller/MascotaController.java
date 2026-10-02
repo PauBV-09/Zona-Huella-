@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/mascotas")
-@CrossOrigin(origins = "*")
 public class MascotaController {
 
     @Autowired
@@ -77,6 +76,5 @@ public class MascotaController {
 
         return mascotaService.listarPorTamanio(tamanioId);
     }
-
 
 }

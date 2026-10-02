@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/pedidos")
-@CrossOrigin(origins = "*")
 public class PedidoController {
 
     private final PedidoService pedidoService;
@@ -45,8 +44,8 @@ public class PedidoController {
     public ResponseEntity<Pedido> crearPedido(
             @RequestBody PedidoDTO dto) {
 
-        Pedido nuevoPedido =
-                pedidoService.guardarPedido(dto);
+        Pedido nuevoPedido
+                = pedidoService.guardarPedido(dto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -59,8 +58,8 @@ public class PedidoController {
             @PathVariable Integer id,
             @RequestBody PedidoDTO dto) {
 
-        Pedido pedidoActualizado =
-                pedidoService.actualizarPedido(id, dto);
+        Pedido pedidoActualizado
+                = pedidoService.actualizarPedido(id, dto);
 
         return ResponseEntity.ok(pedidoActualizado);
     }
