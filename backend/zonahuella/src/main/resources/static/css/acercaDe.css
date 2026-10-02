@@ -1,0 +1,42 @@
+/* ================= HERO BANNER CON IMAGEN LOCAL Y DEGRADADO ================= */
+.hero-section {
+  position: relative;
+  min-height: 380px;
+  margin-top: 0 !important; /* no le muevan o se separa el navbar */
+  background-image: 
+    linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.78)), 
+    url('../assets/Perro y gato.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-subtitle {
+  color: var(--color-accent-orange);
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+}
+
+/* ================= ICONOS NARANJAS y TARJETAS ================= */
+.icon-accent {
+  color: var(--color-accent-orange) !important;
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px var(--color-shadow);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(237, 239, 248, 0.9) !important;
+}
+
+.info-card i {
+  transition: transform 0.2s ease;
+}
+
+.info-card:hover i {
+  transform: scale(1.1);
+}
