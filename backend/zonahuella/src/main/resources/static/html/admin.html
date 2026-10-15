@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zona Huella | Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+
+  <!-- Bootstrap con CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="icon" type="image/png" href="../assets/logo Huella.png">
+</head>
+
+<body>
+
+  <!-- 1. CONTENEDOR NAVBAR (Inyectado y fijado arriba) -->
+  <div id="navbar-container"></div>
+
+  <section class="navbar_avoid">
+    <div class="container admin-wrap">
+
+      <!-- Selector de vista -->
+      <div class="admin-tabs" role="group" aria-label="Secciones del panel">
+        <button type="button" id="tab-lista" class="btn admin-tab is-active" data-panel="panel-lista"
+          aria-pressed="true">
+          <i class="bi bi-grid" aria-hidden="true"></i> Ver productos
+        </button>
+        <button type="button" id="tab-nuevo" class="btn admin-tab" data-panel="panel-nuevo" aria-pressed="false">
+          <i class="bi bi-plus-circle" aria-hidden="true"></i> Agregar producto
+        </button>
+      </div>
+
+      <!-- Vista 1: listado de productos dados de alta -->
+      <div id="panel-lista">
+        <div id="lista-alert" class="admin-alert" role="status" aria-live="polite" hidden></div>
+        <p id="contador-productos" class="admin-hint"></p>
+        <div id="lista-productos" class="producto-grid"></div>
+      </div>
+
+      <!-- Vista 2: formulario para agregar un producto -->
+      <article class="admin-card" id="panel-nuevo" hidden>
+        <header class="admin-card__header">
+          <i class="bi bi-box-seam" aria-hidden="true"></i>
+          <div>
+            <h2 id="form-titulo">Nuevo producto</h2>
+            <p id="form-subtitulo">Llena los datos para agregarlo al catálogo de la tienda.</p>
+          </div>
+        </header>
+
+        <form id="form-producto" class="admin-card__body" novalidate>
+
+          <!-- Datos básicos -->
+          <fieldset class="admin-group">
+            <legend>Datos del producto</legend>
+
+            <div class="row g-3">
+              <div class="col-md-8">
+                <label for="nombre" class="admin-label">Nombre</label>
+                <input type="text" id="nombre" name="nombre" class="form-control admin-input" maxlength="150" required>
+                <div class="invalid-feedback">Escribe el nombre del producto.</div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="marca" class="admin-label">Marca</label>
+                <input type="text" id="marca" name="marca" class="form-control admin-input" maxlength="100" required>
+                <div class="invalid-feedback">Escribe la marca.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="descripcion" class="admin-label">Descripción</label>
+                <textarea id="descripcion" name="descripcion" class="form-control admin-input" rows="4"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Precio e inventario -->
+          <fieldset class="admin-group">
+            <legend>Precio e inventario</legend>
+
+            <div class="row g-3 align-items-end">
+              <div class="col-sm-6 col-md-3">
+                <label for="precio" class="admin-label">Precio (MXN)</label>
+                <input type="number" id="precio" name="precio" class="form-control admin-input" min="0.01" step="0.01"
+                  required>
+                <div class="invalid-feedback">Ingresa un precio mayor a 0.</div>
+              </div>
+
+              <div class="col-sm-6 col-md-3">
+                <label for="stock" class="admin-label">Stock</label>
+                <input type="number" id="stock" name="stock" class="form-control admin-input" min="0" step="1" required>
+                <div class="invalid-feedback">Ingresa el stock (0 o más).</div>
+              </div>
+
+              <div class="col-sm-6 col-md-3">
+                <label for="descuento" class="admin-label">Descuento (%)</label>
+                <input type="number" id="descuento" name="descuento" class="form-control admin-input" min="0" max="100"
+                  step="0.01" placeholder="0">
+                <div class="invalid-feedback">El descuento va de 0 a 100.</div>
+              </div>
+
+              <div class="col-sm-6 col-md-3">
+                <div class="form-check form-switch admin-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="enOferta" name="enOferta">
+                  <label class="form-check-label" for="enOferta">En oferta</label>
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+          <!-- Relaciones (se llenan desde el backend) -->
+          <fieldset class="admin-group">
+            <legend>Clasificación</legend>
+
+            <div class="row g-4">
+              <div class="col-md-6">
+                <span class="admin-label">Categorías</span>
+                <div class="admin-chips" id="chips-categorias" data-grupo="categorias">
+                  <span class="admin-chips__loading">Cargando…</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <span class="admin-label">Especies</span>
+                <div class="admin-chips" id="chips-especies" data-grupo="especies">
+                  <span class="admin-chips__loading">Cargando…</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <span class="admin-label">Tamaños de mascota</span>
+                <div class="admin-chips" id="chips-tamanios" data-grupo="tamanios">
+                  <span class="admin-chips__loading">Cargando…</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <span class="admin-label">Etapas de vida</span>
+                <div class="admin-chips" id="chips-etapasVida" data-grupo="etapasVida">
+                  <span class="admin-chips__loading">Cargando…</span>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Imágenes -->
+          <fieldset class="admin-group">
+            <legend>Imágenes</legend>
+            <p class="admin-hint">La primera imagen será la principal. Pega la URL de cada una.</p>
+
+            <div id="lista-imagenes" class="admin-images"></div>
+
+            <button type="button" id="btn-agregar-imagen" class="btn admin-btn-outline">
+              <i class="bi bi-plus-lg" aria-hidden="true"></i> Agregar imagen
+            </button>
+          </fieldset>
+
+          <!-- Mensaje de resultado -->
+          <div id="admin-alert" class="admin-alert" role="status" aria-live="polite" hidden></div>
+
+          <footer class="admin-actions">
+            <button type="reset" id="btn-limpiar" class="btn admin-btn-outline">Limpiar</button>
+            <button type="submit" id="btn-guardar" class="btn admin-btn-primary">Guardar producto</button>
+          </footer>
+        </form>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 3. CONTENEDOR FOOTER -->
+  <div id="footer-container"></div>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Inyección de componentes comunes -->
+  <script src="../js/loadComponents.js"></script>
+  <script src="../js/carrito.js"></script>
+
+  <script src="../js/admin.js"></script>
+
+</body>
+
+</html>

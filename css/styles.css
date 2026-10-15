@@ -166,19 +166,31 @@
 
 /* ================= ESTILOS PARA CATEGORÍAS MÓVILES ================= */
 .mobile-cat-pill {
-    color: #e2e8f0 !important;           /* Mismo color claro que los enlaces de PC */
-    text-decoration: none !important;    /* Quita el subrayado azul */
-    font-family: var(--font-base);      /* Aplica la fuente Rubik */
-    font-size: 0.95rem;
-    margin: 0 0.99rem; /* Ajusta la separación horizontal entre los botones */
-    transition: color 0.15s ease-in-out;
+	color: #e2e8f0 !important; /* Mismo color claro que los enlaces de PC */
+	text-decoration: none !important; /* Quita el subrayado azul */
+	font-family: var(--font-base); /* Aplica la fuente Rubik */
+	font-size: 0.95rem;
+	margin: 0 0.99rem; /* Ajusta la separación horizontal entre los botones */
+	transition: color 0.15s ease-in-out;
 }
 
 .mobile-cat-pill:hover {
-    color: var(--color-accent-orange) !important; /* Efecto naranja al pasar el cursor */
+	color: var(
+		--color-accent-orange
+	) !important; /* Efecto naranja al pasar el cursor */
 }
 
 /* Oculta los iconos de etiquetas directamente desde CSS */
 .mobile-cat-pill i {
-    display: none !important;
+	display: none !important;
+}
+
+.badge-cart-dot {
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	background-color: var(--color-accent-orange, #ff7e29);
+	position: absolute;
+	top: 2px;
+	right: -6px;
 }

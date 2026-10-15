@@ -1,7 +1,15 @@
+html,
 body {
-	background-color: #fefefe;
+	height: 100%; /* ocupa toda la ventana */
 	margin: 0;
 	padding: 0;
+	display: flex;
+	flex-direction: column; /* apila header, body y footer */
+	background-color: #fefefe;
+}
+
+section {
+	flex: 1;
 }
 
 /* Diseño para pantallas grandes */
@@ -9,7 +17,6 @@ body {
 	background-color: #edeff8;
 	display: flex;
 	padding: 20px 80px;
-	height: 50vh;
 	align-items: center;
 	justify-content: space-between;
 	gap: 150px;
@@ -51,7 +58,6 @@ body {
 		background-color: #edeff8;
 		display: flex;
 		padding: 20px 80px;
-		height: 50vh;
 		align-items: center;
 		justify-content: space-around;
 		margin-top: 80px;
@@ -158,9 +164,9 @@ body {
 }
 
 @media (max-width: 993px) {
-  .hero {
-    margin-top: 145px;
-  }
+	.hero {
+		margin-top: 145px;
+	}
 }
 
 .productos {
@@ -224,7 +230,7 @@ body {
 }
 
 .recomendado {
-	margin: 70px;
+	margin: 50px;
 }
 
 #titular_recomendado {
@@ -255,14 +261,16 @@ body {
 
 .card_recomendado img {
 	width: 100%;
-	height: 200px;
-	object-fit: cover;
+	height: 100%;
+	object-fit: contain;
+	mix-blend-mode: multiply;
 }
 
 .text_recomendado {
 	display: flex;
 	flex-direction: column;
 	padding-left: 15px;
+	flex: 1; /* ocupa el espacio restante dentro de la tarjeta */
 }
 
 .text_recomendado h2 {
@@ -270,11 +278,20 @@ body {
 	font-size: 1.2rem;
 	margin-bottom: 10px;
 	font-weight: 900;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* máximo 2 líneas, el resto se corta con "…" */
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	min-height: 2.6em; /* reserva el mismo espacio aunque el título sea corto */
 }
 
 .last_section_card {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+	margin-top: auto; /* empuja precio + botón al fondo, alineados entre tarjetas */
 	margin-right: 15px;
 }
 

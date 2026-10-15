@@ -1,0 +1,340 @@
+.pagina-envio {
+    --azul: #0f172a;
+    --azul-acento: #249bd3;
+    --gris-claro: #edeff8;
+    --blanco: #fefefe;
+    --naranja: #FF7E29;
+    --negro: #121217;
+    --borde: #cbd5e1;
+
+    min-height: 100vh;
+    padding: 105px 0 70px;
+    background-color: var(--blanco);
+    color: var(--negro);
+    font-family: "Rubik", sans-serif;
+}
+
+.pagina-envio,
+.pagina-envio * {
+    box-sizing: border-box;
+}
+
+.contenedor-envio {
+    max-width: 1180px;
+}
+
+/* Pasos de la compra */
+
+.pasos-compra {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 680px;
+    margin: 0 auto 32px;
+    padding: 0;
+    list-style: none;
+}
+
+.pasos-compra::before,
+.pasos-compra::after {
+    content: "";
+    position: absolute;
+    top: 17px;
+    left: 12.5%;
+    height: 2px;
+}
+
+.pasos-compra::before {
+    width: 75%;
+    background-color: var(--borde);
+}
+
+.pasos-compra::after {
+    width: 25%;
+    background-color: var(--naranja);
+}
+
+.paso {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    color: #8992a3;
+    font-size: 0.78rem;
+}
+
+.circulo-paso {
+    display: flex;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--borde);
+    border-radius: 50%;
+    background-color: var(--blanco);
+    font-size: 0.8rem;
+}
+
+.paso.completado .circulo-paso {
+    border-color: var(--naranja);
+    color: var(--naranja);
+}
+
+.paso.activo {
+    color: var(--azul);
+    font-weight: 600;
+}
+
+.paso.activo .circulo-paso {
+    border-color: var(--naranja);
+    background-color: var(--naranja);
+    color: var(--blanco);
+}
+
+/* Contenido principal */
+
+.pagina-envio h1 {
+    margin: 0 0 22px;
+    font-family: "Patrick Hand", cursive;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--azul);
+}
+
+.contenido-envio {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(290px, 0.85fr);
+    gap: 28px;
+    align-items: start;
+}
+
+/* Formulario */
+
+.tarjeta-envio,
+.resumen-pedido {
+    border: 1.5px solid var(--borde);
+    border-radius: 12px;
+    background-color: var(--blanco);
+    box-shadow: 0 8px 24px rgb(15 23 42 / 7%);
+}
+
+.tarjeta-envio {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 28px;
+}
+
+.fila-dos,
+.fila-tres {
+    display: grid;
+    gap: 18px;
+}
+
+.fila-dos {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.fila-tres {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.campo label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--azul);
+}
+
+.campo input,
+.campo textarea {
+    width: 100%;
+    border: 1.5px solid var(--borde);
+    border-radius: 8px;
+    padding: 11px 13px;
+    background-color: var(--blanco);
+    color: var(--negro);
+    font-family: "Rubik", sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo textarea {
+    min-height: 82px;
+    resize: vertical;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #9aa3b3;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+    border-color: var(--azul-acento);
+    box-shadow: 0 0 0 3px rgb(36 155 211 / 15%);
+}
+
+.guardar-direccion {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: fit-content;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.guardar-direccion input {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--azul-acento);
+}
+
+.acciones-envio {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.btn-continuar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-width: 210px;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    background-color: var(--naranja);
+    color: var(--blanco);
+    font-family: "Rubik", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-continuar:hover {
+    background-color: #e96e1d;
+    transform: translateY(-1px);
+    box-shadow: 0 7px 15px rgb(15 23 42 / 15%);
+}
+
+.btn-continuar:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Resumen del pedido */
+
+.resumen-pedido {
+    position: sticky;
+    top: 95px;
+    padding: 24px;
+}
+
+.resumen-pedido h2 {
+    margin: 0 0 22px;
+    font-family: "Patrick Hand", cursive;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--azul);
+}
+
+.lista-pedido {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    min-height: 100px;
+}
+
+.producto-resumen {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    font-size: 0.86rem;
+}
+
+.producto-nombre {
+    color: #424958;
+}
+
+.producto-precio {
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--azul);
+}
+
+.total-pedido {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    border-top: 1px solid #dce1ea;
+    padding-top: 18px;
+    color: var(--azul);
+}
+
+.carrito-vacio {
+    color: #6b7280;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.carrito-vacio a {
+    color: var(--azul-acento);
+    font-weight: 600;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .contenido-envio {
+        grid-template-columns: 1fr;
+    }
+
+    .resumen-pedido {
+        position: static;
+    }
+}
+
+@media (max-width: 620px) {
+    .pagina-envio {
+        padding: 165px 0 45px;
+    }
+
+    .contenedor-envio {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .fila-dos,
+    .fila-tres {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta-envio,
+    .resumen-pedido {
+        padding: 20px;
+    }
+
+    .nombre-paso {
+        font-size: 0.68rem;
+    }
+
+    .acciones-envio {
+        justify-content: stretch;
+    }
+
+    .btn-continuar {
+        width: 100%;
+    }
+}
